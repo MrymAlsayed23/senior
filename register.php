@@ -10,16 +10,10 @@ session_start();
     <title>Register Page</title>
 </head>
 <style>
-    body{
-        margin-left: 300px;
-        margin-right: 300px;
-    }
     .container{
-        text-align:left; 
-        margin: 200px;        
-        border: solid 1px black;
-        border-radius: 25px;
-        padding: 50px;
+        padding-top: 50px;
+        padding-left: 500px;       
+        padding-right: 500px;       
     }
 
     h1{
@@ -117,36 +111,86 @@ session_start();
 
     <body>
         <div class='container'>
-            <h1>Sign Up</h1>
+            <h1>Register</h1>
             <form method="POST" name="Form" onsubmit="validateform()">
+                <table>
+                    <tr>
+                        <td>
+                            <label for='firstname'>First Name:</label>
+                            <input type='text' id='firstname' name='firstname' placeholder='Enter First Name' />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for='lastname'>Last Name:</label>
+                            <input type='text' id='lastname' name='lastname' placeholder='Enter Last Name' />
+                        </td>
+                    </tr>
 
-                <label for='firstname'>First Name:</label>
-                <input type='text' id='firstname' name='firstname' placeholder='Enter First Name' />
-                <br><br>
-                <label for='lastname'>Last Name:</label>
-                <input type='text' id='lastname' name='lastname' placeholder='Enter Last Name' />
-                <br><br>
-                <label for='username'>Username:</label>
-                <input type='text' id='username' name='username' placeholder='Enter Username' onkeyup="" />
+                    <tr>
+                        <td>
+                            <label for='username'>Username:</label>
+                            <input type='text' id='username' name='username' placeholder='Enter Username' onkeyup="" />
+                        </td>
+                    </tr>
 
-                <h6>Please Enter a Password that starts with a capital letter, followed by a character, more non-special characters and ends with a special character.</h6>
-                <label for='password'>Password:</label>
-                <input type='password' id='pass' name='password' onkeyup="" />
-                <br>
-                <label for='rpassword'>Repeat Password:</label>
-                <input type='password' id='rpassword' name='rpassword' />
-                <br><br>
-                <label for='Phone'>Phone:</label>
-                <input type='text' id='phone' name='phone' />
-                <br><br>
-                <label for='email'>Email</label>
-                <input type='text' id='email' name='email' />
-                <br><br>
-                <button>
-                    <input type="submit" name="register" value="Register">
-                </button>
+                    <tr>
+                        <td>
+                            <label for='password'>Password:</label>
+                            <input type='password' id='pass' name='password' onkeyup="" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for='rpassword'>Repeat Password:</label>
+                            <input type='password' id='rpassword' name='rpassword' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for='Phone'>Phone:</label>
+                            <input type='text' id='phone' name='phone' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for='email'>Email</label>
+                            <input type='text' id='email' name='email' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type='checkbox' name='checkbox' />
+                            <label for="">Yes, I want to receive emails.</label> 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="" id="">
+                            <label for="">I agree to all the <strong>Term</strong> and <strong>Privacy Policy</strong></label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button>
+                                <input type="submit" name="register" value="Create Account">
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p>Already have an account <a href="Login.php">Log in</a> </p>
+                        </td>
+                    </tr>
+                </table>
             </form>
-            <p>Already have an account <a href="Login.php">Click Here!</a> </p>
         </div>
 
         <script>
