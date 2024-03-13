@@ -36,8 +36,8 @@ session_start();
             <form method="POST" name="Form" onsubmit="">
 
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" name='username' class="form-control" placeholder="Email of Phone Number" />
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name='email' class="form-control" placeholder="Enter your Email" />
                 </div>
 
                 <div class="mb-3">
@@ -46,55 +46,67 @@ session_start();
                 </div>
                 
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input">
+                    <input type="checkbox" class="form-check-input" name="remember">
                     <label for="remember" class="form-check-label">Remember me</label>
                     <p href="#"><a href="">Reset Password?</a> </p>
                 </div>
                 
               
                 <div class="d-grid gap-2">
-                    <button class="btn btn-secondary">
-                        <input type="submit" name="log" value="Sign in">
-                    </button>
-
+                    <input type="submit" name="log" value="Sign in">
                 </div>
                 
 
                 <h6>Don't have an account yet?<a href="register.php">Sign up</a> </h6>
 
                 <?php
-                extract($_POST);
-                if (isset($log)) {
-                    try {
-                        require("connection.php");
-                        $hpass = md5($password);
-                        $sqlStatement = "select * from users where username = :username and password = :password ;";
-                        $stmt = $db->prepare($sqlStatement);
-                        $stmt->bindParam(':username', $usernameDB);
-                        $stmt->bindParam(':password', $passwordDB);
-                        $usernameDB = $username;
-                        $passwordDB = $hpass;
-                        $stmt->execute();
-                        $test = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    extract($_POST);
+                    if (isset($log)) { //if the form is submitted
+                        try {
+                            require("connection.php");
+                            if (isset($_POST['remember'])){ //if remember me is enabled
+                                $remember = $_POST['remember'];
+                            }
+                            $hpass = md5($password);
+                            $sqlStatement = "select * from users where email = :email and password = :password ;";
+                            $stmt = $db->prepare($sqlStatement);
+                            $stmt->bindParam(':email', $emailDB);
+                            $stmt->bindParam(':password', $passwordDB);
+                            $emailDB = $email;
+                            $passwordDB = $hpass;
+                            $stmt->execute();
+                            $test = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        if ($test) {
-                            $_SESSION['username'] = $username;
-                            foreach ($test as $key => $value) {
-                                $_SESSION['uid'] = $value['uid'];
-                                $_SESSION['username'];
-                                //$_SESSION['type']=$value['type'];
+
+                            if (isset($_POST['remember'])){
+                                $remember = $_POST['remember'];
+                                $expires= time()+((60*60*24))*7;
+                                setcookie('email', $emailDB,$expires);
+                                setcookie('remember', $remember,$expires);
+                            }
+                            else{
+                                setcookie('email', "", time() - 36000);
+                                setcookie('remember', "", time() - 36000);
                             }
 
-                            header("Location:home.php");
-                            exit();
+                            if ($test) {
+                                $_SESSION['email'] = $email;
+                                foreach ($test as $key => $value) {
+                                   // $_SESSION['uid'] = $value['uid'];
+                                    $_SESSION['email'];
+                                }
+
+                                header("Location:home.php");
+                                exit();
+                            }
+                        
+                            else echo "Invalid email or Password";
+
+                        } catch (PDOException $ex) {
+                            echo $ex->getMessage();
                         }
-                    
-                        else echo "Invalid Username or Password";
-                    } catch (PDOException $ex) {
-                        echo $ex->getMessage();
-                    }
-                }
-                ob_end_flush();
+                    } //end of if statement
+                    ob_end_flush();
                 ?>
             </form>
         </div>
