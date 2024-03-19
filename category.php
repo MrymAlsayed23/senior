@@ -11,9 +11,9 @@
 </head>
 
 <style>
-    body {
+    /* body {
         padding: 50px;
-    }
+    } */
 
     .row {
         padding: 50px;
@@ -22,9 +22,44 @@
 
 <body>
 
-    <h1>Select your Ctegory</h1>
+    <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="/senior/Images/Logo.jpg" alt="Logo" width="30" height="24">
+            </a>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Company</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Services</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Login.php">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </nav>
 
     <div class="container">
+
+        <h1>Select your Category</h1>
+
 
         <div class="row">
 
