@@ -8,6 +8,28 @@
     <title>Customer Home Page</title>
 </head>
 
+<style>
+    ul{
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+    }
+    ul li{
+        display: grid;
+        margin: 0;
+    }
+    .nav-item::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        transition: all .5s ease;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
 <body>
 
     <div class="container-fluid">
