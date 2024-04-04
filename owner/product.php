@@ -44,25 +44,21 @@
         </nav>
     </nav>
 
-    <form method="POST" name="Form">
+    <form method="POST" name="Form" action="">
         <h2>New Product</h2>
         <hr>
         <table>
             <tr>
                 <td>
-                    <label for="">Barcode or QR-Code</label>
-                    <input type="number" name="qrCode">
-                </td>
-                <td>
-                    <label for="">Product Name</label>
-                    <input type="text" name="pname">
+                    <label for="">Barcode</label>
+                    <input type="number" name="barText" min=1>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="">Strength</label>
-                    <input type="text" name="strength">
+                    <label for="">Product Name</label>
+                    <input type="text" name="pname">
                 </td>
                 <td>
                     <label for="">Brand Name</label>
@@ -72,19 +68,31 @@
 
             <tr>
                 <td>
-                    <label for="">Box Size</label>
-                    <input type="number" name="boxSize">
+                    <label for="">Strength</label>
+                    <input type="text" name="strength" min=1>
                 </td>
+
                 <td>
-                    <label for="">Unit</label>
-                    <input type="text" name="Unit">
+                    <label for="">Box Size</label>
+                    <input type="number" name="boxSize" min=1>
                 </td>
             </tr>
 
             <tr>
                 <td>
+                    <label for="">Unit</label>
+                    <input type="text" name="Unit">
+                </td>
+                <td>
                     <label for="">Product Shelf</label>
                     <input type="text" name="pShelf">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="">Quantity</label>
+                    <input type="number" name="pquantity" min=1>
                 </td>
                 <td>
                     <label for="">Details</label>
@@ -151,7 +159,7 @@
                 <td>
 
                     <input type="submit" name="save" id="" value="Save">
-                    <input type="submit" name="SaveAnother" id="" value="Save and Add Another">
+                    <input type="submit" name="saveAnother" id="" value="Save and Add Another">
 
                 </td>
             </tr>
@@ -161,13 +169,23 @@
 
     <?php
     extract($_POST);
-    if (isset($save)) {
+
+   
+    
+
+    if (isset($save) || isset($saveAnother)) {
         try {
             require('../connection.php');
+            // require('vendor/autoload.php');
+            // $barcode = 'Images/'.time().".png";
+            // $barImage = time().".png";
+            // $color = [255,0,0];
             $db->beginTransaction();
-            $stmt = $db->prepare("insert into products (qrCode, pname, BrandName, Unit, boxSize, Details, sellPrice, ManufacturePrice, pquantity, image, strength, pShelf, pType, category) values (:qrCode, :pname, :BrandName, :Unit, :boxSize, :Details, :sellPrice, :ManufacturePrice, :pquantity, :image, :strength, :pShelf, :pType, :category)");
+            $stmt = $db->prepare("insert into products (pname, BrandName, Unit, boxSize, Details, sellPrice, ManufacturePrice, pquantity, image, strength, pShelf, pType, category) values (:pname, :BrandName, :Unit, :boxSize, :Details, :sellPrice, :ManufacturePrice, :pquantity, :image, :strength, :pShelf, :pType, :category)");
+           
+            // $barText = $_REQUEST['barText'];
+            // $stmt = $db->prepare("insert into barcode set barText='$barText', barImage='$barImage' ");
 
-            $stmt->bindParam(':qrCode', $qrCode);
             $stmt->bindParam(':pname', $pname);
             $stmt->bindParam(':BrandName', $BrandName);
             $stmt->bindParam(':Unit', $Unit);
@@ -182,20 +200,23 @@
             $stmt->bindParam(':pType', $pType);
             $stmt->bindParam(':category', $category);
 
+            // $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+            // file_put_contents($barcode, $generator->getBarcode($barText, $generator::TYPE_CODE_128, 3, 50, $color));
+            // echo "<center> <img src='".$barcode."'> </center>";
+
 
             $r = $stmt->execute();
-            if($r==1){
-              ?>
-              <div class="alert a-cont " role="alert">
-                <div class="modal-body">
-                    <p>New Product has been inserted successfully</p>
+            if ($r == 1) {
+    ?>
+                <div class="alert a-cont " role="alert">
+                    <div class="modal-body">
+                        <p>New Product has been inserted successfully</p>
+                    </div>
                 </div>
-            </div>
-            
-            <?php
-            }
-            else {
-              throw new PDOException("Error");
+
+    <?php
+            } else {
+                throw new PDOException("Error");
             }
 
             $db->commit();
