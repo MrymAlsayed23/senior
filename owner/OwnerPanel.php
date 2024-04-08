@@ -51,6 +51,10 @@
     </div>
 
 
+
+
+
+
     <div class="col-6 col-md-3">
     <div class="card">
   <div class="card-body">
@@ -96,13 +100,50 @@
 
 
   </div>
+
+
+
+
+
+
+
+
+
   
  
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="third">
     <div class="row">
     <div class="col-md-8">.col-md-8</div>
-    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+
+
+
+
+
+    
+    <div class="col-6 col-md-4">
+    <div class="table-responsive-md">
+  <table class="table caption-top table-hover">
+  <caption class="top-products">Top Products</caption>
+  <tbody>
+    <tr>
+      <td><img src="1.jpg" alt=""></td>
+      <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $221</span></td>
+      <td><p  class="borded-p">345 Sales</p></td>
+    </tr>
+    <tr>
+      <td><img src="2.jpg" alt=""></td>
+      <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $200</span></td>
+      <td><p  class="borded-p">345 Sales</p></td>
+    </tr>
+    </tbody>
+    
+  </table>
+</div>
+    </div>
+
+
+
   </div>
 
 
