@@ -50,13 +50,6 @@
         <table>
             <tr>
                 <td>
-                    <label for="">Barcode</label>
-                    <input type="number" name="barText" min=1>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
                     <label for="">Product Name</label>
                     <input type="text" name="pname">
                 </td>
@@ -68,39 +61,20 @@
 
             <tr>
                 <td>
-                    <label for="">Strength</label>
-                    <input type="text" name="strength" min=1>
-                </td>
-
-                <td>
-                    <label for="">Box Size</label>
-                    <input type="number" name="boxSize" min=1>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
                     <label for="">Unit</label>
                     <input type="text" name="Unit">
                 </td>
                 <td>
-                    <label for="">Product Shelf</label>
-                    <input type="text" name="pShelf">
+                    <label for="">Quantity</label>
+                    <input type="number" name="pquantity" min=1>
                 </td>
             </tr>
 
             <tr>
-                <td>
-                    <label for="">Quantity</label>
-                    <input type="number" name="pquantity" min=1>
-                </td>
                 <td>
                     <label for="">Details</label>
                     <textarea name="Details" id="" cols="30" rows="5" placeholder="Details"></textarea>
                 </td>
-            </tr>
-
-            <tr>
                 <td>
                     <label for="">Product Type</label>
                     <select name="pType" id="">
@@ -110,13 +84,14 @@
                         <option value=""></option>
                     </select>
                 </td>
+            </tr>
+
+            <tr>
                 <td>
                     <label for="image">Image</label>
                     <input type="file" name="image">
                 </td>
-            </tr>
 
-            <tr>
                 <td>
                     <label for="">Category</label>
                     <select name="category" id="">
@@ -129,32 +104,18 @@
                         <option value="Sports Equipment and Apparel">Sports Equipment and Apparel</option>
                     </select>
                 </td>
+            </tr>
+
+            <tr>
+                
                 <td>
                     <label for="">Sell Price</label>
                     <input type="number" name="sellPrice" id="">
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <label for="">Manufacture</label>
-                    <select name="manufacture" id="">
-                        <option value="test">test</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </td>
-                <td>
-                    <label for="">Manufacture Price</label>
-                    <input type="number" name="ManufacturePrice" id="">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">+Add New Manufacture</a>
-                </td>
-            </tr>
+          
+        
             <tr>
                 <td>
 
@@ -176,33 +137,18 @@
     if (isset($save) || isset($saveAnother)) {
         try {
             require('../connection.php');
-            // require('vendor/autoload.php');
-            // $barcode = 'Images/'.time().".png";
-            // $barImage = time().".png";
-            // $color = [255,0,0];
             $db->beginTransaction();
-            $stmt = $db->prepare("insert into products (pname, BrandName, Unit, boxSize, Details, sellPrice, ManufacturePrice, pquantity, image, strength, pShelf, pType, category) values (:pname, :BrandName, :Unit, :boxSize, :Details, :sellPrice, :ManufacturePrice, :pquantity, :image, :strength, :pShelf, :pType, :category)");
+            $stmt = $db->prepare("insert into products (pname, BrandName, Unit, Details, sellPrice, pquantity, image, pType, category) values (:pname, :BrandName, :Unit, :Details, :sellPrice, :pquantity, :image, :pType, :category)");
            
-            // $barText = $_REQUEST['barText'];
-            // $stmt = $db->prepare("insert into barcode set barText='$barText', barImage='$barImage' ");
-
             $stmt->bindParam(':pname', $pname);
             $stmt->bindParam(':BrandName', $BrandName);
             $stmt->bindParam(':Unit', $Unit);
-            $stmt->bindParam(':boxSize', $boxSize);
             $stmt->bindParam(':Details', $Details);
             $stmt->bindParam(':sellPrice', $sellPrice);
-            $stmt->bindParam(':ManufacturePrice', $ManufacturePrice);
             $stmt->bindParam(':pquantity', $pquantity);
             $stmt->bindParam(':image', $image);
-            $stmt->bindParam(':strength', $strength);
-            $stmt->bindParam(':pShelf', $pShelf);
             $stmt->bindParam(':pType', $pType);
             $stmt->bindParam(':category', $category);
-
-            // $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-            // file_put_contents($barcode, $generator->getBarcode($barText, $generator::TYPE_CODE_128, 3, 50, $color));
-            // echo "<center> <img src='".$barcode."'> </center>";
 
 
             $r = $stmt->execute();
