@@ -23,7 +23,7 @@
  <div class="first">
 
  <div class="row">
-    <div class="col-6 col-md-3">
+    <div class="col-md-3">
 
     <div class="card">
   <div class="card-body">
@@ -37,7 +37,7 @@
     </div>
 
 
-    <div class="col-6 col-md-3">
+    <div class="col-md-3">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -55,7 +55,7 @@
 
 
 
-    <div class="col-6 col-md-3">
+    <div class="col-md-3">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -68,7 +68,7 @@
     </div>
 
     
-    <div class="col-6 col-md-3">
+    <div class="col-md-3">
 
     <div class="card">
   <div class="card-body">
@@ -95,7 +95,7 @@
 
   <div class="row">
     <div class="col-md-8">.col-md-8</div>
-    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+    <div class="col-sm-6 col-md-4">.col-6 .col-md-4</div>
   </div>
 
 
@@ -114,15 +114,54 @@
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="third">
     <div class="row">
-    <div class="col-md-8">.col-md-8</div>
+    <div class="col-sm-6 col-md-8">
+    <table class="table order">
+  <thead>
+    <tr>
+      <th scope="col">Order ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Status</th>
+      <th scope="col">Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Pending</td>
+      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Pending</td>
+      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <td>Pending</td>
+      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
 
 
 
 
 
-    
-    <div class="col-6 col-md-4">
-    <div class="table-responsive-md">
+
+    <div class="col-sm-6 col-md-4">
+      
+ 
   <table class="table caption-top table-hover">
   <caption class="top-products">Top Products</caption>
   <tbody>
@@ -140,23 +179,19 @@
     
   </table>
 </div>
-    </div>
-
 
 
   </div>
 
 
   
-
-    </div>
     
 
 
   
 </div>
 
- 
+</div>
 
 
 

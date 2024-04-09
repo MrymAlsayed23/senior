@@ -156,9 +156,12 @@ a.sidebar-link:hover{
     color: whitesmoke;
 }
 
-.third .table{
+.third table{
     border-bottom: 0px none;
     justify-content: center;
+    position: relative;
+    border-color: transparent;
+    width: 100%;
 }
 .third img{
     width: 3.1rem;
@@ -167,10 +170,28 @@ a.sidebar-link:hover{
 .third .product-name{
     font-weight: 600;
     margin-bottom: 0;
+    position: relative;
 }
 .third .product-span{
     color: dimgrey;
     font-size: 0.8rem;
     margin: 0;
 
+}
+.third .top-products{
+    font-weight: 600;
+    color:black;
+}
+.third .borded-p{
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: dimgray;
+    font-weight: 600;
+    margin-top: 6px;
+    
+}
+.order tr td:nth-child(4) {
+    text-align: start;
 }
