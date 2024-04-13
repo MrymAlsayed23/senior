@@ -101,14 +101,14 @@ a.sidebar-link:hover{
 /* ------------------- Owner Panel -------------------- */
 
 .container{
-    background-color: #3b7ddd;
+   /* background-color: #3b7ddd;*/
     margin-top: 20px;
     width: 100%;
     min-height: 100%;
 }
 
 .first {
-    background-color:aqua;
+    /*background-color:aqua;*/
     margin-bottom: 20px;
     width: 100%;
     min-height: 200px;
@@ -122,9 +122,9 @@ a.sidebar-link:hover{
 }
 
 .third {
-    background-color: tomato;
+    /*background-color: tomato;*/
     min-height: 200px;
-    width: 100%;
+    /*width: 100%;*/
     margin-bottom: 10px;
 }
 
@@ -162,7 +162,9 @@ a.sidebar-link:hover{
     position: relative;
     border-color: transparent;
     width: 100%;
+    --bs-table-bg: transparent;
 }
+
 .third img{
     width: 3.1rem;
     height: 3.1rem;
@@ -178,7 +180,7 @@ a.sidebar-link:hover{
     margin: 0;
 
 }
-.third .top-products{
+.third .top-products, .third .recent-orders{
     font-weight: 600;
     color:black;
 }

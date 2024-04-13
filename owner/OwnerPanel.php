@@ -23,7 +23,7 @@
  <div class="first">
 
  <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
 
     <div class="card">
   <div class="card-body">
@@ -37,7 +37,7 @@
     </div>
 
 
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -55,7 +55,7 @@
 
 
 
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -68,7 +68,7 @@
     </div>
 
     
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
 
     <div class="card">
   <div class="card-body">
@@ -114,8 +114,10 @@
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="third">
     <div class="row">
-    <div class="col-sm-6 col-md-8">
-    <table class="table order">
+    <div class="col-lg-8 col-12">
+      <div class="mb-sm-1 ml-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+    <table class="table caption-top table-hover">
+    <caption class="recent-orders">Recent Orders</caption>
   <thead>
     <tr>
       <th scope="col">Order ID</th>
@@ -153,15 +155,15 @@
   </tbody>
 </table>
     </div>
+    </div>
 
 
 
 
 
-
-    <div class="col-sm-6 col-md-4">
+    <div class="col-lg-4 col-12">
       
- 
+ <div class="mt-sm-1 mr-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
   <table class="table caption-top table-hover">
   <caption class="top-products">Top Products</caption>
   <tbody>
@@ -178,6 +180,7 @@
     </tbody>
     
   </table>
+</div>
 </div>
 
 
