@@ -174,13 +174,13 @@ a.sidebar-link:hover{
     margin-bottom: 0;
     position: relative;
 }
-.third .product-span{
+.third .product-span, .display-products-span{
     color: dimgrey;
     font-size: 0.8rem;
     margin: 0;
 
 }
-.third .top-products, .third .recent-orders{
+.third .top-products, .third .recent-orders, .display-products-caption{
     font-weight: 600;
     color:black;
 }
