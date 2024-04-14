@@ -6,7 +6,7 @@
     <title>Bootstrap demo</title>
     <script src="https://kit.fontawesome.com/02448b3b92.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="owner.css">
+    <link rel="stylesheet" href="o.css">
   <body>
    <!--nav --> 
    
@@ -23,7 +23,7 @@
  <div class="first">
 
  <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="col-lg-3 col-md-6 col-sm-6">
 
     <div class="card">
   <div class="card-body">
@@ -37,7 +37,7 @@
     </div>
 
 
-    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -55,7 +55,7 @@
 
 
 
-    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
@@ -68,7 +68,7 @@
     </div>
 
     
-    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="col-lg-3 col-md-6 col-sm-6">
 
     <div class="card">
   <div class="card-body">
@@ -125,7 +125,6 @@
       <th scope="col">Price</th>
       <th scope="col">Status</th>
       <th scope="col">Date</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -135,7 +134,6 @@
       <td>Otto</td>
       <td>@mdo</td>
       <td>Pending</td>
-      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -143,14 +141,12 @@
       <td>Thornton</td>
       <td>@fat</td>
       <td>Pending</td>
-      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td colspan="2">Larry the Bird</td>
       <td>@twitter</td>
       <td>Pending</td>
-      <td><button type="button" class="btn btn-secondary">Secondary</button></td>
     </tr>
   </tbody>
 </table>
