@@ -10,11 +10,15 @@
   <body>
     
 <div class="container">
-
-  <table class="table caption-top table-sm">
-  <caption class="display-products-caption">Products <span class="display-products-span"><p>100 Products Found</p></span></caption>
-  
+  <table class="table caption-top table-sm table-display-products table-hover">
+  <caption class="display-products-caption"><h3>Products </h3>
+  <span class="display-products-span-caption-p">
+    <p>100 Products Found</p></span>
+</caption>
   <thead>
+    <tr>
+    <th><a href="">Add New Products</a></th>
+    </tr>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Image</th>
@@ -50,7 +54,10 @@
       <td>@mdo</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+      <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button></td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -59,7 +66,10 @@
       <td>@fat</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+      <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button></td>
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -68,10 +78,54 @@
       <td>@twitter</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+      <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button></td>
     </tr>
   </tbody>
 </table>
+</div>
+</div>
+
+
+
+<!-----updateProductsModal------->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </div>
@@ -80,9 +134,9 @@
 
 
 
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
   </body>
 </html>

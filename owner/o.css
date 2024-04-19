@@ -174,7 +174,7 @@ a.sidebar-link:hover{
     margin-bottom: 0;
     position: relative;
 }
-.third .product-span, .display-products-span{
+.third .product-span, .display-products-span-caption-p{
     color: dimgrey;
     font-size: 0.8rem;
     margin: 0;
@@ -186,7 +186,7 @@ a.sidebar-link:hover{
 }
 .third .borded-p{
     text-align: center;
-    background-color: aquamarine;
+    background-color: #ecb6d4;
     border-radius: 4px;
     padding: 2px 4px;
     color: dimgray;
@@ -196,4 +196,46 @@ a.sidebar-link:hover{
 }
 .order tr td:nth-child(4) {
     text-align: start;
+}
+
+/**********************Display Products****************************/
+.table-display-products tr{
+    border-color: transparent;
+}
+.table-display-products thead tr:first-child{
+    border-bottom-color: transparent;
+}
+.table-display-products thead tr:nth-child(2){
+    border-color: black;
+    border-bottom-width: 5px;
+}
+.table-display-products th a{
+    color: #cc7fa9;
+}
+.table-display-products th a:hover{
+    color: #b4628f;
+}
+.table-display-products input{
+    font-size: 13px;
+}
+.table-display-products select{
+    font-size: 13px;
+    border-color: black;
+}
+.table-display-products select:focus{
+    box-shadow: none;
+    border-color: black;
+    border-width: 2px;
+}
+.updateProductsButton{
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 20px;
+}
+.updateProductsButton i{
+    color: #cc7fa9;
+}
+.updateProductsButton i:hover{
+    color: #b4628f;
+    font-size: 22px;
 }
