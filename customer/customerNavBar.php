@@ -53,16 +53,28 @@
                                     Category
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Books</a></li>
-                                    <li><a class="dropdown-item" href="#">Hand Made</a></li>
-                                    <li><a class="dropdown-item" href="#">Electronics</a></li>
-                                    <li><a class="dropdown-item" href="#">Cloths</a></li>
-                                    <li><a class="dropdown-item" href="#">Bags</a></li>
-                                    <li><a class="dropdown-item" href="#">Gaming</a></li>
-                                    <li><a class="dropdown-item" href="#">Sport Equipment</a></li>
-
+                                    <li><a class="dropdown-item" href="../customer/BuisnessHomePage/handMade-Home">Hand Made</a></li>
+                                    <li><a class="dropdown-item" href="electronics-Home">Electronics</a></li>
+                                    <li><a class="dropdown-item" href="clothes-Home">Clothes</a></li>
+                                    <li><a class="dropdown-item" href="bags-Home">Bags</a></li>
+                                    <li><a class="dropdown-item" href="gaming-Home">Gaming</a></li>
+                                    <li><a class="dropdown-item" href="sportEquipment-Home">Sport Equipment</a></li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="menu.php">Menu</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="order.php">Order</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="orderstatus.php">Order Status</a>
+                            </li>
+
 
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.php">Contact</a>
@@ -85,6 +97,7 @@
                                     <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                                 </ul>
                             </li>
+
                         </ul>
                     </div>
                 </nav>
