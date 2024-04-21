@@ -131,7 +131,7 @@ a.sidebar-link:hover{
 .first .card{
     background: white;
     margin: 10px 10px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 7px 25px #ca9fb865;
     justify-content: space-between;
     border-radius: 20px;
     cursor: pointer;
@@ -142,7 +142,7 @@ a.sidebar-link:hover{
 }
 .first .card .card-title {
     font-weight: 600;
-    color: #3b7ddd;
+    color: #cc7fa9;
     margin-top: 13px;
 }
 .first .card .card-text{
@@ -150,7 +150,7 @@ a.sidebar-link:hover{
     font-size: 0.9rem;
 }
 .first .card:hover{
-    background: #3b7ddd;
+    background: #cc7fa9;
 }
 .first .card:hover .card-title, .first .card:hover .card-text, .first .card:hover .card-icon{
     color: whitesmoke;
@@ -186,10 +186,10 @@ a.sidebar-link:hover{
 }
 .third .borded-p{
     text-align: center;
-    background-color: #ecb6d4;
+    background-color: #cc7fa9;
     border-radius: 4px;
     padding: 2px 4px;
-    color: dimgray;
+    color: white;
     font-weight: 600;
     margin-top: 6px;
     
@@ -287,4 +287,8 @@ a.sidebar-link:hover{
     font-weight: 600;
     text-decoration-line: underline;
     background-color: transparent;
+}
+.filter-orders-date input{
+    color: #b4628f;
+    border: 1px solid #b4628f;
 }

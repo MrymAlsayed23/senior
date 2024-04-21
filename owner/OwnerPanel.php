@@ -6,7 +6,7 @@
     <title>Bootstrap demo</title>
     <script src="https://kit.fontawesome.com/02448b3b92.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="o.css">
+    <link rel="stylesheet" href="owner.css">
   <body>
    <!--nav --> 
    
@@ -123,8 +123,8 @@
       <th scope="col">Order ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Status</th>
       <th scope="col">Date</th>
+      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
