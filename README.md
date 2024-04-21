@@ -1,5 +1,5 @@
 # Senior Project 
-each of of us must uplose its work
+each of of us must uplode its work
 Admin: Batool
 Owner: Zahra
 Customer: Maryam
