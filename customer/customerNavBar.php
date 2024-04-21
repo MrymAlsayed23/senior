@@ -53,12 +53,12 @@
                                     Category
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../customer/BuisnessHomePage/handMade-Home">Hand Made</a></li>
-                                    <li><a class="dropdown-item" href="electronics-Home">Electronics</a></li>
-                                    <li><a class="dropdown-item" href="clothes-Home">Clothes</a></li>
-                                    <li><a class="dropdown-item" href="bags-Home">Bags</a></li>
-                                    <li><a class="dropdown-item" href="gaming-Home">Gaming</a></li>
-                                    <li><a class="dropdown-item" href="sportEquipment-Home">Sport Equipment</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/handMade-Home.php">Hand Made</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/electronics-Home.php">Electronics</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/clothes-Home.php">Clothes</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/bags-Home.php">Bags</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/gaming-Home.php">Gaming</a></li>
+                                    <li><a class="dropdown-item" href="../BuisnessHomePage/sportEquipment-Home.php">Sport Equipment</a></li>
                                 </ul>
                             </li>
 
@@ -73,15 +73,6 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="orderstatus.php">Order Status</a>
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.php">Contact</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="aboutUs.php">About Us</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -104,6 +95,7 @@
             </nav>
         </div>
 
+        
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     </body>

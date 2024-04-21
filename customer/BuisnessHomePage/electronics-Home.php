@@ -261,13 +261,13 @@ summary{
 
         <figcaption>
         <nav class="homenav">
-          <img src="../Images/Library.avif">
+          <img src="../Images/">
         </nav>
 
 
         <aside>
-          <p class="p1">Our<br/>Library</p>
-          <p class="p2">Discover the World of Books: Your Online Bookstore Destination</p>
+          <p class="p1">Our<br/></p>
+          <p class="p2">xxx</p>
           <a href="contact.php" class="contact">Contact with Us!</a>
         </aside>
 
@@ -283,14 +283,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Cholcolate Me!.jpg" alt="Cholcolate Me!">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Cholcolate Me!</span>
-                    <span class="profession">BD1.5</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -300,32 +300,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Daddy and Me and the Rhyme to be.jpg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Daddy and Me and the Rhyme to be</span>
-                    <span class="profession">BD2</span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/Daddy Dressed Me.jpeg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">Daddy Dressed Me</span>
-                    <span class="profession">BD2.9</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -336,48 +318,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/I Don't Want To Be Quite!.jpg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">I Don't Want To Be Quite!</span>
-                    <span class="profession">BD3</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/I Said No!.jpg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">I Said No!</span>
-                    <span class="profession">BD1.9</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/Milo's Monster.jpg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">Milo's Monster</span>
-                    <span class="profession">BD11.7</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -388,14 +336,13 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/My Monster and Me.jpg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
-
                   <div class="name-profession">
-                    <span class="name">My Monster and Me</span>
-                    <span class="profession">BD10</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -405,14 +352,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Pattern Breakers.jpg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Pattern Breakers</span>
-                    <span class="profession">BD0.5</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -422,14 +369,66 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Say Something.jpeg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Say Something</span>
-                    <span class="profession">BD6</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -472,7 +471,7 @@ summary{
         
       <article>
         <span class="one">
-          <h1>Historical Books</h1>
+          <h1>xxx</h1>
           <section>
 
           <div class="swiper mySwiper container">
@@ -481,14 +480,14 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content white">
                   <div class="image">
-                  <img src="../customer/Images/Ancient Civilizations.jpg" alt="Ventolin HFA">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Ancient Civilizations</span>
-                    <span class="profession"><s>BD7</s> BD5.8</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -498,32 +497,14 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content">
                   <div class="image">
-                    <img src="../customer/Images/Band of Sisters.jpg" alt="Acetaminophen">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Band of Sisters</span>
-                    <span class="profession"><s>BD6</s> BD4.5</span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide cardw">
-                <div class="cardw-content">
-                  <div class="image">
-                    <img src="../customer/Images/Bible is a Single Book.jpg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">Bible is a Single Book</span>
-                    <span class="profession"><s>BD3</s> BD1.95</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -534,48 +515,14 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content">
                   <div class="image">
-                    <img src="../customer/Images/Know your Bible.jpeg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Know your Bible</span>
-                    <span class="profession"><s>BD6</s> BD5</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide cardw">
-                <div class="cardw-content">
-                  <div class="image">
-                    <img src="../customer/Images/The Bride's Sister.jpg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">The Bride's Sister</span>
-                    <span class="profession"><s>BD7</s> BD5.8</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide cardw">
-                <div class="cardw-content">
-                  <div class="image">
-                    <img src="../customer/Images/The Edelweiss Sisters.jpg" alt="">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">The Edelweiss Sisters</span>
-                    <span class="profession"><s>BD7</s> BD5.8</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -586,14 +533,14 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content">
                   <div class="image">
-                    <img src="../customer/Images/The Everygirl Single Girl.png" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">The Everygirl Single Girl</span>
-                    <span class="profession"><s>BD7.746</s> BD6.421</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -603,14 +550,14 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content">
                   <div class="image">
-                    <img src="../customer/Images/The History of the Renaissance World.jpg" alt="">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">The History of the Renaissance World</span>
-                    <span class="profession"><s>BD5.267</s> BD2.633</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -620,14 +567,66 @@ summary{
               <div class="swiper-slide cardw">
                 <div class="cardw-content">
                   <div class="image">
-                    <img src="../customer/Images/The Last Daughter.jpg" alt="Denture Cleanser">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">The Last Daughter</span>
-                    <span class="profession"><s>BD3.309</s> BD1.750</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide cardw">
+                <div class="cardw-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide cardw">
+                <div class="cardw-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide cardw">
+                <div class="cardw-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -672,7 +671,7 @@ summary{
 
       <summary>
         <span class="one">
-          <h1>Horror Books</h1></br>
+          <h1>xxx</h1></br>
         <section>
 
           <div class="swiper mySwiper container">
@@ -681,14 +680,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Ghost and Other Unseen Visitors.jpg" alt="Ghost and Other Unseen Visitors">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Ghost and Other Unseen Visitors</span>
-                    <span class="profession">BD4.494</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -698,32 +697,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Ghost Eaters.jpeg" alt="Ghost Eaters">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Ghost Eaters</span>
-                    <span class="profession">BD6.097</span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/Ghost in My Life.jpeg" alt="Ghost in My Life">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">Ghost in My Life</span>
-                    <span class="profession">BD17.5</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -734,48 +715,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/Ghost Song.jpg" alt="Ghost Song">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">Ghost Song</span>
-                    <span class="profession">BD5</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/Her Body and Other Parties.jpg" alt="Her Body and Other Parties">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">Her Body and Other Parties</span>
-                    <span class="profession">BD3.675</span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <img src="../customer/Images/The Drift.jpg" alt="The Drift">
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">The Drift</span>
-                    <span class="profession">BD4.999</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -786,14 +733,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/The Ghost Between Us.jpg" alt="The Ghost Between Us">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">The Ghost Between Us</span>
-                    <span class="profession">2.75</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -803,14 +750,14 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/The Outsider.jpeg" alt="The Outsider">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">The Outsider</span>
-                    <span class="profession">2.35</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
@@ -820,14 +767,66 @@ summary{
               <div class="swiper-slide card">
                 <div class="card-content">
                   <div class="image">
-                    <img src="../customer/Images/What Moves the Dead.jpeg" alt="What Moves the Dead">
+                  <img src="../BuisnessHomePage/Images/" alt="">
                   </div>
 
 
 
                   <div class="name-profession">
-                    <span class="name">What Moves the Dead</span>
-                    <span class="profession">BD2.864</span>
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                  <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div class="swiper-slide card">
+                <div class="card-content">
+                  <div class="image">
+                    <img src="../BuisnessHomePage/Images/" alt="">
+                  </div>
+
+
+
+                  <div class="name-profession">
+                    <span class="name">xxx</span>
+                    <span class="profession">BD</span>
                   </div>
 
 
