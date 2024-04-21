@@ -202,6 +202,10 @@ a.sidebar-link:hover{
 .table-display-products tr{
     border-color: transparent;
 }
+.table-display-products th, td{
+    padding: 15px;
+    margin: 15px;
+}
 .table-display-products thead tr:first-child{
     border-bottom-color: transparent;
 }
@@ -262,4 +266,24 @@ a.sidebar-link:hover{
 .updateProductsButton i:hover{
     color: #b4628f;
     font-size: 22px;
+}
+
+/********************Display Orders*************************/
+.filter-orders{
+    margin-left: -12px;
+    margin-right: -10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border-color: transparent;
+}
+.filter-orders:hover:not(focus){
+    color: #b4628f;
+    background-color: #cccccc;
+    border-radius: 2px;
+}
+.filter-orders:focus:not(hover){
+    color: #b4628f;
+    font-weight: 600;
+    text-decoration-line: underline;
+    background-color: transparent;
 }
