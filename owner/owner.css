@@ -232,6 +232,30 @@ a.sidebar-link:hover{
     background-color: transparent;
     font-size: 20px;
 }
+.ShowProductsButton{
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+.ShowProductsButton i {
+    color: #ece912fd;
+}
+.ShowProductsButton i:hover {
+    color: #cac700fd;
+    font-size: 22px;
+}
+
+.orderingButton{
+    border-color: transparent;
+    background-color: transparent;
+}
+.orderingButton:hover{
+    color: #b4628f;
+    background-color: #cccccc;
+    border-radius: 2px;
+}
+
 .updateProductsButton i{
     color: #cc7fa9;
 }

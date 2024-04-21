@@ -6,10 +6,12 @@
     <title>Bootstrap demo</title>
     <script src="https://kit.fontawesome.com/02448b3b92.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="o.css">
+    <link rel="stylesheet" href="owner.css">
   <body>
     
 <div class="container">
+
+
   <table class="table caption-top table-sm table-display-products table-hover">
   <caption class="display-products-caption"><h3>Products </h3>
   <span class="display-products-span-caption-p">
@@ -24,8 +26,9 @@
       <th scope="col">Image</th>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
+      <th scope="col">Price <button class="orderingButton"><i class="fa-solid fa-up-down"></i></button></th>
+      <th scope="col">Quantity <button class="orderingButton"><i class="fa-solid fa-up-down"></i></button></th>
+      <th scope="col"></th>
       <th scope="col"></th>
     </tr>
     <tr>
@@ -54,10 +57,15 @@
       <td>@mdo</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><button class="updateProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <td><button class="ShowProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+      <i class="fa-solid fa-square-caret-down"></i>
+    </button></td>
+    <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>
+
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -66,10 +74,15 @@
       <td>@fat</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><button class="updateProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <td><button class="ShowProductsButton" 
+      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+      <i class="fa-solid fa-square-caret-down"></i>
+    </button></td>
+    <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>
+
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -78,8 +91,12 @@
       <td>@twitter</td>
       <td>@mdo</td>
       <td>@mdo</td>
-      <td><button class="updateProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <td><button class="ShowProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+      <i class="fa-solid fa-square-caret-down"></i>
+    </button></td>
+    <td><button class="updateProductsButton"
+      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>
     </tr>
@@ -90,9 +107,13 @@
 
 
 
+
+
+
+
 <!-----updateProductsModal------->
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -113,6 +134,27 @@
 
 
 
+    <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabelShow">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+
+
+
+   
+
+
 
 
 
@@ -131,7 +173,24 @@
 </div>
 
 
+<!-----ShowProductsModal------->
 
+<!-----ShowProductsModal <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+    ------->
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
