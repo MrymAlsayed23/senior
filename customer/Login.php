@@ -26,42 +26,13 @@ session_start();
         p{
             text-align:right;
         }
+        
     </style>
     <body>
 
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="/senior/Images/Logo.jpg" alt="Logo" width="30" height="24">
-            </a>
+        <!-- nav  -->
+        <?php include("../customer/customerNavBar.php"); ?>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Home.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Company</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="Login.php">Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </nav>
 
         <div class="container">
 
@@ -97,7 +68,7 @@ session_start();
                     extract($_POST);
                     if (isset($log)) { //if the form is submitted
                         try {
-                            require("connection.php");
+                            require("../connection.php");
                             if (isset($_POST['remember'])){ //if remember me is enabled
                                 $remember = $_POST['remember'];
                             }
@@ -130,7 +101,7 @@ session_start();
                                     $_SESSION['email'];
                                 }
 
-                                header("Location:home.php");
+                                header("Location:index.php");
                                 exit();
                             }
                         
