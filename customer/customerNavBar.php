@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
                 <a class="navbar-brand" href="index.php">
-                    <img src="/senior/Images/Logo.jpg" alt="Logo" width="30" height="24">
+                    <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
                 </a>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
