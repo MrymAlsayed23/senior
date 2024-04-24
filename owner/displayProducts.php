@@ -9,9 +9,44 @@
     <link rel="stylesheet" href="owner.css">
   <body>
     
+
+  <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropShowLabel">More Details ..</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="showProducts">
+
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+</div>
+    </div>
+
+
+
 <div class="container">
 
 
+<?php
+ try {
+  require('../connection.php');
+  $sql = "SELECT * FROM products";
+  $products = $db->query($sql);
+  $db=null;
+ }
+ catch(PDOException $e) {
+  die($e->getMessage());
+ }
+?>
   <table class="table caption-top table-sm table-display-products table-hover">
   <caption class="display-products-caption"><h3>Products </h3>
   <span class="display-products-span-caption-p">
@@ -50,23 +85,26 @@
     </tr>
   </thead>
   <tbody>
+    <?php while ($details = $products->fetch(PDO::FETCH_ASSOC)){
+      extract ($details); 
+
+     ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-    <td><button class="ShowProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+      <th scope="row" class="pid"><?php echo $pid?></th>
+      <td> <?php echo $image?>  </td>
+      <td><?php echo $pname?></td>
+      <td><?php echo $category?></td>
+      <td><?php echo $sellPrice?></td>
+      <td><?php echo $pquantity?></td>
+      <td><a class="ShowProductsButton">
       <i class="fa-solid fa-square-caret-down"></i>
-    </button></td>
-    <td><button class="updateProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+    </a></td>
+    <td><a class="updateProductsButton">
       <i class="fa-solid fa-pen-to-square"></i>
-    </button></td>
+    </a</td>
 
     </tr>
+<?php }?>
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
@@ -78,7 +116,7 @@
       data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
       <i class="fa-solid fa-square-caret-down"></i>
     </button></td>
-    <td><button class="updateProductsButton"
+    <td><button class="updateProductsButton" 
       data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>
@@ -91,27 +129,18 @@
       <td>@twitter</td>
       <td>@mdo</td>
       <td>@mdo</td>
-    <td><button class="ShowProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+    <td><a class="ShowProductsButton">
       <i class="fa-solid fa-square-caret-down"></i>
-    </button></td>
-    <td><button class="updateProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+    </a></td>
+    <td><a class="updateProductsButton">
       <i class="fa-solid fa-pen-to-square"></i>
-    </button></td>
+    </a</td>
     </tr>
   </tbody>
 </table>
-</div>
-</div>
-
-
-
-
-
-
 
 <!-----updateProductsModal------->
+
 
 <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -129,73 +158,22 @@
       </div>
     </div>
 
-
-
-
-
-
-    <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabelShow">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
     </div>
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 
 
-<!-----ShowProductsModal------->
 
-<!-----ShowProductsModal <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+
+    
+
+
     </div>
-    ------->
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="updateProductsButton.js"></script>
+    <script src="ShowProductsButton.js"></script>
   </body>
 </html>
