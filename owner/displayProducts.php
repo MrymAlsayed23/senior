@@ -47,27 +47,27 @@
       <div class="modal-body">
       <div class="mb-3">
   <label for="" class="form-label">Product Name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+  <input type="email" class="form-control" id="name"  name="name" placeholder="">
 </div>
 <div class="mb-3">
   <label for="" class="form-label">Brand Name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+  <input type="email" class="form-control" id="brand" name="brand" placeholder="">
 </div>
 <div class="mb-3">
   <label for="" class="form-label">Details</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+  <textarea class="form-control" id="details"  name="details"  rows="2"></textarea>
 </div>
 <div class="mb-3">
   <label for="" class="form-label">Sell Price</label>
-  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="">
+  <input type="number" class="form-control" id="price"  name="price"  placeholder="">
 </div>
 <div class="mb-3">
   <label for="" class="form-label">Quantity</label>
-  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="">
+  <input type="number" class="form-control" id="qunatity"  name="qunatity"  placeholder="">
 </div>
 <div class="mb-3">
   <label for="" class="form-label">Category</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+  <input type="text" class="form-control" id="category"  name="category"  placeholder="">
 </div>
          
       </div>

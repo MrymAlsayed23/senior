@@ -11,7 +11,7 @@ if (isset($_POST["click_Update_btn"])) {
         while ($details = $products->fetch(PDO::FETCH_ASSOC)){
             extract ($details);
             array_push($arr, $details);
-            header("conten0t-type: application/json");
+            header("content-type: application/json");
             echo json_encode($arr);
             
         }

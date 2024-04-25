@@ -15,6 +15,15 @@ $(document).ready(function(){
       },
       success: function (response) {
         console.log(response);
+        $.each(response, function (key, value) { 
+          $('#name').val(value['name']);
+          $('#brand').val(value['brand']);
+          $('#details').val(value['details']);
+          $('#price').val(value['price']);
+          $('#qunatity').val(value['qunatity']);
+          $('#category').val(value['category']);
+           
+        });
             /*$('#staticBackdropUpdate').modal('show');*/
           
       }
