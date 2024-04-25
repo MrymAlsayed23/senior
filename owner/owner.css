@@ -236,11 +236,13 @@ a.sidebar-link:hover{
     border-color: transparent;
     background-color: transparent;
     font-size: 20px;
+    cursor: pointer;
 }
 .ShowProductsButton{
     border-color: transparent;
     background-color: transparent;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .ShowProductsButton i {
@@ -263,6 +265,7 @@ a.sidebar-link:hover{
 
 .updateProductsButton i{
     color: #cc7fa9;
+    cursor: pointer;
 }
 .updateProductsButton i:hover{
     color: #b4628f;
