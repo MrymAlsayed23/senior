@@ -25,11 +25,64 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <!--<button type="button" class="btn btn-primary">Understood</button>-->
       </div>
     </div>
 </div>
     </div>
+
+
+
+    <!-----updateProductsModal------->
+
+
+<div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="UpdateProductsButton.php" method="post">
+      <div class="modal-body">
+      <div class="mb-3">
+  <label for="" class="form-label">Product Name</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Brand Name</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Details</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Sell Price</label>
+  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="">
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Quantity</label>
+  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="">
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Category</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+</div>
+         
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="updateProsuctsBut" class="btn btn-primary">Apply Changes</button>
+      </div>
+    </div>
+    </form>
+
+    </div>
+
+</div>
+
 
 
 
@@ -112,14 +165,12 @@
       <td>@fat</td>
       <td>@mdo</td>
       <td>@mdo</td>
-    <td><button class="ShowProductsButton" 
-      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+    <td><a class="ShowProductsButton">
       <i class="fa-solid fa-square-caret-down"></i>
-    </button></td>
-    <td><button class="updateProductsButton" 
-      data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
+    </a></td>
+    <td><a class="updateProductsButton">
       <i class="fa-solid fa-pen-to-square"></i>
-    </button></td>
+    </a</td>
 
     </tr>
     <tr>
@@ -139,28 +190,6 @@
   </tbody>
 </table>
 
-<!-----updateProductsModal------->
-
-
-<div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-
-    </div>
-
-</div>
 
 
 
@@ -173,7 +202,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="updateProductsButton.js"></script>
+   
     <script src="ShowProductsButton.js"></script>
+    <script src="updateProductsButton.js"></script>
   </body>
 </html>
