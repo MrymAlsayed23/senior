@@ -102,6 +102,8 @@
       require ('../connection.php');
       $sql = "SELECT * FROM products";
       $products = $db->query($sql);
+      $sqlcat = "SELECT distinct category FROM products order by category";
+      $cat = $db->query($sqlcat);
       $db = null;
     } catch (PDOException $e) {
       die($e->getMessage());
@@ -136,10 +138,13 @@
           </th>
           <th>
             <select class="form-select form-select-sm" aria-label="Small select example">
-              <option selected>Select Category ..</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option selected>Select Category ..</option> 
+              <?php 
+               while ($det = $cat->fetch(PDO::FETCH_ASSOC)) {
+                extract($det);      
+              ?>
+              <option value="<?php echo $category?>"><?php echo $category?></option>
+            <?php }?>
             </select>
           </th>
           <th></th>
@@ -147,12 +152,12 @@
           <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="showData">
+      <!-- <tr id="SearchResult"></tr> -->
         <?php while ($details = $products->fetch(PDO::FETCH_ASSOC)) {
           extract($details);
-
           ?>
-        <tr>
+        <tr id="noFilter">
           <th scope="row" class="pid">
             <?php echo $pid ?>
           </th>
@@ -180,7 +185,7 @@
 
         </tr>
         <?php } ?>
-        <tr>
+        <!-- <tr>
           <th scope="row">2</th>
           <td>Jacob</td>
           <td>Thornton</td>
@@ -208,7 +213,7 @@
           <td><a class="updateProductsButton">
               <i class="fa-solid fa-pen-to-square"></i>
             </a> </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
@@ -224,6 +229,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="ShowProductsButton.js"></script>
   <script src="updateProducts.js"></script>
+  <script src="SearchByProductName.js"></script>
 </body>
 
 </html>
