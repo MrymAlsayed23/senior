@@ -37,78 +37,27 @@
 
 
 
-  <!-----updateProductsModal------->
-
-
-  <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="UpdateProductsButton.php" method="post">
-          <div class="modal-body">
-            <div class="mb-3">
-              <input type="hidden" class="form-control" id="pid" name="pid">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="name" name="pname" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Brand Name</label>
-              <input type="text" class="form-control" id="brand" name="BrandName" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Details</label>
-              <textarea class="form-control" id="details" name="Details" rows="2"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Sell Price</label>
-              <input type="number" min="0.5" class="form-control" id="price" name="SellPrice" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Quantity</label>
-              <input type="number" class="form-control" id="qunatity" name="pqunatity" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Category</label>
-              <input type="text" class="form-control" id="category" name="category" placeholder="">
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="updateProsuctsBut" class="btn btn-primary">Apply Changes</button>
-          </div>
-      </div>
-      </form>
-
-    </div>
-
-  </div>
 
 
 
 
-  <div class="container">
-
+<div class="container">
+  <div class="container mt-5">
+    <div class="container">
 
     <?php
     try {
       require ('../connection.php');
       $sql = "SELECT * FROM products";
       $products = $db->query($sql);
-      $sqlcat = "SELECT distinct category FROM products order by category";
+      $sqlcat = "SELECT distinct pType FROM products order by pType";
       $cat = $db->query($sqlcat);
       $db = null;
     } catch (PDOException $e) {
       die($e->getMessage());
     }
     ?>
+    <div class="containr">
     <table class="table caption-top table-sm table-display-products table-hover" id="myTable">
       <caption class="display-products-caption">
         <h3>Products </h3>
@@ -138,12 +87,12 @@
           </th>
           <th>
             <select class="form-select form-select-sm" aria-label="Small select example" id="FilterByCategory">
-              <option selected>Select Category ..</option> 
+              <option selected value="">Select Category ..</option> 
               <?php 
                while ($det = $cat->fetch(PDO::FETCH_ASSOC)) {
                 extract($det);      
               ?>
-              <option value="<?php echo $category?>"><?php echo $category?></option>
+              <option value="<?php echo $pType?>"><?php echo $pType?></option>
             <?php }?>
             </select>
           </th>
@@ -162,13 +111,15 @@
             <?php echo $pid ?>
           </th>
           <td>
-            <?php echo $image ?>
+            <!-- <img src="../<?php //echo $image?>" alt="<?php //echo $pname?> Image" 
+            class="img-responsive img-thumbnail" width="150"> -->
+            <?php // echo $image ?>
           </td>
           <td>
             <?php echo $pname ?>
           </td>
           <td>
-            <?php echo $category ?>
+            <?php echo $pType ?>
           </td>
           <td>
             <?php echo $sellPrice ?>
@@ -216,7 +167,71 @@
         </tr> -->
       </tbody>
     </table>
+    </div>
+
+    </div>
   </div>
+  </div>
+
+
+
+  <!-----updateProductsModal------->
+
+
+  <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="UpdateProductsButton.php" method="post">
+          <div class="modal-body">
+            <div class="mb-3">
+              <input type="hidden" class="form-control" id="pid" name="pid">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" name="pname" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Brand Name</label>
+              <input type="text" class="form-control" id="brand" name="BrandName" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Details</label>
+              <textarea class="form-control" id="details" name="Details" rows="2"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Sell Price</label>
+              <input type="number" min="0.5" class="form-control" id="price" name="SellPrice" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="qunatity" name="pqunatity" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Category</label>
+              <input type="text" class="form-control" id="category" name="category" placeholder="">
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="updateProsuctsBut" class="btn btn-primary">Apply Changes</button>
+          </div>
+          </form>
+      </div>
+      
+
+    </div>
+
+  </div>
+
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -227,10 +242,17 @@
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="../ShowProductsButton.js"></script>
-  <script src="../updateProducts.js"></script>
-  <script src="../SearchByProductName.js"></script>
-  <script src="../FilterByCategory.js"></script>
+  <script src="js/ShowProductsButton.js"></script>
+  <script src="js/updateProductsButton.js"></script>
+  <script src="js/SearchByProductName.js"></script>
+  <script src="js/FilterByCategory.js"></script>
+
+
+
+
+
+
+
 </body>
 
 </html>

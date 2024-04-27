@@ -33,7 +33,7 @@ if (isset($_POST["updateProsuctsBut"])) {
     $category = $_POST["category"];
 
     $sql = "UPDATE products SET pname = '$name', BrandName = '$bname' , Details= '$details' ,
-    SellPrice = $price , pquantity =  $qty , category = '$category' WHERE pid = $pid";
+    SellPrice = $price , pquantity =  $qty ,  pType = '$category' WHERE pid = $pid";
     $r = $db->exec($sql);
     if ($r>0){
        // $_SESSION['status'] = 'Update Success';

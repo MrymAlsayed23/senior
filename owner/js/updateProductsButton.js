@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "UpdateProductsButton.php",
+      url: "UpdateProducts.php",
       data: {
         'click_Update_btn': true,
         'pid': pid,

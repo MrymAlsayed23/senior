@@ -13,20 +13,15 @@
   
 
 
-
-
-
-
-
+<div class="container">
+<div class="container mt-5">
   <div class="container">
-
-
-  <table class="table caption-top table-sm table-display-products table-hover">
+  <table class="table caption-top table-display-products table-hover">
   <caption class="display-products-caption"><h3>Orders</h3>
   <span class="display-products-span-caption-p">
     <p>100 Orders Found</p></span>
 
-
+<div class="container mt-5" style="color: azure";>
     <div class="row">
       <div class="col">
         <button class="filter-orders">All Products</button>
@@ -44,20 +39,26 @@
         <button class="filter-orders">Completed</button>
       </div>
 
-      <div class="col">
-        <form action="">
-          <input type="date" class="filter-orders-date">
-        </div>
 
+        
           <div class="col">
+          <form action="">
+          <input type="date" class="filter-orders-date">
+          </div>
+          <div class="col">
+          <input type="date" class="filter-orders-date">
+          </form>
+          </div>
+          
+          <!-- <div class="col mx-0">
             <p>to</p>
             </div>
         
         <div class="col">
-          <input type="date" class="filter-orders-date">
-          </form>
-        </div>
+          
+        </div> -->
         
+    </div>
     </div>
 </caption>
 
@@ -138,8 +139,8 @@
   </tbody>
 </table>
 </div>
-
-
+</div>
+</div>
 
 
 
@@ -158,29 +159,8 @@
         <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-
+</div>
 
 
 

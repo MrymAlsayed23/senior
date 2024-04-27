@@ -15,13 +15,13 @@
             <?php echo $pid ?>
           </th>
           <td>
-            <?php echo $image ?>
+            <?php //echo $image ?>
           </td>
           <td>
             <?php echo $pname ?>
           </td>
           <td>
-            <?php echo $category ?>
+            <?php echo $pType ?>
           </td>
           <td>
             <?php echo $sellPrice ?>
@@ -74,3 +74,6 @@ catch (Exception $e) {
     die($e->getMessage());
   }
 ?>
+
+<script src="updateProducts.js"></script>
+<script src="ShowProductsButton.js"></script>
