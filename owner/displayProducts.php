@@ -137,7 +137,7 @@
             <input type="text" id="live_search" autocomplete="off" placeholder="Search Name ...">
           </th>
           <th>
-            <select class="form-select form-select-sm" aria-label="Small select example">
+            <select class="form-select form-select-sm" aria-label="Small select example" id="FilterByCategory">
               <option selected>Select Category ..</option> 
               <?php 
                while ($det = $cat->fetch(PDO::FETCH_ASSOC)) {
@@ -230,6 +230,7 @@
   <script src="../ShowProductsButton.js"></script>
   <script src="../updateProducts.js"></script>
   <script src="../SearchByProductName.js"></script>
+  <script src="../FilterByCategory.js"></script>
 </body>
 
 </html>
