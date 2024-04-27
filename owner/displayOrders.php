@@ -50,10 +50,10 @@
         
           <div class="col">
           <form action="">
-          <input type="date" class="filter-orders-date">
+          <input type="date" class="filter-orders-date" id = "date1">
           </div>
           <div class="col">
-          <input type="date" class="filter-orders-date">
+          <input type="date" class="filter-orders-date" id = "date2">
           </form>
           </div>
           
@@ -210,5 +210,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/FilterOrdersByStatus.js"></script>
+    <script src="js/FilterOrdersByDate.js"></script>
   </body>
 </html>
