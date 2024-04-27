@@ -31,19 +31,19 @@
 <div class="container mt-5" style="color: azure";>
     <div class="row">
       <div class="col">
-        <button class="filter-orders">All Orders</button>
+        <button class="filter-orders" id="filter-all">All Orders</button>
       </div>
 
       <div class="col">
-        <button class="filter-orders">Pending</button>
+        <button class="filter-orders" id="filter-pen">Pending</button>
       </div>
 
       <div class="col">
-        <button class="filter-orders">Dispatch</button>
+        <button class="filter-orders" id="filter-dis">Dispatch</button>
       </div>
 
       <div class="col">
-        <button class="filter-orders">Completed</button>
+        <button class="filter-orders" id="filter-com">Completed</button>
       </div>
 
 
@@ -95,7 +95,7 @@
         <th></th>
     </tr> -->
   </thead>
-  <tbody>
+  <tbody id="FilterData">
     
     <?php 
      while ($details = $orders->fetch()) {
@@ -208,5 +208,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/FilterOrdersByStatus.js"></script>
   </body>
 </html>
