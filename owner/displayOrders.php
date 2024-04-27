@@ -19,12 +19,19 @@
   <table class="table caption-top table-display-products table-hover">
   <caption class="display-products-caption"><h3>Orders</h3>
   <span class="display-products-span-caption-p">
-    <p>100 Orders Found</p></span>
+    <?php 
+      try {
+        $x = 0;
+        require ('../connection.php');
+        $sql = "SELECT * FROM orders";
+        $orders = $db->query($sql);
+    ?>
+    <p>Orders Found</p></span>
 
 <div class="container mt-5" style="color: azure";>
     <div class="row">
       <div class="col">
-        <button class="filter-orders">All Products</button>
+        <button class="filter-orders">All Orders</button>
       </div>
 
       <div class="col">
@@ -79,22 +86,35 @@
       <th scope="col"></th>
       <!--<th scope="col"></th>-->
     </tr>
-    <tr>
+    <!-- <tr>
         <th></th><th></th>
         <th></th>
         <th></th>
         <th></th>
         <th></th>
         <th></th>
-    </tr>
+    </tr> -->
   </thead>
   <tbody>
+    
+    <?php 
+     while ($details = $orders->fetch()) {
+      extract($details);
+    ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+    <div class="container mt-5">
+      <th scope="row"><?php echo $details["oid"]; ?></th>
+      <td><?php 
+          $sql2 = "SELECT uid, fname, lname FROM USERS";
+          $r= $db->query($sql2);
+          while ($det = $r->fetch()) {
+          //echo $uid;
+          if($details["uid"] == $det["uid"]) {
+          echo $det["fname"]. " " .$det["lname"];}} //echo $uid;?> 
+      </td>
+      <td><?php echo $details["total"]; ?></td>
+      <td><?php echo $details["time"]; ?></td>
+      <td><?php echo $details["ostatus"]; ?></td>
     <td><button class="ShowProductsButton"
       data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
       <i class="fa-solid fa-square-caret-down"></i>
@@ -103,9 +123,19 @@
       data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>-->
-
+    </div>
     </tr>
-    <tr>
+    <?php }
+       
+    $db = null;
+          }
+     catch (PDOException $e) {
+     die($e->getMessage());
+   }
+      
+  
+     ?>
+    <!-- <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
@@ -114,13 +144,13 @@
     <td><button class="ShowProductsButton" 
       data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
       <i class="fa-solid fa-square-caret-down"></i>
-    </button></td>
+    </button></td> -->
    <!-- <td><button class="updateProductsButton"
       data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>-->
 
-    </tr>
+    <!-- </tr>
     <tr>
       <th scope="row">3</th>
       <td>Larry</td>
@@ -130,13 +160,15 @@
     <td><button class="ShowProductsButton"
       data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
       <i class="fa-solid fa-square-caret-down"></i>
-    </button></td>
+    </button></td> -->
     <!--<td><button class="updateProductsButton"
       data-bs-toggle="modal" data-bs-target="#staticBackdropUpdate">
       <i class="fa-solid fa-pen-to-square"></i>
     </button></td>-->
-    </tr>
+    <!-- </tr> -->
+   
   </tbody>
+
 </table>
 </div>
 </div>

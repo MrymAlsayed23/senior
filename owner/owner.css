@@ -202,6 +202,9 @@ a.sidebar-link:hover{
 .table-display-products tr{
     border-color: transparent;
 }
+.table-display-products table tbody{
+    vertical-align: bottom;
+}
 .table-display-products th, td{
     padding: 15px;
     margin: 15px;
