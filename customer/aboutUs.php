@@ -28,11 +28,12 @@
 
             <h1>About Us</h1>
             <div class="main">
-                <p>Our platform is dedicated to helping entrepreneurs with small businesses succeed in the digital world. 
-                    We offer a hassle-free website building experience where we take your information and product details to create a personalized website for you. 
-                    Our platform suggests a fair price for the website based on its complexity and features, and we also provide logo suggestions to enhance your brand identity. 
-                    With our user-friendly tools, you can easily manage and update your website. Let us handle the technical aspects while you focus on growing your business. 
-                    Join us today to establish a strong online presence that sets you apart from the competition.
+                <p>
+                    Our website offers a diverse array of businesses for customers to explore and select from. 
+                    With a user-friendly interface and a wide range of options, our platform empowers customers to find exactly what they're looking for and make purchases with ease. 
+                    Whether it's browsing through various industries, comparing different products or services, or simply finding the perfect business to meet their needs, 
+                    our website provides a seamless and enjoyable shopping experience. With our commitment to quality and customer satisfaction, 
+                    we strive to be the go-to destination for individuals seeking a convenient and comprehensive online marketplace.
                 </p>
             </div>
             
