@@ -8,10 +8,10 @@
       unset($_SESSION['message']);
     }
     date_default_timezone_set("Asia/Bahrain");
-    if (!isset($_SESSION['username'])) {
-      header("Location:login.php");
-      exit(0);
-    }
+    // if (!isset($_SESSION['username'])) {
+    //   header("Location:login.php");
+    //   exit(0);
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
