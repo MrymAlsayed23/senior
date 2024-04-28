@@ -24,13 +24,33 @@
 
  <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
-
+<?php 
+try {
+  require ('../connection.php');
+  $sql = "SELECT COUNT(*) AS total FROM orders";
+  $orders = $db->prepare($sql);
+  $orders->execute();
+  $sql2 = "SELECT COUNT(*) AS total FROM orders WHERE ostatus='Completed'";
+  $ordersCom = $db->prepare($sql2);
+  $ordersCom->execute();
+  $sql3 = "SELECT COUNT(*) AS total FROM users WHERE type='Customer'";
+  $customers = $db->prepare($sql3);
+  $customers->execute();
+  $sql4 = "SELECT SUM(total) AS total FROM orders";
+  $revenues = $db->prepare($sql4);
+  $revenues->execute();
+  ?>
     <div class="card">
   <div class="card-body">
   <div class="card-icon">
   <i class="fa-solid fa-sack-dollar fa-2xl"></i>
   </div>
-    <h5 class="card-title">$12400</h5>
+  <?php 
+    
+    $d1 = $revenues->fetch(PDO::FETCH_ASSOC); 
+    if ($d1) {
+    ?>
+    <h5 class="card-title"><?php echo $d1["total"]; } ?> BHD</h5>
     <p class="card-text">Total Revenue</p>
   </div>
 </div>
@@ -43,16 +63,17 @@
   <div class="card-icon">
   <i class="fa-solid fa-boxes-packing fa-2xl"></i>
   </div>
-  <h5 class="card-title">12334</h5>
+  <?php 
+    
+    $details = $orders->fetch(PDO::FETCH_ASSOC); 
+    if ($details) {
+    ?>
+  <h5 class="card-title"> <?php echo $details["total"]; } ?> </h5>
     <p class="card-text">Total Orders</p>
     
   </div>
 </div>
     </div>
-
-
-
-
 
 
     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -61,7 +82,15 @@
   <div class="card-icon">
   <i class="fa-solid fa-check fa-2xl"></i>
   </div>
-    <h5 class="card-title">1240</h5>
+  <?php 
+    
+    
+    $det2 = $ordersCom->fetch(PDO::FETCH_ASSOC); 
+    if ($det2) {
+    ?>
+    <h5 class="card-title"><?php echo $det2["total"]; }
+?></h5>
+
     <p class="card-text">Completed Orders</p>
   </div>
 </div>
@@ -75,9 +104,17 @@
   <div class="card-icon">
   <i class="fa-solid fa-users fa-2xl"></i>
   </div>
-    <h5 class="card-title">1240</h5>
+  <?php 
+    $det3 = $customers->fetch(PDO::FETCH_ASSOC); 
+    if ($det2) {
+    ?>
+    <h5 class="card-title"><?php echo $det3["total"]; }?></h5>
     <p class="card-text">Total Customers</p>
-    
+  <?php  
+  }
+    catch (PDOException $e) {
+    die($e->getMessage());
+    }?>
   </div>
 </div>
     </div>
@@ -110,7 +147,7 @@
 
 
   
- 
+
     <!-- Stack the columns on mobile by making one full-width and the other half-width -->
     <div class="third">
     <div class="row">
@@ -128,14 +165,38 @@
     </tr>
   </thead>
   <tbody>
+  <?php 
+      try {
+        $x = 0;
+        require ('../connection.php');
+        $sql = "SELECT * FROM orders WHERE ostatus = 'Pending'";
+        $orders = $db->query($sql);
+        
+        while ($details = $orders->fetch()) {
+          extract($details);
+        ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Pending</td>
+      <th scope="row"><?php echo $details["oid"]; ?></th>
+      <td>
+      <?php 
+          $sql2 = "SELECT uid, fname, lname FROM USERS";
+          $r= $db->query($sql2);
+          while ($det = $r->fetch()) {
+          //echo $uid;
+          if($details["uid"] == $det["uid"]) {
+          echo $det["fname"]. " " .$det["lname"];}} //echo $uid;?>
+      </td>
+      <td><?php echo $details["total"]; ?></td>
+      <td><?php echo $details["time"]; ?></td>
+      <td><?php echo $details["ostatus"]; ?></td>
     </tr>
-    <tr>
+<?php }
+$db = null;
+}
+catch (PDOException $e) {
+die($e->getMessage());
+}?>
+    <!-- <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
@@ -147,7 +208,7 @@
       <td colspan="2">Larry the Bird</td>
       <td>@twitter</td>
       <td>Pending</td>
-    </tr>
+    </tr> -->
   </tbody>
 </table>
     </div>
