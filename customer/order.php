@@ -105,8 +105,8 @@ else{
               if (isset($_COOKIE['cart'])) {
                 $cookiedetails=(array)json_decode($_COOKIE['cart'],true);
                 foreach ($cookiedetails as $detail => $info) {
-                  $pid=$cookiedetails[$detail]['pid'];
-                  $rsp=$db->query("select * from products where pid ='$pid'")->fetchAll();
+                  $productid=$cookiedetails[$detail]['productid'];
+                  $rsp=$db->query("select * from products where pid ='$productid'")->fetchAll();
                   foreach ($rsp as $row) {
                     ?>
                     <div class="order-card">
@@ -131,7 +131,7 @@ else{
               echo $e->getMessage();
             }
             try {
-              $sql="select * from profile where userId=".$_SESSION['userId'];
+              $sql="select * from profile where userId=".$_SESSION['id'];
               $r=$db->query($sql);
               $db=null;
               $rs=$r->fetchAll(PDO::FETCH_ASSOC);
