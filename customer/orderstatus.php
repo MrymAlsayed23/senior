@@ -12,6 +12,27 @@
     //   header("Location:login.php");
     //   exit(0);
     // }
+    // Set the "cart" cookie
+    $cookievalue = []; // Assuming you have an array of values to set as the cookie value
+    setcookie("cart", json_encode($cookievalue), time() + (86400 * 7));
+    
+    if(isset($_POST['reorder'])){
+                extract($_POST);
+                //$cookievalue = []; // Initialize $cookievalue as an empty array
+                if (isset($_COOKIE['cart'])){
+                $previousdetails=(array)json_decode($_COOKIE['cart'],true);
+                foreach($previousdetails as $details){
+                    $cookievalue[]=$details;
+                }
+              }
+              //setcookie("cart", json_encode($cookievalue), time()+(86400*7));
+              header("Location:cart.php");
+            } 
+          } //end try (try tag at the beginning on the page)
+          catch(PDOException $e){
+            echo "Failed";
+          }
+        ?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,91 +44,76 @@
         <title>Order Status</title>
     </head>
     <body>
-
         <!-- nav  -->
         <?php include("../customer/customerNavBar.php"); ?>
-
-        <?php
-            if(isset($_POST['reorder'])){
-                extract($_POST);
-                if (isset($_COOKIE['cart'])){
-                $previousdetails=(array)json_decode($_COOKIE['cart'],true);
-                foreach($previousdetails as $details){
-                    $cookievalue[]=$details;
-                }
-              }
-              setcookie("cart", json_encode($cookievalue), time()+(86400*7));
-              header("Location:cart.php");
-            } 
-          } //end try (try tag at the beginning on the page)
-          catch(PDOException $e){
-            echo "Failed";
-          }
-        ?>
-        
+          
         <h1 text-align='center'>Your Orders</h1>
-
+        <button>
+          <a href="checkout.php">Checkout</a>
+        </button>
         <?php
-          try {
-            require("../connection.php");
-            $id=$_SESSION['uid'];
-            $data=$db->query("select * from orders WHERE oid='$id'")->fetchAll();
-            if($data){
-              foreach($data as $row){
-                $p='';
-                $pnames="";
-                echo"<table align='center' border='1' width='500'>";
-                echo"<tr>";
-                echo"<th>Ordered By</th>";
-                echo"<th>Time</th>";
-                echo"<th>Order Contents</th>";
-                echo"<th>Total Cost</th>";
-                echo"<th>Order Status</th>";
-                echo"<th>Reorder</th>";
-                echo"</tr>";
-                echo"<tr>";
-                $uid=$row[1];
-                $users=$db->query("select username from users WHERE uid='$uid'")->fetchAll();
-                foreach($users as $r)
-                {
-                  $u=$r[0];
-                }
-                echo"<td>".$u."</td>";
-                echo"<td>".$row[2]."</td>";
-                $p=explode(",",$row[3]);
-                foreach($p as $product=>$pname)
-                {
-                  $product=$db->query("select name from product WHERE pid='$pname'")->fetchAll();
-                  foreach($product as $m)
-                  {
-                    if($pnames==="")
-                    {
-                      $pnames=$m[0];
-                    }
-                    else{
-                    $pnames.=", ".$p[0];
-                  }
-                  }
-                }
-                echo"<td>".$pnames."</td>";
-                echo"<td>".$row[5]."</td>";
-                echo"<td>".$row[4]."</td>";
-                echo"<td align='center'>";
-                ?>
-                <form method="POST">
-                  <input type='hidden' name='ordercontents' value="<?php echo $row[3]; ?>"/>
-                  <input type='submit' name='reorder' value='Reorder' placeholder='hi'/>
-                </form>
-                <?php
-                echo"</td>";
-                echo"</tr>";
+         try {
+          require("../connection.php");
+          $id=$_SESSION['id'];
+          $data=$db->query("select * from orders")->fetchAll();
+          if($data)
+          {
+            foreach($data as $row)
+            {
+              $u='';
+              $pnames="";
+              echo"<table align='center' border='1' width='500'>";
+              echo"<tr>";
+              echo"<th>Ordered By</th>";
+              echo"<th>Time</th>";
+              echo"<th>Order Contents</th>";
+              echo"<th>Total Cost</th>";
+              echo"<th>Order Status</th>";
+              echo"<th>Reorder</th>";
+              echo"</tr>";
+              echo"<tr>";
+              $uid=$row[1];
+              $users=$db->query("select username from users WHERE uid='$id'")->fetchAll();
+              foreach($users as $r)
+              {
+                $u=$r[0];
               }
-              echo"</table>";
+              echo"<td>".$u."</td>";
+              echo"<td>".$row[2]."</td>";
+              $p=explode(",",$row[3]);
+              foreach($p as $product=>$pname)
+              {
+                $products=$db->query("select pname from products WHERE pid='$pname'")->fetchAll();
+                foreach($products as $p)
+                {
+                  if($pnames==="")
+                  {
+                    $pnames=$p[0];
+                  }
+                  else{
+                  $pnames.=", ".$p[0];
+                }
+                }
+              }
+              echo"<td>".$pnames."</td>";
+              echo"<td>".$row[5]."</td>";
+              echo"<td>".$row[4]."</td>";
+              echo"<td align='center'>";
+              ?>
+              <form method="POST">
+                <input type='hidden' name='ordercontents' value="<?php echo $row[3]; ?>"/>
+                <input type='submit' name='reorder' value='Reorder' placeholder='hi'/>
+              </form>
+              <?php
+              echo"</td>";
+              echo"</tr>";
             }
+            echo"</table>";
           }
-          catch(PDOException $e){
-              echo "Failed";
-          }
+        }
+        catch(PDOException $e){
+            echo "Failed";
+        }
         ?>
 
         <!-- footer  -->
