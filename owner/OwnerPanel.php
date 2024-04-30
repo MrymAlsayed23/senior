@@ -18,6 +18,7 @@
 
 
 <div class="container">
+  <div class="container mt-5 mb-5">
  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 
  <div class="first">
@@ -39,6 +40,15 @@ try {
   $sql4 = "SELECT SUM(total) AS total FROM orders";
   $revenues = $db->prepare($sql4);
   $revenues->execute();
+  $sql5 = "SELECT p.pid, p.pname,p.sellPrice, SUM(oi.quantity) AS TotalSales
+  FROM products p
+  INNER JOIN order_items oi ON p.pid = oi.pid
+  GROUP BY p.pid
+  ORDER BY TotalSales DESC
+  LIMIT 2";
+  $topSales = $db->prepare($sql5);
+  $topSales->execute();
+
   ?>
     <div class="card">
   <div class="card-body">
@@ -110,11 +120,7 @@ try {
     ?>
     <h5 class="card-title"><?php echo $det3["total"]; }?></h5>
     <p class="card-text">Total Customers</p>
-  <?php  
-  }
-    catch (PDOException $e) {
-    die($e->getMessage());
-    }?>
+  
   </div>
 </div>
     </div>
@@ -220,20 +226,25 @@ die($e->getMessage());
 
     <div class="col-lg-4 col-12">
       
- <div class="mt-sm-1 mr-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+ <div class="mt-sm-1 mr-1 p-4 mb-1" style="background-color: #eaeaec; border-radius: 12px";>
   <table class="table caption-top table-hover">
   <caption class="top-products">Top Products</caption>
   <tbody>
+    <?php
+    while ($top = $topSales->fetch()){; 
+      extract($top); ?>
     <tr>
-      <td><img src="1.jpg" alt=""></td>
-      <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $221</span></td>
-      <td><p  class="borded-p">345 Sales</p></td>
+      <td><img src="../customer/images/Cholcolate Me!.jpg" alt=""></td>
+      <td><h6 class="product-name"><?php echo $top["pname"];?></h6>
+      <span class="product-span"><?php echo "Price ".$top["sellPrice"]. " BHD";?></span></td>
+      <td><p  class="borded-p"><?php echo $top["TotalSales"]. " Sales";?></p></td>
     </tr>
-    <tr>
+    <?php }?>
+    <!-- <tr>
       <td><img src="2.jpg" alt=""></td>
       <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $200</span></td>
       <td><p  class="borded-p">345 Sales</p></td>
-    </tr>
+    </tr> -->
     </tbody>
     
   </table>
@@ -242,17 +253,15 @@ die($e->getMessage());
 
 
   </div>
-
-
-  
-    
-
-
-  
+  <?php  
+  }
+    catch (PDOException $e) {
+    die($e->getMessage());
+    }?>
 </div>
 
 </div>
-
+</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
