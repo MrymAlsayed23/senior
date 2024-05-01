@@ -11,8 +11,7 @@
    <!--nav --> 
    
 <?php 
-    //include "nav.php";
- 
+ // include "nav1.php";
  ?> 
 
 
@@ -234,7 +233,7 @@ die($e->getMessage());
     while ($top = $topSales->fetch()){; 
       extract($top); ?>
     <tr>
-      <td><img src="../customer/images/Cholcolate Me!.jpg" alt=""></td>
+      <td><img src="../../Books/Cholcolate Me!.jpg" alt=""></td>
       <td><h6 class="product-name"><?php echo $top["pname"];?></h6>
       <span class="product-span"><?php echo "Price ".$top["sellPrice"]. " BHD";?></span></td>
       <td><p  class="borded-p"><?php echo $top["TotalSales"]. " Sales";?></p></td>

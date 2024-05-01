@@ -25,8 +25,13 @@
         require ('../connection.php');
         $sql = "SELECT * FROM orders";
         $orders = $db->query($sql);
+        $sql1 = "SELECT COUNT(*) AS total FROM orders";
+  $orders1 = $db->prepare($sql1);
+  $orders1->execute();
+        $details1 = $orders1->fetch(PDO::FETCH_ASSOC); 
+    if ($details1) {
     ?>
-    <p>Orders Found</p></span>
+    <p><?php echo $details1["total"]; } ?> Orders Found</p></span>
 
 <div class="container mt-5" style="color: azure";>
     <div class="row">

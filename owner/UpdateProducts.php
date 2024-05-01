@@ -5,16 +5,30 @@ if (isset($_POST["click_Update_btn"])) {
     $pid = $_POST["pid"];
     $arr = [];
     try {
-        $sql = "SELECT * FROM products WHERE pid = '$pid'";
-        $products = $db->query($sql);
-        $db = null;
-        while ($details = $products->fetch(PDO::FETCH_ASSOC)) {
-            extract($details);
-            array_push($arr, $details);
-            header("content-type: application/json");
-            echo json_encode($arr);
+       
+        $sql1 = "SELECT * FROM products WHERE pid = '$pid'";
+        $products = $db->query($sql1);
+        header("Content-Type: application/json");
+        $row = $products->fetchAll(PDO::FETCH_ASSOC); 
+        foreach ($row as $r) {
+            //extract($r);
+             $r['sellPrice'] = (int)$r['sellPrice'];
+             $r['pquantity'] = (int)$r['pquantity'];
+             $arr[] =  $r;
+             echo json_encode($arr);
+         }
+        //echo "F ds";
+        // while ($row = $products->fetch(PDO::FETCH_ASSOC)) {
+            
+            // $row['sellPrice'] = (int)$row['sellPrice'];
+            // $row['pquantity'] = (int)$row['pquantity'];
+            //header("Content-Type: text/html");
+            //header("Content-Type: text/html");
+            
 
-        }
+
+        //}
+        $db = null;
     } catch (PDOException $e) {
         die($e->getMessage());
     }
@@ -23,7 +37,7 @@ if (isset($_POST["click_Update_btn"])) {
 
 }
 
-if (isset($_POST["updateProsuctsBut"])) {  
+if (isset($_POST["updateProductsBut"])) {  
     $pid = $_POST["pid"];
     $name = $_POST["pname"];
     $bname = $_POST["BrandName"];
@@ -33,7 +47,7 @@ if (isset($_POST["updateProsuctsBut"])) {
     $category = $_POST["category"];
 
     $sql = "UPDATE products SET pname = '$name', BrandName = '$bname' , Details= '$details' ,
-    SellPrice = $price , pquantity =  $qty ,  pType = '$category' WHERE pid = $pid";
+    SellPrice = '$price' , pquantity =  '$qty' ,  pType = '$category' WHERE pid = '$pid'";
     $r = $db->exec($sql);
     if ($r>0){
        // $_SESSION['status'] = 'Update Success';
@@ -44,7 +58,7 @@ if (isset($_POST["updateProsuctsBut"])) {
 
 } 
 
-
+// header("Content-Type: text/html");
 
 
 

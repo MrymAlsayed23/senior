@@ -23,7 +23,7 @@ body {
 
 /*------------------ navbar -------------------------*/
 
-.nav{
+/* .nav{
    display: flex;
    min-height: 100vh;
    width: 100%;
@@ -49,7 +49,7 @@ body {
 #sidebar.expand {
     width: 70px;
     /*min-width: 260px;*/
-}
+/* }
 
 #togglebutton{
     background-color: transparent;
@@ -96,7 +96,7 @@ a.sidebar-link:hover{
 }
 .sidebar-item {
     position: relative;
-}
+} */
 
 /* ------------------- Owner Panel -------------------- */
 

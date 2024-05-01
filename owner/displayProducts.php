@@ -11,7 +11,61 @@
   <link rel="stylesheet" href="owner.css">
 
 <body>
+ <!-----updateProductsModal------->
 
+
+ <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="UpdateProducts.php" method="post">
+          <div class="modal-body">
+            <div class="mb-3">
+              <input type="hidden" class="form-control" id="pid" name="pid">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" name="pname" value="" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Brand Name</label>
+              <input type="text" class="form-control" id="brand" name="BrandName" value="" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Details</label>
+              <textarea class="form-control" id="details" name="Details" rows="2"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Sell Price</label>
+              <input type="number" min="0.5" class="form-control" id="price" name="SellPrice" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="qunatity" name="pqunatity" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Category</label>
+              <input type="text" class="form-control" id="category" name="category" placeholder="">
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="updateProductsBut" class="btn btn-primary">Apply Changes</button>
+          </div>
+          </form>
+      </div>
+      
+
+    </div>
+
+  </div>
+  
 
   <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -36,6 +90,8 @@
   </div>
 
 
+   
+
 
 
 
@@ -52,6 +108,10 @@
       $products = $db->query($sql);
       $sqlcat = "SELECT distinct pType FROM products order by pType";
       $cat = $db->query($sqlcat);
+      $sql1 = "SELECT COUNT(*) AS total FROM products";
+  $pro1 = $db->prepare($sql1);
+  $pro1->execute();
+        
       $db = null;
     } catch (PDOException $e) {
       die($e->getMessage());
@@ -62,7 +122,9 @@
       <caption class="display-products-caption">
         <h3>Products </h3>
         <span class="display-products-span-caption-p">
-          <p>100 Products Found</p>
+          <?php $pro = $pro1->fetch(PDO::FETCH_ASSOC); 
+    if ($pro) {?>
+          <p><?php echo $pro["total"]; }?> Products Found</p>
         </span>
       </caption>
       <thead>
@@ -175,63 +237,6 @@
 
 
 
-  <!-----updateProductsModal------->
-
-
-  <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="UpdateProductsButton.php" method="post">
-          <div class="modal-body">
-            <div class="mb-3">
-              <input type="hidden" class="form-control" id="pid" name="pid">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="name" name="pname" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Brand Name</label>
-              <input type="text" class="form-control" id="brand" name="BrandName" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Details</label>
-              <textarea class="form-control" id="details" name="Details" rows="2"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Sell Price</label>
-              <input type="number" min="0.5" class="form-control" id="price" name="SellPrice" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Quantity</label>
-              <input type="number" class="form-control" id="qunatity" name="pqunatity" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Category</label>
-              <input type="text" class="form-control" id="category" name="category" placeholder="">
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="updateProsuctsBut" class="btn btn-primary">Apply Changes</button>
-          </div>
-          </form>
-      </div>
-      
-
-    </div>
-
-  </div>
-
-
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -243,7 +248,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="js/ShowProductsButton.js"></script>
-  <script src="js/updateProductsButton.js"></script>
+  <script src="js/updateProducts.js"></script>
   <script src="js/SearchByProductName.js"></script>
   <script src="js/FilterByCategory.js"></script>
 
