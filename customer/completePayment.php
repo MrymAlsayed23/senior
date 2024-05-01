@@ -23,7 +23,7 @@
         }
         $db = null;
       } catch (PDOException $e) {
-        $db->rollBack();
+          //$db->rollBack();
         die ("Error occured".$e->getMessage());
       }
     }
@@ -44,7 +44,7 @@
       }
       $db = null;
     } catch (PDOException $e) {
-      $db->rollBack();
+      //$db->rollBack();
         die ("Error occured".$e->getMessage());
     }
     }
