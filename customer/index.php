@@ -243,374 +243,124 @@
 
      <!-- nav  -->
      <?php include("../customer/customerNavBar.php"); ?>
-
      <figcaption>
-              <nav class="homenav">
-              </nav>
+    <nav class="homenav">
+    </nav>
+</figcaption>
 
-      <?php
+<?php
+try {
+    require('../connection.php');
+    // Define the range of product IDs you want to display
+    $startProductId = 1; // Starting product ID
+    $endProductId = 9; // Ending product ID
 
-        try {
-            require('../connection.php');
-            // Define the range of product IDs you want to display
-            $startProductId = 1; // Starting product ID
-            $endProductId = 9; // Ending product ID
+    // Prepare and execute the SQL query
+    $sql = "SELECT * FROM products WHERE pid BETWEEN :startProductId AND :endProductId";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':startProductId', $startProductId);
+    $stmt->bindParam(':endProductId', $endProductId);
+    $stmt->execute();
 
-            // Prepare and execute the SQL query
-            $sql = "SELECT * FROM products WHERE pid BETWEEN :startProductId AND :endProductId";
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam(':startProductId', $startProductId);
-            $stmt->bindParam(':endProductId', $endProductId);
-            $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($results as $result) {
+        $productId = $result['pid'];
+        $brandName = $result['BrandName'];
+        $pname = $result['pname'];
+        $image = $result['image'];
+        $sellPrice = $result['sellPrice'];
+        $pType = $result['pType'];
 
+        $imageData = base64_encode($image);
+        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+    }
+        ?>
 
-              foreach ($results as $result) {
-                  $productId = $result['pid'];
-                  $brandName = $result['BrandName'];
-                  $pname = $result['pname'];
-                  $image = $result['image'];
-                  $sellPrice = $result['sellPrice'];
-                  $pType = $result['pType'];
-              }
-          
-            ?>
+        <aside>
+            <p class="p1"><?php echo $brandName; ?></p> <br/>
+            <p class="p2"><?php echo "will be as a new"; ?></p> <br/>
+            <a href="contact.php" class="contact">Contact with Us!</a>
+        </aside>
 
-              <aside>
-                <p class="p1">  <?php echo $brandName; ?></p> <br/> 
-                <p class="p2">  <?php echo "will be as a new"; ?></p> <br/> 
-                <a href="contact.php" class="contact">Contact with Us!</a>
-              </aside>
+        </figcaption>
 
-            </figcaption>
+        <main>
+            <span class="one">
 
-            <main>
-              <span class="one">
-          
             <section>
-              <div class="swiper mySwiper container">
-                <div class="swiper-wrapper content">
+                <div class="swiper mySwiper container">
+                    <div class="swiper-wrapper content">
 
-                  <div class="swiper-slide card">
-                    <div class="card-content">
-                      <div class="image">
+                        <?php foreach ($results as $result) {
+                            $imageData = base64_encode($result['image']);
+                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                            $pname = $result['pname'];
+                            $sellPrice = $result['sellPrice'];
+                            ?>
 
-                        <?php
+                            <div class="swiper-slide card">
+                                <div class="card-content">
+                                    <div class="image">
+                                        <img src="<?php echo $imageSrc; ?>" alt="Product Image"><br>
+                                    </div>
 
-                        echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                        ?>                    
-                  </div>
+                                    <div class="name-profession">
+                                        <span class="name">
+                                            <?php echo $pname; ?>
+                                        </span>
+                                        <span class="profession">
+                                            <?php echo $sellPrice . " BD"; ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
+                        <?php } ?>
 
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=1)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=1)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
+                    </div>
                 </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
 
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=2)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=2)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=3)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=3)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=4)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=4)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=5)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=5)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=6)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=6)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=7)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=7)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=8)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=8)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-                </div>
-              </div>
-              <div class="swiper-slide card">
-                <div class="card-content">
-                  <div class="image">
-                    <?php
-
-                      echo '<img src="../Images/' . $image . '" alt="Product Image"><br>';
-                      ?>                   
-                  </div>
-
-
-
-                  <div class="name-profession">
-                    <span class="name">
-                      <?php
-                      if($pid=9)
-                        echo $pname;
-                    ?>
-                    </span>
-                    <span class="profession">
-                    <?php
-                      if($pid=9)
-                        echo $sellPrice." BD";
-                    ?>
-                    </span>
-                  </div>
-
-
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </section>
-      </span>
-
-            <?php
-            
-              $db = null; // Close the database connection
-              } catch (PDOException $e) {
-                die("Error Message" . $e->getMessage());
-              }
-            ?>
-
-        <!-- Swiper JS -->
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-        <!-- Initialize Swiper -->
-        <script>
-          var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            slidesPerGroup: 3,
-            loop: true,
-            loopFillGroupWithBlank: true,
-            pagination: {
-              el: ".swiper-pagination",
-              clickable: true,
-            },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            },
-          });
-        </script>
-
-      </main>
-      
-
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </section>
+            </span>
+
+        <?php
+    
+
+    $db = null; // Close the database connection
+} catch (PDOException $e) {
+    die("Error Message" . $e->getMessage());
+}
+?>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
+</main>
         <!-- footer  -->
         <?php include("../customer/footer.php"); ?>
-
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     </body>
