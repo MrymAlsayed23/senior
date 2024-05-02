@@ -60,7 +60,7 @@ if (isset($_POST["click_show_btn"])) {
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                     </select>
                                 <?php } else { ?>
-                                    <select class="form-select form-select-sm" aria-label="Small select example">
+                                    <select class="form-select form-select-sm" aria-label="Small select example" name="status">
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                         <?php if ($s1["ostatus"] == "Pending") { ?>
                                             <option value="Dispatch">Dispatch</option> <?php } ?>
@@ -81,5 +81,12 @@ if (isset($_POST["click_show_btn"])) {
     } catch (PDOException $e) {
         die($e->getMessage());
     }
+}
+?>
+<?php
+if (isset($_POST["updatestatus"])){
+
+    $sts = $_POST["status"];
+    echo $sts;
 }
 ?>
