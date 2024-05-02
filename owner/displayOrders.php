@@ -9,6 +9,28 @@
     <link rel="stylesheet" href="owner.css">
   <body>
 
+<!-- show Modal (for orders_item) (more Details about Orders) -->
+
+
+  <div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Order Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="showData">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update Order Status</button>
+      </div>
+    </div>
+</div>
+</div>
 
   
 
@@ -108,7 +130,7 @@
     ?>
     <tr>
     <div class="container mt-5">
-      <th scope="row"><?php echo $details["oid"]; ?></th>
+      <th scope="row" class="oid"><?php echo $details["oid"]; ?></th>
       <td><?php 
           $sql2 = "SELECT uid, fname, lname FROM USERS";
           $r= $db->query($sql2);
@@ -120,8 +142,7 @@
       <td><?php echo $details["total"]; ?></td>
       <td><?php echo $details["time"]; ?></td>
       <td><?php echo $details["ostatus"]; ?></td>
-    <td><button class="ShowProductsButton"
-      data-bs-toggle="modal" data-bs-target="#staticBackdropShow">
+    <td><button class="ShowProductsButton">
       <i class="fa-solid fa-square-caret-down"></i>
     </button></td>
     <!--<td><button class="updateProductsButton"
@@ -181,23 +202,7 @@
 
 
 
-<div class="modal fade" id="staticBackdropShow" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-</div>
-</div>
+
 
 
 
@@ -216,5 +221,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/FilterOrdersByStatus.js"></script>
     <script src="js/FilterOrdersByDate.js"></script>
+    <script src="js/ShowOrderItems.js"></script>
   </body>
 </html>
