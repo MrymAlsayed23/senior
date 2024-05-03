@@ -97,7 +97,7 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="container mt-5">
     <div class="container">
 
@@ -117,7 +117,7 @@
       die($e->getMessage());
     }
     ?>
-    <div class="containr">
+    <div class="container">
     <table class="table caption-top table-sm table-display-products table-hover" id="myTable">
       <caption class="display-products-caption">
         <h3>Products </h3>

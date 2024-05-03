@@ -45,7 +45,7 @@
 
 
  
-<div class="container">
+<div class="container-fluid">
   <div class="container mt-5">
     <div class="container">
 
@@ -63,8 +63,9 @@
       die($e->getMessage());
     }
     ?>
-    <div class="containr">
+<div class="container">
     <table class="table caption-top table-sm table-display-products table-hover" id="myTable">
+    
       <caption class="display-products-caption">
         <h3>Customers </h3>
         <span class="display-products-span-caption-p">
@@ -75,21 +76,15 @@
       </caption>
       <thead>
         <tr>
-          <!-- <th><a href="product.php">Add New Products</a></th> -->
+        <th>
+        <input type="text" id="live_search" autocomplete="off" placeholder="Search Name ...">
+        </th>
         </tr>
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">User Name</th>
           <th scope="col"></th>
-        </tr>
-        <tr>
-          <th></th>
-          <th>
-          <input type="text" id="live_search" autocomplete="off" placeholder="Search Name ...">
-          </th>
-          <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody id="showData">
@@ -98,7 +93,7 @@
           extract($details);
           ?>
         <tr id="noFilter">
-          <th scope="row" class="uid">
+          <th class="uid">
             <?php echo $uid ?>
           </th>
           <td>
@@ -143,6 +138,7 @@
             </a> </td>
         </tr> -->
       </tbody>
+      
     </table>
     </div>
 

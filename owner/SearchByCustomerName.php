@@ -20,8 +20,8 @@
           <td>
             <?php echo $username ?>
           </td>
-          <td><a class="ShowProductsButton">
-          <i class="fa-solid fa-message" style="color: #d74785;"></i>
+          <td><a class="ShowMessageModal">
+          <i class="fa-solid fa-message"></i>
             </a></td>
             </tr>
         <?php } ?>
