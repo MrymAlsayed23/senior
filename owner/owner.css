@@ -247,6 +247,20 @@ a.sidebar-link:hover{
     font-size: 20px;
     cursor: pointer;
 }
+.ShowMessageModal{
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+.ShowMessageModal i {
+    color: #d61b6c;
+}
+.ShowMessageModal i:hover{
+    color: #d74785;
+    font-size: 22px;
+}
+
 
 .ShowProductsButton i {
     color: #ece912fd;
