@@ -17,6 +17,7 @@ if (isset($_POST["click_show_btn"])) {
 ?>
         <div class="container">
             <table class="table align-middle">
+            <form action="updateOrderStatus.php" method="post" id="stsForm"></form> 
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Item ID</th>
@@ -43,6 +44,7 @@ if (isset($_POST["click_show_btn"])) {
 
                     <?php } ?>
                 </tbody>
+                
                 <tfoot>
                     <?php while ($s1 = $status->fetch(PDO::FETCH_ASSOC)) {
                         extract($s1);
@@ -51,7 +53,7 @@ if (isset($_POST["click_show_btn"])) {
                             <th colspan="3">Total Price</th>
                             <td colspan="2"><?php echo $s1["total"] . " BHD"; ?></td>
                         </tr>
-                        <form action="updateOrderStatus.php" method="POST">
+                        
                         <tr>
                             <th colspan="2">Order Status</th>
 
@@ -62,8 +64,9 @@ if (isset($_POST["click_show_btn"])) {
                                     </select>
                                 <?php } else { ?>
                                     
-                                        <input hidden type="number" name="oid" value="<?php echo $s1["oid"]; ?>">
-                                    <select class="form-select form-select-sm" aria-label="Small select example" name="status">
+                                        <input hidden type="number" name="oid" value="<?php echo $s1["oid"]; ?>" form="stsForm">
+                                    <select class="form-select form-select-sm" aria-label="Small select example" name="status"
+                                    form="stsForm">
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                         <?php if ($s1["ostatus"] == "Pending") { ?>
                                             <option value="Dispatch">Dispatch</option> <?php } ?>
@@ -75,15 +78,20 @@ if (isset($_POST["click_show_btn"])) {
         <tr style="text-align:right">
             <td></td><td></td>
         <!-- <td><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></td> -->
-        <td colspan="3"><button type="button" class="btn btn-primary" name="updatestatus">Update Order Status</button></td>
-        </form>
+        <td colspan="3"><button type="button" class="btn btn-primary" name="updatestatus" form="stsForm"
+        formmethod="post" formaction="updateOrderStatus.php">Update Order Status</button>
+        
+    </td>
         </tr>
+        
+        
         
                 <?php }
                             } ?>
                 </tfoot>
 
             </table>
+            
         </div>
         
 <?php
