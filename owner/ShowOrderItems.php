@@ -16,8 +16,9 @@ if (isset($_POST["click_show_btn"])) {
 
 ?>
         <div class="container">
+        <form action="ShowOrderItems.php" method="post" id="stsForm">
             <table class="table align-middle">
-            <form action="updateOrderStatus.php" method="post" id="stsForm"></form> 
+                
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Item ID</th>
@@ -37,14 +38,14 @@ if (isset($_POST["click_show_btn"])) {
                             <th scope="row" class="text-center"><?php echo $result["pid"]; ?></th>
                             <td><?php //echo $result["image"]; 
                                 ?></td>
-                            <td><?php echo $result["pname"]; ?></td>
+                            <td class="text-center"><?php echo $result["pname"]; ?></td>
                             <td class="text-center"><?php echo $result["quantity"]; ?></td>
-                            <td class="text-center" ><?php echo $result["quantity"] * $result["sellPrice"]; ?></td>
+                            <td class="text-center"><?php echo $result["quantity"] * $result["sellPrice"]; ?></td>
                         </tr>
 
                     <?php } ?>
                 </tbody>
-                
+
                 <tfoot>
                     <?php while ($s1 = $status->fetch(PDO::FETCH_ASSOC)) {
                         extract($s1);
@@ -53,51 +54,58 @@ if (isset($_POST["click_show_btn"])) {
                             <th colspan="3">Total Price</th>
                             <td colspan="2"><?php echo $s1["total"] . " BHD"; ?></td>
                         </tr>
-                        
-                        <tr>
-                            <th colspan="2">Order Status</th>
 
-                            <td colspan="3">
+                        <tr>
+                            <th colspan="2" style="border-bottom:transparent;">Order Status</th>
+
+                            <td style="border-bottom:transparent;">
                                 <?php if ($s1["ostatus"] == "Completed") { ?>
                                     <select disabled class="form-select form-select-sm" aria-label="Small select example">
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                     </select>
                                 <?php } else { ?>
-                                    
-                                        <input hidden type="number" name="oid" value="<?php echo $s1["oid"]; ?>" form="stsForm">
-                                    <select class="form-select form-select-sm" aria-label="Small select example" name="status"
-                                    form="stsForm">
+
+                                    <input hidden type="number" name="oid" value="<?php echo $s1["oid"]; ?>" form="stsForm">
+                                    <select class="form-select form-select-sm" aria-label="Small select example" name="status" form="stsForm">
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                         <?php if ($s1["ostatus"] == "Pending") { ?>
                                             <option value="Dispatch">Dispatch</option> <?php } ?>
                                         <?php if ($s1["ostatus"] == "Dispatch") { ?>
                                             <option value="Completed">Completed</option> <?php } ?>
                                     </select>
-                                    </td>
-                                    </tr>
-        <tr style="text-align:right">
-            <td></td><td></td>
-        <!-- <td><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></td> -->
-        <td colspan="3"><button type="button" class="btn btn-primary" name="updatestatus" form="stsForm"
-        formmethod="post" formaction="updateOrderStatus.php">Update Order Status</button>
-        
-    </td>
-        </tr>
-        
-        
-        
+                            </td>
+                            <td colspan="3" style="border-bottom:transparent;"><button type="submit" class="btn btn-primary" name="updatestatus" form="stsForm">Update Order Status</button>
+
+                            </td>
+                        </tr>
+                        <!-- <tr style="text-align:right;"> -->
+                        <!-- <td style="border-bottom:transparent;"></td><td style="border-bottom:transparent;"></td> -->
+                        <!-- <td><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></td> -->
+
+                        <!-- </tr> -->
                 <?php }
                             } ?>
                 </tfoot>
-
             </table>
-            
+            </form>
         </div>
-        
+
 <?php
-    } catch (PDOException $e) {
-        die($e->getMessage());
+  } catch (PDOException $e) {
+    die($e->getMessage());
+}
+}
+require("../connection.php");
+if (isset($_POST["updatestatus"])){
+
+    $sts = $_POST["status"];
+    $oid = $_POST["oid"];
+    $sql = "UPDATE orders SET ostatus = '$sts' WHERE oid = $oid";
+    $st = $db->exec($sql);
+    if ($st>0){
+        header("location: displayOrders.php");   
+
     }
+    $db = null;
 }
 ?>
-
