@@ -23,12 +23,7 @@
         <div class="showData">
         </div>
       </div>
-      <div class="modal-footer">
-        
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Update Order Status</button>
-        </form>
-      </div>
+      
     </div>
 </div>
 </div>
@@ -105,7 +100,7 @@
     <!--<th><a href="">Add New Products</a></th>-->
     </tr>
     <tr>
-      <th scope="col">ID</th>
+      <th scope="col">Order ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Total Price</th>
       <th scope="col">Time</th>
@@ -204,18 +199,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
