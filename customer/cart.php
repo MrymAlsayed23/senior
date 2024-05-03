@@ -39,7 +39,7 @@
                                     <th width="18%">Quantity</th>
                                     <th width="20%">Price</th>
                                 </tr>
-                            <form method='POST' action='checkout.php'>
+                            <form method='GET' action='checkout.php'>
                                 <?php
                                     $total=0;
                                     foreach($_SESSION['shoppingcart'] as $productid => $productQuantity){

@@ -1,14 +1,14 @@
 <?php
   session_start();
   if (isset($_SESSION['uid'])){
-    if (isset($_POST['pbtn'])){
-      $type = $_POST['payType'];
+    if (isset($_GET['pbtn'])){
+      $type = $_GET['payType'];
       //echo $type;
-      $total = $_POST['amount'];
+      $total = $_GET['amount'];
       //echo $total;
-      $card = $_POST['cardno'];
+      $card = $_GET['cardno'];
       //echo $card;
-      $cart = $_POST['cid'];
+      $cart = $_GET['cid'];
       //echo $cart;
       try {
         require('../connection.php');
@@ -27,10 +27,10 @@
         die ("Error occured".$e->getMessage());
       }
     }
-    else if (isset($_POST['placebtn'])){
-      $type  = $_POST['payType'];
-      $total = $_POST['amount'];
-      $cart = $_POST['cid'];
+    else if (isset($_GET['placebtn'])){
+      $type  = $_GET['payType'];
+      $total = $_GET['amount'];
+      $cart = $_GET['cid'];
       try {
       require('../connection.php');
       $db->beginTransaction();
@@ -48,7 +48,7 @@
         die ("Error occured".$e->getMessage());
     }
     }
-    if(isset($_POST['cbtn'])){
+    if(isset($_GET['cbtn'])){
       header('location:cart.php');
     }
     unset($_SESSION['shoppingcart']);

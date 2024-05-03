@@ -1,10 +1,10 @@
 <?php
     session_start();
-    if (isset($_POST['cid'])) {
-        $cid = $_POST['cid'];
+    if (isset($_GET['cid'])) {
+        $cid = $_GET['cid'];
      }
      else {
-        // Handle the case where 'cid' is not set in the POST request
+        // Handle the case where 'cid' is not set in the GET request
         die("Error: 'cid' parameter is not set.");
     }
 ?>
@@ -22,12 +22,12 @@
         
         <div class="container" style="margin-bottom:17.5rem;margin-top:14rem">
         
-            <?php if (!isset($_POST['btn'])){ ?>
+            <?php if (!isset($_GET['btn'])){ ?>
                 <div class="">
                     <h2>Payment Method</h2>
                 </div>
                 
-                <form class="" method="POST">
+                <form class="" method="GET">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Debit/Credit Card" checked>
                         <label class="form-check-label" for="flexRadioDefault1">Debit/Credit Card</label>
@@ -45,15 +45,15 @@
                 
                 <?php
                 }
-                else if(isset($_POST['btn'])){
-                    $method = $_POST['flexRadioDefault'];
+                else if(isset($_GET['btn'])){
+                    $method = $_GET['flexRadioDefault'];
                     if ($method == 'Debit/Credit Card'){
                         ?>
                         
-                        <form class="" action="completePayment.php" method="POST">
+                        <form class="" action="completePayment.php" method="GET">
                             <?php
                             try {
-                                $cid = $_POST['cid'];
+                                $cid = $_GET['cid'];
                                 require('../connection.php');
                                 $sql = "SELECT * FROM cart WHERE cid = $cid";
                                 $row = $db->query($sql);
@@ -135,10 +135,10 @@
                             else if($method == 'Cash'){
                                 ?>
                                 
-                                <form class="" action="completePayment.php" method="POST">
+                                <form class="" action="completePayment.php" method="GET">
                                     <?php
                                     try {
-                                            $cid = $_POST['cid'];
+                                            $cid = $_GET['cid'];
                                             require('../connection.php');
                                             $sql = "SELECT * FROM cart WHERE cid = $cid";
                                             $row = $db->query($sql);
