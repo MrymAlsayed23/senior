@@ -1,6 +1,6 @@
 <?php
     session_start();
-   if (isset($_POST['checkout'])) {
+   if (isset($_GET['checkout'])) {
 
         if (!(isset($_SESSION["uid"]))){
             // Redirect to login page if user is not logged in
@@ -10,7 +10,7 @@
             try {
                 require('../connection.php');
                 $db->beginTransaction();
-                $sql1 = "INSERT INTO cart VALUES(NULL, '".$_SESSION['uid']."',NULL ,'".$_POST['total']."')";
+                $sql1 = "INSERT INTO cart VALUES(NULL, '".$_SESSION['uid']."',NULL ,'".$_GET['total']."')";
                 $row = $db->exec($sql1);
                 
                 if ($row == 1){
@@ -46,7 +46,7 @@
     <!-- Checkout form -->
     <div class="container">
         <h1>Checkout</h1>
-        <form action="payment.php" method="POST">
+        <form action="payment.php" method="GET">
             <!-- Customer information -->
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>
