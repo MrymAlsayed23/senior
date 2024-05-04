@@ -115,10 +115,10 @@ a.sidebar-link:hover{
     
 }
 .second {
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     margin-bottom: 10px;
-    width: 100%;
-    min-height: 500px;
+    /* width: 100%; */
+    min-height: 100px;
 }
 
 .third {
@@ -197,6 +197,28 @@ a.sidebar-link:hover{
 .order tr td:nth-child(4) {
     text-align: start;
 }
+/**************************Rating Star*****************************************/
+
+.rating-stars{
+    color: #b9b9b9;
+    line-height: 10px;
+}
+.grey-stars{
+    height: 100%;
+}
+.filled-stars{
+    color: #FFD43B;
+    margin-left: 45px;
+    margin-top: -18px;
+
+} 
+.filled-stars::before,
+.grey-stars::before{
+    content: "\2605 \2605 \2605 \2605 \2605";
+    font-size: 26px;
+    line-height: 18px;
+}
+
 
 /**********************Display Products****************************/
 .table-display-products tr{

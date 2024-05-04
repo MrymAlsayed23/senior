@@ -26,6 +26,11 @@
     <div class="col-lg-3 col-md-6 col-sm-6">
 <?php 
 try {
+  $five_star_review = 0;
+        $four_star_review = 0;
+        $three_star_review = 0;
+        $two_star_review = 0;
+        $one_star_review = 0;
   require ('../connection.php');
   $sql = "SELECT COUNT(*) AS total FROM orders";
   $orders = $db->prepare($sql);
@@ -47,6 +52,18 @@ try {
   LIMIT 2";
   $topSales = $db->prepare($sql5);
   $topSales->execute();
+
+  $sql6 = "SELECT COUNT(*) AS total FROM rating";
+  $dataSql6 = $db->prepare($sql6);
+  $dataSql6->execute();
+  $dTotal = $dataSql6->fetch(PDO::FETCH_ASSOC);
+  $sql7 = "SELECT SUM(urating) AS totalRating FROM rating";
+  $datasql7 = $db->prepare($sql7);
+  $datasql7->execute();
+  $dSUM = $datasql7->fetch(PDO::FETCH_ASSOC);
+  $sql8 = "SELECT * FROM rating";
+  $datasql8 = $db->query($sql8);
+
 
   ?>
     <div class="card">
@@ -134,16 +151,192 @@ try {
   <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 
   <div class="second">
-
   <div class="row">
-    <div class="col-md-8">.col-md-8</div>
-    <div class="col-sm-6 col-md-4">.col-6 .col-md-4</div>
+
+    <div class="col-md-8">
+       <div class="mb-sm-1 ml-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+
+       </div>
+    </div>
+    
+
+    <!-- <div class="row"> -->
+
+    <div class="col-sm-12 col-md-4">
+     <div class="mb-sm-1 ml-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+     <!-- <div class="container"> -->
+      <h1 class="mt-1 mb-4">Customers Review</h1>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-body">
+            <div class="col">
+              <div class="col text-center">
+                <h1 class="text-warning mt-1 mb-2">
+                  <?php if($dTotal){?>
+                  <b><span id="average_rating"><?php if ($dSUM){
+                    if ($dSUM['totalRating'] == 0 ){ echo "0"; }
+                    else {
+                     echo $dSUM['totalRating']/$dTotal['total']; 
+                     }?>
+                </span>/5</b>
+                </h1>
+                <div class="mb-3">
+                  <!-- <div class="str">
+                    <div class="rating">
+                      <div class="rating-stars">
+                        <div class="grey-stars"></div>
+                        <div class="filled-stars" style="width:70%"></div>
+                      </div>
+                    </div>
+                  </div> -->
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                </div>
+                <h6>
+                  <span id="total_review"><?php
+                  if ($dTotal["total"] == 0) {echo "No ";}
+                  else { 
+                  echo $dTotal["total"]; }?></span> Reviews
+                </h6>
+              </div>
+              <div class="col">
+
+<?php while ($d10 = $datasql8->fetch(PDO::FETCH_ASSOC)) {
+          extract($d10);
+          if ($d10["urating"] == 5){
+            $five_star_review ++;
+          }
+          if ($d10["urating"] == 4){
+            $four_star_review ++;
+          }
+          if ($d10["urating"] == 3){
+            $three_star_review ++;
+          }
+          if ($d10["urating"] == 2){
+            $two_star_review ++;
+          }
+          if ($d10["urating"] == 1){
+            $one_star_review ++;
+          }
+}?>
+              <p>
+      <div class="progress-label-left float-start px-2"><b>5</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-five-star-review"><?php echo $five_star_review; ?></span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=five_star_progress style="width:<?php
+        echo ($five_star_review/$dSUM['totalRating'])*100; ?>%;">
+        
+        
+      </div>
+      
+      </div></div>
+      
+    </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>4</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-four-star-review"><?php echo $four_star_review; ?></span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=four_star_progress
+        style="width:<?php
+        echo ($four_star_review/$dSUM['totalRating'])*100; ?>%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>3</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-three-star-review"><?php echo $three_star_review; ?></span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=three_star_progress
+        style="width:<?php
+        echo ($three_star_review/$dSUM['totalRating'])*100; ?>%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>2</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-two-star-review"><?php echo $two_star_review; ?></span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=two_star_progress
+        style="width:<?php
+        echo ($two_star_review/$dSUM['totalRating'])*100; ?>%;">
+        
+        
+      </div>
+      
+      </div></div>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>1</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-one-star-review"><?php echo $one_star_review; ?></span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=one_star_progress
+        style="width:<?php
+        echo ($one_star_review/$dSUM['totalRating'])*100; ?>%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+                <?php }}?>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+     <!-- </div> -->
+    </div>
+    <!-- </div> -->
+
+
+
+
+
+
+  
   </div>
 
-
   </div>
-
-
 
 
 
@@ -157,7 +350,7 @@ try {
     <div class="third">
     <div class="row">
     <div class="col-lg-8 col-12">
-      <div class="mb-sm-1 ml-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+      <div class="mb-sm-1 ml-1 mt-2 p-4" style="background-color: #eaeaec; border-radius: 12px";>
     <table class="table caption-top table-hover">
     <caption class="recent-orders">Recent Orders</caption>
   <thead>
@@ -225,7 +418,7 @@ die($e->getMessage());
 
     <div class="col-lg-4 col-12">
       
- <div class="mt-sm-1 mr-1 p-4 mb-1" style="background-color: #eaeaec; border-radius: 12px";>
+ <div class="mt-sm-1 mr-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
   <table class="table caption-top table-hover">
   <caption class="top-products">Top Products</caption>
   <tbody>
@@ -233,7 +426,7 @@ die($e->getMessage());
     while ($top = $topSales->fetch()){; 
       extract($top); ?>
     <tr>
-      <td><img src="../../Books/Cholcolate Me!.jpg" alt=""></td>
+      <td><img src="" alt=""></td>
       <td><h6 class="product-name"><?php echo $top["pname"];?></h6>
       <span class="product-span"><?php echo "Price ".$top["sellPrice"]. " BHD";?></span></td>
       <td><p  class="borded-p"><?php echo $top["TotalSales"]. " Sales";?></p></td>
@@ -266,5 +459,6 @@ die($e->getMessage());
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </body>
 </html>
