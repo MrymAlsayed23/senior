@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="owner.css">
   </head>
   <body>
-
-
-    <div class="nav">
-       <section id="sidebar">
+    
+        <div class="nav">
+       <div id="sidebar">
 
         <div class="d-flex">
             <button id="togglebutton" type="button">
@@ -25,28 +24,28 @@
         
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="" class="sidebar-link">
+                <a href="OwnerPanel.php" class="sidebar-link">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="" class="sidebar-link">
+                <a href="displayProducts.php" class="sidebar-link">
                 <i class="fa-solid fa-box"></i>
                 <span>Products</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="" class="sidebar-link">
+                <a href="displayOrders.php" class="sidebar-link">
                 <i class="fa-solid fa-boxes-packing"></i>
                 <span>Orders</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="" class="sidebar-link">
+                <a href="displayCustomers.php" class="sidebar-link">
                 <i class="fa-solid fa-users"></i>
                 <span>Customers</span>
                 </a>
@@ -67,11 +66,8 @@
             </li>
 
         </ul>
-</section>
-
-       </div>
-
-
+</div>
+</div>
 
 
 
