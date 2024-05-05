@@ -60,7 +60,7 @@ session_start();
     <div class="container">
         <p>Our Mission</p>
         <h1>Paving the way to success for our clients.</h1>
-        <img src="/senior/Images/homePic.png" alt="" class="homePic">
+        <img src="../Images/homePic.png" alt="" class="homePic">
         <button>
             <a href="#">Get Started</a>
         </button>
@@ -70,25 +70,22 @@ session_start();
         <div class="cards">
 
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="../Images/Design.png" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Design</h5>
                     <p class="card-text">Design your E-commerce website.</p>
                 </div>
             </div>
 
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="../Images/Report.png" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Reports</h5>
                     <p class="card-text">Providing you with reports about your business.</p>
                 </div>
             </div>
 
             <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="../Images/Consultancy.png" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Consultancy</h5>
                     <p class="card-text">Assisting you in making the right decision for your business.</p>
                 </div>
             </div>
