@@ -1,28 +1,24 @@
 <?php 
+require('../connection.php');
 session_start();
 if (isset($_POST["sign"])) {
-    $username = $_POST["username"];
-    $ps = $_POST["password"];
+  
+    $uname = strip_tags(trim($_POST["username"]));
+    $pass = strip_tags(trim($_POST["password"]));
     try{
-        require('../connection.php');
-          $sql = "SELECT * FROM users WHERE username ='$username'";
-          $rs = $db->query($sql);
-          if ($row=$rs->fetch()){
-              extract($row);
-              //echo $type;
-              if(password_verify($ps, $password)){
-                echo "Esladx;sw";
-                // if ($type =='Admin'){
-                //   $_SESSION['staff'] = $uid;
-                //   header('location:orders.php');
-                // }
-                if ($type == 'Owner'){
-                  $_SESSION['owner'] = $uid;
-                 header('location:OwnerPanel.php');
-              }
-              }
-            }
+        $query=$db->prepare("SELECT * FROM users WHERE username='$uname'");
+        $query->execute();;
+        $control=$query->fetch();
+        if($control>0){
+          if(password_verify($pass, (string)$control['password'])){
+            echo "Ew";
+            if ($control['type'] == 'Owner'){
+              $_SESSION['owner'] = $control['uid'];
+              header("Location:ownerPanel.php");
+          }
+        }
     }
+  }
     catch(Exception $e){
         die($e->getMessage());
     }
@@ -42,7 +38,7 @@ if (isset($_POST["sign"])) {
   <body>
 
 
-<form action="login.php" method="post" id="loginForm">
+<form action="ownerlogin.php" method="post" id="loginForm">
 
   <br><br><br>
     <main>
@@ -60,12 +56,12 @@ if (isset($_POST["sign"])) {
                 </caption>
                   <tr>
                   <input type="hidden" name="uid" form="loginForm">
-                    <td><label>Username</label></td>
+                    <td><label for="username">Username</label></td>
                     <td><input type="text" name="username" id="username" required 
                     form="loginForm">  <br> <small></small> </td>
                   </tr>
                   <tr>
-                    <td><label>Password</label></td>
+                    <td><label for="password">Password</label></td>
                     <td><input type="password" name="password" id="password" required  
                     form="loginForm"> <br>  <small></small> </td>
                   </tr>
