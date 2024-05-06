@@ -175,8 +175,9 @@ try {
                   <b><span id="average_rating"><?php if ($dSUM){
                     if ($dSUM['totalRating'] == 0 ){ echo "0"; }
                     else {
-                     echo $dSUM['totalRating']/$dTotal['total']; 
-                     }?>
+                     echo round($dSUM['totalRating']/$dTotal['total'], 2); //total is the number of customers
+                                                                 // totalRating is the sum of rating
+                     }?>                                        
                 </span>/5</b>
                 </h1>
                 <div class="mb-3">
