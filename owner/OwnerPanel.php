@@ -1,3 +1,10 @@
+<?php 
+// session_start();
+// if (isset($_SESSION['owner']))
+// {
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,12 +16,13 @@
     <link rel="stylesheet" href="owner.css">
   <body>
    <!--nav --> 
+   <div class="container" style="flex-direction:column;">
     <?php 
-      //include "nav1.php";
+      include "nav.php";
     ?> 
 
 
-<div class="container">
+
   <div class="container mt-5 mb-5">
     
  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
@@ -469,3 +477,4 @@ die($e->getMessage());
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </body>
 </html>
+<?php //}?>
