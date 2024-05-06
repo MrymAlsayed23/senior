@@ -1,3 +1,14 @@
+<?php 
+session_start();
+if (!(isset($_SESSION['owner'])))
+{
+  header('location: ownerHome.php');
+}
+$bid = $_GET['bid'];
+echo $bid;
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -93,7 +104,9 @@
    
 
 
-
+  <?php 
+      include "nav.php";
+    ?> 
 
 
 

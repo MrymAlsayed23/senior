@@ -4,7 +4,8 @@ if (!(isset($_SESSION['owner'])))
 {
   header('location: ownerHome.php');
 }
-
+$bid = $_GET['bid'];
+//echo $bid;
 ?>
 
 <!doctype html>
@@ -18,13 +19,12 @@ if (!(isset($_SESSION['owner'])))
     <link rel="stylesheet" href="owner.css">
   <body>
    <!--nav --> 
-   <div class="container" style="flex-direction:column;">
+   
     <?php 
       include "nav.php";
     ?> 
-
-
-
+    </div>
+    <div class="container">
   <div class="container mt-5 mb-5">
     
  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->

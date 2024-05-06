@@ -1,3 +1,10 @@
+<?php 
+if (!(isset($_SESSION['owner'])))
+{
+  header('location: ownerHome.php');
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,64 +18,67 @@
   <body>
     
   
-        <div class="nav">
-       <div id="sidebar">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
+      <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <div class="d-flex">
-            <button id="togglebutton" type="button">
-            <i class="fa-solid fa-bars fa-sm"></i>
-            </button>
-            <div class="sidebar-logo">
-                <a href="">Title</a>
-            </div>
+            <li class="sidebar-item px-1">
+              <a href="OwnerPanel.php?bid='<?php echo $bid;?>'" class="sidebar-link">
+              <i class="fa-solid fa-house"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayProducts.php?bid='<?php echo $bid?>'" class="sidebar-link">
+              <i class="fa-solid fa-box"></i>
+              <span>Products</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayOrders.php?bid='<?php echo $bid?>'" class="sidebar-link">
+              <i class="fa-solid fa-boxes-packing"></i>
+              <span>Orders</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayCustomers.php?bid='<?php echo $bid?>'" class="sidebar-link">
+              <i class="fa-solid fa-users"></i>
+              <span>Customers</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="" class="sidebar-link">
+              <i class="fa-solid fa-palette"></i>
+              <span>Edit Layout</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="" class="sidebar-link">
+              <i class="fa-solid fa-comment-dots"></i>
+              <span>Messages</span>
+              </a>
+          </li>
+          <li class="sidebar-item px-1">
+            <a href="ownerlogout.php" class="sidebar-link">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+            </a>
+        </li>
+
+          </ul>
         </div>
-        
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a href="OwnerPanel.php" class="sidebar-link">
-                <i class="fa-solid fa-house"></i>
-                <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="displayProducts.php" class="sidebar-link">
-                <i class="fa-solid fa-box"></i>
-                <span>Products</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="displayOrders.php" class="sidebar-link">
-                <i class="fa-solid fa-boxes-packing"></i>
-                <span>Orders</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="displayCustomers.php" class="sidebar-link">
-                <i class="fa-solid fa-users"></i>
-                <span>Customers</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="" class="sidebar-link">
-                <i class="fa-solid fa-palette"></i>
-                <span>Edit Layout</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="" class="sidebar-link">
-                <i class="fa-solid fa-comment-dots"></i>
-                <span>Messages</span>
-                </a>
-            </li>
-
-        </ul>
-</div>
-</div>
+      </div>
+    </nav>
 
 
 

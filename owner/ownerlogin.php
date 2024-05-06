@@ -1,24 +1,34 @@
 <?php 
-require('../connection.php');
 session_start();
 if (isset($_POST["sign"])) {
   
-    $uname = strip_tags(trim($_POST["username"]));
-    $pass = strip_tags(trim($_POST["password"]));
+    $uname = $_POST["username"];
+    $pass = $_POST["password"];
     try{
-        $query=$db->prepare("SELECT * FROM users WHERE username='$uname'");
-        $query->execute();;
-        $control=$query->fetch();
-        if($control>0){
-          if(password_verify($pass, (string)$control['password'])){
-            echo "Ew";
-            if ($control['type'] == 'Owner'){
-              $_SESSION['owner'] = $control['uid'];
-              header("Location:ownerPanel.php");
-          }
-        }
+        require('../connection.php');
+
+        $sql = "SELECT u.*, b.bid 
+        FROM users u 
+        LEFT JOIN business b ON u.uid = b.bownerid 
+        WHERE u.username = '$uname'";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+          // $sql = "SELECT * FROM users WHERE username ='$uname'";
+          // $rs = $db->query($sql);
+          if ($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
+              //extract($row);
+              if($pass == $row['password']){
+                echo $row['password'];
+                if ($row['type'] == 'Owner') {
+                  $_SESSION['owner'] = $row['uid'];
+                  $bid = $row['bid'];
+                 header('Location: ownerPanel.php?bid='.$bid);
+                 die();
+              }
+              }
+            }
+            $db = null;
     }
-  }
     catch(Exception $e){
         die($e->getMessage());
     }
