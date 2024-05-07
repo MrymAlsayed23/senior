@@ -65,14 +65,7 @@
                     </div>
                 
                 
-                    <!-- <tr>
-                        <td>
-
-                            <input type="submit" name="save" id="" value="Save">
-                            <input type="submit" name="saveAnother" id="" value="Save and Add Another">
-
-                        </td>
-                    </tr> -->
+                
             </form>
 
         </div>
