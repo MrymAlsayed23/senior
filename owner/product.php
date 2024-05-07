@@ -18,7 +18,6 @@
             <form method="POST" name="Form" action="">
                 <h2>New Product</h2>
                 
-                <table>
                     <div class="mb-3">
                         <label for="pname" class="form-label">Product Name</label>
                         <input type="email" name="pname" class="form-control" id="pname">
@@ -65,7 +64,14 @@
                     </div>
                 
                 
-                
+                    <!-- <tr>
+                        <td>
+
+                            <input type="submit" name="save" id="" value="Save">
+                            <input type="submit" name="saveAnother" id="" value="Save and Add Another">
+
+                        </td>
+                    </tr> -->
             </form>
 
         </div>
