@@ -15,7 +15,6 @@ $(document).ready(function () {
         },
         success: function (response) {
           $('#staticBackdropShow').modal('show');
-  
         }
       });
     });

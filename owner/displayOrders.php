@@ -2,7 +2,7 @@
 session_start();
 if (!(isset($_SESSION['owner'])))
 {
-  header('location: ownerHome.php');
+  header('location:../home/home.php');
 }
 $bid = $_GET['bid'];
 ?>
@@ -38,9 +38,67 @@ $bid = $_GET['bid'];
 </div>
 </div>
 
-<?php 
-      include "nav.php";
-    ?> 
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
+      <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="sidebar-item px-1">
+              <a href="OwnerPanel.php?bid=<?php echo $bid;?>" class="sidebar-link">
+              <i class="fa-solid fa-house"></i>
+              <span>Dashboard</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayProducts.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <i class="fa-solid fa-box"></i>
+              <span>Products</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayOrders.php" class="sidebar-link">
+              <i class="fa-solid fa-boxes-packing"></i>
+              <span>Orders</span>
+              </a>
+          </li>
+
+          <li class="sidebar-item px-1">
+              <a href="displayCustomers.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <i class="fa-solid fa-users"></i>
+              <span>Customers</span>
+              </a>
+          </li>
+
+          <!-- <li class="sidebar-item px-1">
+              <a href="" class="sidebar-link">
+              <i class="fa-solid fa-palette"></i>
+              <span>Edit Layout</span>
+              </a>
+          </li> -->
+
+          <li class="sidebar-item px-1">
+              <a href="" class="sidebar-link">
+              <i class="fa-solid fa-comment-dots"></i>
+              <span>Messages</span>
+              </a>
+          </li>
+          <li class="sidebar-item px-1">
+            <a href="ownerlogout.php" class="sidebar-link">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+            </a>
+        </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 <?php //include "nav1.php"; ?>
 <div class="container">
@@ -84,12 +142,12 @@ $bid = $_GET['bid'];
 
         
           <div class="col">
-          <form action="">
+          <!-- <form action="">
           <input type="date" class="filter-orders-date" id = "date1">
           </div>
           <div class="col">
           <input type="date" class="filter-orders-date" id = "date2">
-          </form>
+          </form> -->
           </div>
           
           <!-- <div class="col mx-0">
@@ -115,6 +173,7 @@ $bid = $_GET['bid'];
       <th scope="col">Order ID</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Total Price</th>
+      <th scope="col">Payment</th>
       <th scope="col">Time</th>
       <th scope="col">Status <!--<button class="orderingButton"><i class="fa-solid fa-up-down"></i></button>--></th>
       <!--<th scope="col">Quantity<button class="orderingButton"><i class="fa-solid fa-up-down"></i></button></th>-->
@@ -135,6 +194,7 @@ $bid = $_GET['bid'];
     <?php 
      while ($details = $orders->fetch()) {
       extract($details);
+      $poid = $details['oid'];
     ?>
     <tr>
     <div class="container mt-5">
@@ -148,6 +208,18 @@ $bid = $_GET['bid'];
           echo $det["fname"]. " " .$det["lname"];}} //echo $uid;?> 
       </td>
       <td><?php echo $details["total"]; ?></td>
+      <td><?php 
+         $query = "SELECT * FROM payment WHERE oid= $poid";
+         $stmt = $db->prepare($query);
+         $stmt->execute();
+         if ($stmt > 0 ){
+          echo "Card";
+         }
+         else {
+          echo "Cash";
+         }
+      ?>
+      </td>
       <td><?php echo $details["time"]; ?></td>
       <td><?php echo $details["ostatus"]; ?></td>
     <td><button class="ShowProductsButton">

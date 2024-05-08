@@ -32,9 +32,6 @@ if (isset($_POST["click_Update_btn"])) {
     } catch (PDOException $e) {
         die($e->getMessage());
     }
-
-
-
 }
 
 if (isset($_POST["updateProductsBut"])) {  

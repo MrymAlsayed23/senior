@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Navbar - Html Css Javascript</title>
+  <title>Sign Up As Owner</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="multiform.css">
@@ -177,9 +177,9 @@ if (isset($_POST["sub"])) {
     ]);
     $bid = $db->lastInsertId();
   
-    $adduser = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
+    $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
         VALUES (:pname,:Details,:sellPrice, :pquantity, :bid ,:pType)');
-    $adduser->execute([
+    $addpro->execute([
         'pname' => $pname,
         'Details'=> $Details,
         'sellPrice'=> $sellPrice,
@@ -188,10 +188,12 @@ if (isset($_POST["sub"])) {
         'pType' =>$ptype,
     ]);
 
-    $db->commit();
-    $db = null;
-
+    if ($db->commit()){
+        header ("location: ownerlogin.php");
     }
+    $db = null;
+    }
+    
     catch(PDOException $e){
         die($e->getMessage());
     }

@@ -24,7 +24,7 @@
                   <li><a href="#">Company</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="#">Contact</a></li>
-                  <li><a href="owner/ownerlogin.php" class="active">Login</a></li>
+                  <li><a href="../owner/ownerlogin.php" class="active">Login</a></li>
                </ul>
             </nav>
         </div>
@@ -37,7 +37,7 @@
          <div class="title">
             <h1 class="a">Our Mission</h1>
             <h1 class="b">Paving the way to<br>success for our<br>clients.</h1>
-            <button class="getstarted">Get started</button>
+            <a href="../owner/ownersignup.php"><button class="getstarted">Get started</button></a>
          </div>
          <div class="pic">
             <img class="imges" src="imges/img5.png" alt="img">
