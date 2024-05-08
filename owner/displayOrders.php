@@ -16,7 +16,7 @@ $bid = $_GET['bid'];
     <title>Orders</title>
     <script src="https://kit.fontawesome.com/02448b3b92.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="owner.css">
+    <link rel="stylesheet" href="o.css">
   <body>
 
 <!-- show Modal (for orders_item) (more Details about Orders) -->

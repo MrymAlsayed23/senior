@@ -29,7 +29,6 @@ body {
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
-        color:blueviolet;
         cursor: pointer;
       }
       .sidebar-item a{
@@ -40,9 +39,10 @@ body {
         /*border: 1px solid #b4628f;*/
         color: #cc7fa9;
         border-radius: 2px;
-        background-color: #ece1e7;
+        font-weight: 600;
+        /*background-color: #ece1e7;*/
         /*color: white;*/
-
+        transition: 0.5s;
       }
 
 
