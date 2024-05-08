@@ -94,47 +94,36 @@ $bid = $_GET['bid'];
                 
                     <div class="mb-3">
                         <label for="pname" class="form-label">Product Name</label>
-                        <input type="email" name="pname" class="form-control" id="pname">
+                        <input type="email" name="pname" class="form-control" id="pname" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="BrandName" class="form-label">Brand Name</label>
-                        <input type="text" name="BrandName" class="form-control" id="BrandName">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="BrandName" class="form-label">Brand Name</label>
-                        <input type="text" name="BrandName" class="form-control" id="BrandName">
-                    </div>
-
                     <div class="mb-3">
                         <label for="pquantity" class="form-label">Quantity</label>
-                        <input type="number" name="pquantity" class="form-control" id="pquantity">
+                        <input type="number" name="pquantity" class="form-control" id="pquantity" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="Details" class="form-label">Details</label>
-                        <textarea name="Details" id="" cols="3" rows="3" placeholder="Details" class="form-control" id="Details"></textarea>
+                        <textarea name="Details" id="" cols="3" rows="3" placeholder="Details" class="form-control" id="Details" required></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="pType" class="form-label">Product Type</label>
-                        <input type="text" name="pType" class="form-control" id="pType">
+                        <input type="text" name="pType" class="form-control" id="pType" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="file" name="image" class="form-control" id="image">
+                        <input type="file" name="image" class="form-control" id="image" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="sellPrice" class="form-label">Sell Price</label>
-                        <input type="number" name="sellPrice" class="form-control" id="sellPrice">
+                        <input type="number" name="sellPrice" class="form-control" id="sellPrice" required>
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary" name="save">Save</button>
-                        <button type="submit" class="btn btn-primary" name="saveAnother">Save and Add Another </button>
+                        <button type="submit" class="btn btn-primary" name="save"
+                        style="background-color: #cc7fa9;border-color:#cc7fa9;">Save</button>
                     </div>
                 
                 
