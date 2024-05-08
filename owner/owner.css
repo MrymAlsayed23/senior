@@ -37,10 +37,11 @@ body {
         font-weight: 400;
       }
       .sidebar-item:hover, .sidebar-item:hover i, .sidebar-item:hover a{
-        border: 1px solid #b4628f;
+        /*border: 1px solid #b4628f;*/
+        color: #cc7fa9;
         border-radius: 2px;
-        background-color: #b4628f;
-        color: white;
+        background-color: #ece1e7;
+        /*color: white;*/
 
       }
 
