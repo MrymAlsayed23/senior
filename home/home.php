@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+   <!-- home page owner and admin -->
 
  <header class="header">
     <div class="headercontainer">
