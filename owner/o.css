@@ -239,7 +239,14 @@ body {
     color: #cac700fd;
     font-size: 22px;
 }
-
+.DeleteProductButton i{
+    color:#df0f0f;
+    cursor: pointer;
+}
+.DeleteProductButton i:hover{
+    color:#962626;
+    font-size: 22px;
+}
 .orderingButton{
     border-color: transparent;
     background-color: transparent;

@@ -100,6 +100,26 @@ $bid = $_GET['bid'];
   </div>
 
 
+
+  <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deletLabel">Delete a Product</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="showMsg">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
    
   <?php 
      require('../connection.php');
@@ -219,6 +239,7 @@ $bid = $_GET['bid'];
         <tr>
           <th></th>
           <th></th>
+          <th></th>
           <th>
             <input type="text" id="live_search" autocomplete="off" placeholder="Search Name ...">
           </th>
@@ -270,6 +291,9 @@ $bid = $_GET['bid'];
           <td><a class="updateProductsButton">
               <i class="fa-solid fa-pen-to-square"></i>
             </a> </td>
+            <td><a class="DeleteProductButton">
+            <i class="fa-solid fa-trash-can mb-1"></i>
+            </a></td>
 
         </tr>
         <?php } ?>
@@ -326,6 +350,7 @@ $bid = $_GET['bid'];
   <script src="js/updateProduct.js"></script>
   <script src="js/SearchByProductName.js"></script>
   <script src="js/FilterByCategory.js"></script>
+  <script src="deleteProduct.js"></script>
 
 
 
