@@ -13,7 +13,7 @@
     <div class="container">
         <div class="form-box">
             <div class="progress">
-                <div class="logo"><a href=""><span>Automated</span> Generated</a></div>
+                <div class="logo"><a href=""><span>Automated</span> Business</a></div>
                 <ul class="progress-steps">
                     <li class="step active">
                         <span>1</span>
