@@ -89,12 +89,13 @@ $bid = $_GET['bid'];
     </nav>
 
         <div class="container">
-            <form method="POST" name="Form" action="">
+            <form method="POST" name="Form" action="product.php">
+                <input type="number" hidden name="bid" value="<?php echo $bid;?>">
                 <h2>New Product</h2>
                 
                     <div class="mb-3">
                         <label for="pname" class="form-label">Product Name</label>
-                        <input type="email" name="pname" class="form-control" id="pname" required>
+                        <input type="text" name="pname" class="form-control" id="pname" required>
                     </div>
                     <div class="mb-3">
                         <label for="pquantity" class="form-label">Quantity</label>
@@ -113,7 +114,7 @@ $bid = $_GET['bid'];
 
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="file" name="image" class="form-control" id="image" required>
+                        <input type="file" name="image" class="form-control" id="image">
                     </div>
 
                     <div class="mb-3">
@@ -140,45 +141,36 @@ $bid = $_GET['bid'];
         </div>
         
         <?php
-        extract($_POST);
+         if (isset($_POST['save'])){
+            $pname = $_POST['pname'];
+            $Details = $_POST['Details'];
+            $sellPrice = $_POST['sellPrice'];
+            $ptype = $_POST['pType'];
+            $pquantity = $_POST['pquantity'];
+            $bid = $_POST['bid'];
 
-        if (isset($save) || isset($saveAnother)) {
-            try {
-                require('../connection.php');
+
+            try{
                 $db->beginTransaction();
-                $stmt = $db->prepare("insert into products (pname, BrandName, Details, sellPrice, pquantity, image, pType) values (:pname, :BrandName, :Unit, :Details, :sellPrice, :pquantity, :image, :pType)");
-            
-                $stmt->bindParam(':pname', $pname);
-                $stmt->bindParam(':BrandName', $BrandName);
-                $stmt->bindParam(':Details', $Details);
-                $stmt->bindParam(':sellPrice', $sellPrice);
-                $stmt->bindParam(':pquantity', $pquantity);
-                $stmt->bindParam(':image', $image);
-                $stmt->bindParam(':pType', $pType);
-
-
-                $r = $stmt->execute();
-                if ($r == 1) {
-        ?>
-                    <div class="alert a-cont " role="alert">
-                        <div class="modal-body">
-                            <script>
-                                alert("New Product has been inserted successfully");
-                            </script>                    
-                        </div>
-                    </div>
-
-        <?php
-                } else {
-                    throw new PDOException("Error");
-                }
-
-                $db->commit();
-            } catch (PDOException $ex) {
-                echo $ex->getMessage();
+                $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
+                 VALUES (:pname,:Details,:sellPrice, :pquantity, :bid ,:pType)');
+               $addpro->execute([
+                   'pname' => $pname,
+                   'Details'=> $Details,
+                   'sellPrice'=> $sellPrice,
+                    'pquantity'=> $pquantity,
+                   'bid'=> $bid,
+                  'pType' =>$ptype,
+    ]);
+    $db->commit();
+            $db = null;
+               }
+              
+            catch(Exception $e){
+                die($e->getMessage());
             }
-        }
-        ob_end_flush();
+         }
+           
         ?>
 
 

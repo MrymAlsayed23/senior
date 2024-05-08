@@ -273,11 +273,14 @@ try {
                       </div>
                     </div>
                   </div> -->
+              <?php if ( round($dSUM['totalRating']/$dTotal['total'] == 3.75) )  { ?>
+                  
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
-                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
-                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
-                <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                <?php }?>
                 </div>
                 <h6>
                   <span id="total_review"><?php
