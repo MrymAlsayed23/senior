@@ -37,13 +37,12 @@ if (isset($_POST["click_Update_btn"])) {
 if (isset($_POST["updateProductsBut"])) {  
     $pid = $_POST["pid"];
     $name = $_POST["pname"];
-    $bname = $_POST["BrandName"];
     $details = $_POST["Details"];
     $price = $_POST["SellPrice"];
     $qty = $_POST["pqunatity"];
     $category = $_POST["category"];
 
-    $sql = "UPDATE products SET pname = '$name', BrandName = '$bname' , Details= '$details' ,
+    $sql = "UPDATE products SET pname = '$name', Details= '$details' ,
     SellPrice = '$price' , pquantity =  '$qty' ,  pType = '$category' WHERE pid = '$pid'";
     $r = $db->exec($sql);
     if ($r>0){

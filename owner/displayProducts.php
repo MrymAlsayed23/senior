@@ -24,42 +24,38 @@ $bid = $_GET['bid'];
  <!-----updateProductsModal------->
 
 
- <div class="modal fade" id="staticBackdropUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ <div class="modal fade" id="update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropUpdateLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id=update">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="UpdateProducts.php" method="post">
           <div class="modal-body">
             <div class="mb-3">
-              <input type="hidden" class="form-control" id="pid" name="pid">
+              <input type="hidden" class="form-control" id="mpid" name="pid">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="name" name="pname" value="" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Brand Name</label>
-              <input type="text" class="form-control" id="brand" name="BrandName" value="" placeholder="">
+              <input type="text" class="form-control" id="mname" name="pname" value="" placeholder="">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Details</label>
-              <textarea class="form-control" id="details" name="Details" rows="2"></textarea>
+              <textarea class="form-control" id="mdetails" name="Details" rows="2"></textarea>
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Sell Price</label>
-              <input type="number" min="0.5" class="form-control" id="price" name="SellPrice" placeholder="">
+              <input type="number" min="0.5" class="form-control" id="mprice" name="SellPrice" placeholder="">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Quantity</label>
-              <input type="number" class="form-control" id="qunatity" name="pqunatity" placeholder="">
+              <input type="number" class="form-control" id="mqunatity" name="pqunatity" placeholder="">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Category</label>
-              <input type="text" class="form-control" id="category" name="category" placeholder="">
+              <input type="text" class="form-control" id="mcategory" name="category" placeholder="">
             </div>
 
           </div>
@@ -235,9 +231,9 @@ $bid = $_GET['bid'];
           <th scope="col">Quantity</th>
           <th scope="col"></th>
           <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
         <tr>
-          <th></th>
           <th></th>
           <th></th>
           <th>
@@ -254,7 +250,6 @@ $bid = $_GET['bid'];
             <?php }?>
             </select>
           </th>
-          <th></th>
           <th></th>
           <th></th>
         </tr>

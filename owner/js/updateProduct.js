@@ -16,15 +16,14 @@ $(document).ready(function () {
       success: function (response) {
        console.log(response);
         $.each(response, function (key, value) {
-        $('#pid').val(value['pid']);
-        $('#name').val(value['pname']);
-        $('#brand').val(value['BrandName']);
-        $('#details').val(value['Details']);
-        $('#price').val(value['sellPrice']);
-        $('#qunatity').val(value['pqunatity']);
-        $('#category').val(value['category']);
+        $('#mpid').val(value['pid']);
+        $('#mname').val(value['pname']);
+        $('#mdetails').val(value['Details']);
+        $('#mprice').val(value['sellPrice']);
+        $('#mqunatity').val(value['pqunatity']);
+        $('#mcategory').val(value['category']);
         });
-       $('#staticBackdropUpdate').modal('show');
+       $('#update').modal('show');
 
      }
     });
