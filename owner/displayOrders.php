@@ -119,9 +119,9 @@ $bid = $_GET['bid'];
       try {
         $x = 0;
         require ('../connection.php');
-        $sql = "SELECT * FROM orders";
+        $sql = "SELECT * FROM orders WHERE bid=$bid";
         $orders = $db->query($sql);
-        $sql1 = "SELECT COUNT(*) AS total FROM orders";
+        $sql1 = "SELECT COUNT(*) AS total FROM orders WHERE bid=$bid";
   $orders1 = $db->prepare($sql1);
   $orders1->execute();
         $details1 = $orders1->fetch(PDO::FETCH_ASSOC); 

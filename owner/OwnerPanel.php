@@ -120,7 +120,10 @@ try {
   $sql2 = "SELECT COUNT(*) AS total FROM orders WHERE ostatus='Completed' AND bid='$bid'";
   $ordersCom = $db->prepare($sql2);
   $ordersCom->execute();
-  $sql3 = "SELECT COUNT(*) AS total FROM users WHERE type='Customer'";
+  $sql3 ="SELECT COUNT(*) AS total 
+  FROM users
+  INNER JOIN orders ON users.uid = orders.uid
+  WHERE users.type = 'customer' AND orders.bid = $bid";
   $customers = $db->prepare($sql3);
   $customers->execute();
   $sql4 = "SELECT SUM(total) AS total FROM orders WHERE bid='$bid'";
@@ -278,14 +281,15 @@ try {
                       </div>
                     </div>
                   </div> -->
-              <?php if ( round($dSUM['totalRating']/$dTotal['total'] == 3.75) )  { ?>
+              <?php if ($dSUM['totalRating'] > 0 ) { 
+              if ( round($dSUM['totalRating']/$dTotal['total'] == 3.75) )  { ?>
                   
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
-                <?php }?>
+                <?php }}?>
                 </div>
                 <h6>
                   <span id="total_review"><?php
@@ -313,7 +317,8 @@ try {
           if ($d10["urating"] == 1){
             $one_star_review ++;
           }
-}?>
+}
+?>
               <p>
       <div class="progress-label-left float-start px-2"><b>5</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
       </div>
@@ -389,6 +394,7 @@ try {
       </div>
       
       </div></div>
+      </p>
                 <p>
                 <div class="progress-label-left float-start px-2"><b>1</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
       </div>
@@ -408,7 +414,103 @@ try {
       
       </div></div>
                 </p>
-                <?php }}?>
+                <?php 
+              if ( $dSUM['totalRating'] == 0){
+                ?>
+
+<p>
+      <div class="progress-label-left float-start px-2"><b>5</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-five-star-review">0</span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=five_star_progress style="width:0%;">
+        
+        
+      </div>
+      
+      </div></div>
+      
+    </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>4</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-four-star-review">0</span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=four_star_progress
+        style="width:0%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>3</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-three-star-review">0</span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=three_star_progress
+        style="width:0%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>2</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-two-star-review">0</span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=two_star_progress
+        style="width:0%;">
+        
+        
+      </div>
+      
+      </div></div>
+      </p>
+                <p>
+                <div class="progress-label-left float-start px-2"><b>1</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
+      </div>
+
+      <div class="progress-label-right float-end px-2">
+      (<span id="total-one-star-review">0</span>)</div>
+      
+      <div class="p-1">
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
+        aria-valuemin="0" aria-valuemax="100" id=one_star_progress
+        style="width:0%;">
+        
+        
+      </div>
+      
+      </div></div>
+                </p>
+
+             <?php } 
+             }}?>
               </div>
 
             </div>

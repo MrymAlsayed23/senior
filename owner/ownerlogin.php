@@ -18,7 +18,7 @@ if (isset($_POST["sign"])) {
           if ($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
               //extract($row);
               if($pass == $row['password']){
-                echo $row['password'];
+                //echo $row['password'];
                 if ($row['type'] == 'Owner') {
                   $_SESSION['owner'] = $row['uid'];
                   $bid = $row['bid'];
