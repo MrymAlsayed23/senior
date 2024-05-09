@@ -414,102 +414,8 @@ try {
       
       </div></div>
                 </p>
-                <?php 
-              if ( $dSUM['totalRating'] == 0){
-                ?>
 
-<p>
-      <div class="progress-label-left float-start px-2"><b>5</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
-      </div>
-
-      <div class="progress-label-right float-end px-2">
-      (<span id="total-five-star-review">0</span>)</div>
-      
-      <div class="p-1">
-      <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" id=five_star_progress style="width:0%;">
-        
-        
-      </div>
-      
-      </div></div>
-      
-    </p>
-                <p>
-                <div class="progress-label-left float-start px-2"><b>4</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
-      </div>
-
-      <div class="progress-label-right float-end px-2">
-      (<span id="total-four-star-review">0</span>)</div>
-      
-      <div class="p-1">
-      <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" id=four_star_progress
-        style="width:0%;">
-        
-        
-      </div>
-      
-      </div></div>
-                </p>
-                <p>
-                <div class="progress-label-left float-start px-2"><b>3</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
-      </div>
-
-      <div class="progress-label-right float-end px-2">
-      (<span id="total-three-star-review">0</span>)</div>
-      
-      <div class="p-1">
-      <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" id=three_star_progress
-        style="width:0%;">
-        
-        
-      </div>
-      
-      </div></div>
-                </p>
-                <p>
-                <div class="progress-label-left float-start px-2"><b>2</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
-      </div>
-
-      <div class="progress-label-right float-end px-2">
-      (<span id="total-two-star-review">0</span>)</div>
-      
-      <div class="p-1">
-      <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" id=two_star_progress
-        style="width:0%;">
-        
-        
-      </div>
-      
-      </div></div>
-      </p>
-                <p>
-                <div class="progress-label-left float-start px-2"><b>1</b><i class="fa-solid fa-star px-1" style="color: #FFD43B;"></i>
-      </div>
-
-      <div class="progress-label-right float-end px-2">
-      (<span id="total-one-star-review">0</span>)</div>
-      
-      <div class="p-1">
-      <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
-        aria-valuemin="0" aria-valuemax="100" id=one_star_progress
-        style="width:0%;">
-        
-        
-      </div>
-      
-      </div></div>
-                </p>
-
-             <?php } 
+             <?php  
              }}?>
               </div>
 
@@ -676,7 +582,6 @@ $results = $stmtcan->fetchAll(PDO::FETCH_ASSOC);
 $labels = ['January','February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
           'October', 'November', 'December'];
 $data = array_fill(0, 12, 0); // Initialize data array with zeros
-
 foreach($results as $row) {
     $monthIndex = $row['order_month'] - 1; // Adjust month index to start from 0
     $data[$monthIndex] = $row['order_count'];
@@ -687,10 +592,17 @@ const ctx = document.getElementById('myChart');
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: <?php echo json_encode($labels); ?>,
+    labels: <?php 
+      echo json_encode($labels); 
+      ?>,
     datasets: [{
       label: 'Orders Count',
-      data: <?php echo json_encode($data); ?>,
+      data: <?php 
+      if ($row['order_count'] == 0){
+        echo "0";
+      }
+      else {echo json_encode($data);  }
+      ?>,
       backgroundColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(255, 159, 64, 1)',
