@@ -100,7 +100,7 @@ $bid = $_GET['bid'];
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayCustomers.php" class="sidebar-link">
+              <a href="displayCustomers.php?bid=<?php echo $bid?>" class="sidebar-link">
               <i class="fa-solid fa-users"></i>
               <span>Customers</span>
               </a>

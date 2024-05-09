@@ -36,6 +36,7 @@ $bid = $_GET['bid'];
           <div class="modal-body">
             <div class="mb-3">
               <input type="hidden" class="form-control" id="mpid" name="pid">
+              <input type="hidden" class="form-control" id="mbid" name="bid" value="<?php echo $bid;?>">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Product Name</label>
@@ -143,7 +144,7 @@ $bid = $_GET['bid'];
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayProducts.php" class="sidebar-link">
+              <a href="displayProducts.php<?php echo $bid;?>" class="sidebar-link">
               <i class="fa-solid fa-box"></i>
               <span>Products</span>
               </a>

@@ -25,6 +25,10 @@ if (isset($_POST["sign"])) {
                  header('Location: ownerPanel.php?bid='.$bid);
                  die();
               }
+              if ($row['type'] == 'Admin') {
+                $_SESSION['admin'] = $row['uid'];
+                header("location: ../admin/dashbord.php");
+              }
               }
             }
             $db = null;

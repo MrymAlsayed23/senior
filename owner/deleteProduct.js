@@ -4,7 +4,9 @@ $(document).ready(function () {
       e.preventDefault();
       /*console.log('hello');*/
       var pid = $(this).closest('tr').find('.pid').text();
-      /*console.log(pid);*/
+      var params = new URLSearchParams(window.location.search);
+    var bid = params.get('bid');
+      console.log(bid);
   
       $.ajax({
         method: "POST",
@@ -12,6 +14,7 @@ $(document).ready(function () {
         data: {
           'click_delete_btn': true,
           'pid': pid,
+          'bid' :bid,
         },
         success: function (response) {
           $('.showMsg').html(response);

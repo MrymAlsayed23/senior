@@ -37,7 +37,7 @@ $bid = $_GET['bid'];
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             <li class="sidebar-item px-1">
-              <a href="OwnerPanel.php" class="sidebar-link">
+              <a href="OwnerPanel.php?bid=<?php echo $bid?>" class="sidebar-link">
               <i class="fa-solid fa-house"></i>
               <span>Dashboard</span>
               </a>
@@ -481,7 +481,8 @@ try {
       <td><?php echo $details["ostatus"]; ?></td>
     </tr>
 <?php }
-$db = null;
+ 
+//$db = null;
 }
 catch (PDOException $e) {
 die($e->getMessage());
@@ -560,18 +561,41 @@ die($e->getMessage());
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+<script>
+<?php 
+            $sqlcan = "SELECT COUNT(*) AS order_count, MONTH(time) AS order_month
+                        FROM orders
+                        WHERE bid = $bid
+                        GROUP BY MONTH(time)";
+            $stmtcan = $db->prepare($sqlcan);
+            $stmtcan->execute();
+            $results = $stmtcan->fetchAll(PDO::FETCH_ASSOC);
+            $labels = [];
+            $data = [];
+            foreach($results as $row) {
+                $labels[] = date("F", mktime(0, 0, 0, $row['order_month'], 1));
+                $data[] = $row['order_count'];
+            }
+        ?>
+  // === include 'setup' then 'config' above ===
   const ctx = document.getElementById('myChart');
-
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'],
+      labels: <?php echo json_encode($labels); ?>,
       datasets: [{
-        label: 'Orders',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
+        label: 'Orders Count',
+    data: <?php echo json_encode($data); ?>,
+    backgroundColor: [
+      'rgba(255, 99, 132, 1)',
+      'rgba(255, 159, 64, 1)',
+      'rgba(255, 205, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(201, 203, 207, 1)'
+    ],
       }]
     },
     options: {

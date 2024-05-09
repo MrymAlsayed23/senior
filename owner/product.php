@@ -161,7 +161,7 @@ $bid = $_GET['bid'];
                     'pquantity'=> $pquantity,
                    'bid'=> $bid,
                   'pType' =>$ptype,
-    ]);
+    ]); 
     $db->commit();
             $db = null;
                }

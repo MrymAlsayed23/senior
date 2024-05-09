@@ -36,6 +36,7 @@ if (isset($_POST["click_Update_btn"])) {
 
 if (isset($_POST["updateProductsBut"])) {  
     $pid = $_POST["pid"];
+    $bid = $_POST["bid"];
     $name = $_POST["pname"];
     $details = $_POST["Details"];
     $price = $_POST["SellPrice"];
@@ -47,7 +48,7 @@ if (isset($_POST["updateProductsBut"])) {
     $r = $db->exec($sql);
     if ($r>0){
        // $_SESSION['status'] = 'Update Success';
-        header("location: displayProducts.php");   
+        header("location: displayProducts.php?bid=".$bid);   
     }
     $db = null;
 
