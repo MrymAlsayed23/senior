@@ -210,11 +210,15 @@
             <!-- nav  -->
             <?php include("../customer/customerNavBar.php"); ?>
 
+
             <div class="container">
 
+
               <?php
+              
                   require('../connection.php');
-                  $sql = "SELECT bname, bdetail FROM business";
+                  $bid = $_GET['bid'];
+                  $sql = "SELECT bname, bdetail FROM business WHERE bid = $bid";
                   $stmt = $db->query($sql); 
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -226,7 +230,7 @@
             
               <p class="p1"><?php echo $bname; ?></p> <br/>
               <p class="p2"><?php echo $bdetail; ?></p> <br/>
-              <a href="contact.php" class="contact">Contact with Us!</a>
+              <a href="menu.php?bid=<?php echo $bid; ?>" class="contact">Explore Our Menu</a>
 
                 
 
@@ -239,11 +243,9 @@
             $startProductId = 1; // Starting product ID
             $endProductId = 9; // Ending product ID
 
-            // Prepare and execute the SQL query
-            $sql = "SELECT * FROM products WHERE pid BETWEEN :startProductId AND :endProductId";
+            $sql = "SELECT * FROM products";
             $stmt = $db->prepare($sql);
-            $stmt->bindParam(':startProductId', $startProductId);
-            $stmt->bindParam(':endProductId', $endProductId);
+            $stmt->bindParam(1, $bid);
             $stmt->execute();
 
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
