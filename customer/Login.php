@@ -14,11 +14,7 @@ session_start();
         <title>Login Page</title>
     </head>
     <style>
-        body{
-            padding: 50px;
-            margin-left: 350px;
-            margin-right: 350px;
-        }
+      
         .container{
             justify-content: center;
             padding: 100px;
@@ -36,14 +32,13 @@ session_start();
 
         <div class="container">
 
-            <h1>Log in</h1>
-            <h5>Login to your account</h5>
+            <h1>Login to your account</h1>
 
             <form method="POST" name="Form" onsubmit="">
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" name='email' class="form-control" placeholder="Enter your Email" />
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name='username' class="form-control" placeholder="Enter your Username" />
                 </div>
 
                 <div class="mb-3">
@@ -64,6 +59,8 @@ session_start();
 
                 <h6>Don't have an account yet?<a href="register.php">Sign up</a> </h6>
 
+            </form>
+        </div>
                 <?php
                     extract($_POST);
                     if (isset($log)) { //if the form is submitted
@@ -73,11 +70,11 @@ session_start();
                                 $remember = $_POST['remember'];
                             }
                             $hpass = md5($password);
-                            $sqlStatement = "select * from users where email = :email and password = :password ;";
+                            $sqlStatement = "select * from users where username = :username and password = :password ;";
                             $stmt = $db->prepare($sqlStatement);
-                            $stmt->bindParam(':email', $emailDB);
+                            $stmt->bindParam(':username', $usernameDB);
                             $stmt->bindParam(':password', $passwordDB);
-                            $emailDB = $email;
+                            $usernameDB = $username;
                             $passwordDB = $hpass;
                             $stmt->execute();
                             $test = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,26 +83,26 @@ session_start();
                             if (isset($_POST['remember'])){
                                 $remember = $_POST['remember'];
                                 $expires= time()+((60*60*24))*7;
-                                setcookie('email', $emailDB,$expires);
+                                setcookie('username', $usernameDB,$expires);
                                 setcookie('remember', $remember,$expires);
                             }
                             else{
-                                setcookie('email', "", time() - 36000);
+                                setcookie('username', "", time() - 36000);
                                 setcookie('remember', "", time() - 36000);
                             }
 
                             if ($test) {
-                                $_SESSION['email'] = $email;
+                                $_SESSION['username'] = $username;
                                 foreach ($test as $key => $value) {
-                                   // $_SESSION['uid'] = $value['uid'];
-                                    $_SESSION['email'];
+                                   $_SESSION['uid'] = $value['uid'];
+                                    $_SESSION['username'];
                                 }
 
-                                header("Location:index.php");
+                                header("Location:customerHome.php");
                                 exit();
                             }
                         
-                            else echo "Invalid email or Password";
+                            else echo "Invalid username or Password";
 
                         } catch (PDOException $ex) {
                             echo $ex->getMessage();
@@ -113,8 +110,6 @@ session_start();
                     } //end of if statement
                     ob_end_flush();
                 ?>
-            </form>
-        </div>
 
          <!-- footer  -->
          <?php include("../customer/footer.php"); ?>
