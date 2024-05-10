@@ -1,5 +1,5 @@
 <?php
-  session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,53 +20,20 @@
           box-sizing: border-box;
           font-family: 'Poppins', sans-serif;
         }
-        .homebody{
-          margin: 0;
-          background-color: #ffffff;
-        }
-        .homecontainer{
-          width: 100vw;
-
-          font-family: 'quicksand',sand-sans-serif;
-          font-weight: bold;
-          font-size: 20px;
-
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto;
-        }
-
-        figcaption{
-          width: 100vw;
-          height: 700px;
-          background-color:#f0f7f5 ;
-        }
-        .homenav{
-          width: 50vw;
-          height: 700px;
-          background-color:#60d1a7 ;
-        }
-        aside{
-        width: 45vw;
-        height: 300px;
-        color: black;
-        background-color: #f0f7f5;
-        margin-top: -500px;
-        float: right;
-        font-family: "Times New Roman", Times, serif;
-        padding-left: 30px;
-        }
+  
         .p1{
-          Font-size: 70PX;
+          Font-size: 50PX;
+          font-family:'Times New Roman', Times, serif
         }
         .p2{
-          Font-size: 15PX;
+          Font-size: 20PX;
           color: black;
           padding-top: 7px;
           padding-bottom: 19px;
+          font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
 
-        a.contact{/*still not*/
+        a.contact{
           background-color: #60d1a7;
           color: #ffffff;
           border: 10px solid #60d1a7;
@@ -240,125 +207,139 @@
 
     </style>
     <body>
+            <!-- nav  -->
+            <?php include("../customer/customerNavBar.php"); ?>
 
-     <!-- nav  -->
-     <?php include("../customer/customerNavBar.php"); ?>
-     <figcaption>
-    <nav class="homenav">
-    </nav>
-</figcaption>
+            <div class="container">
 
-<?php
-try {
-    require('../connection.php');
-    // Define the range of product IDs you want to display
-    $startProductId = 1; // Starting product ID
-    $endProductId = 9; // Ending product ID
+              <?php
+                  require('../connection.php');
+                  $sql = "SELECT bname, bdetail FROM business";
+                  $stmt = $db->query($sql); 
+                  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Prepare and execute the SQL query
-    $sql = "SELECT * FROM products WHERE pid BETWEEN :startProductId AND :endProductId";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':startProductId', $startProductId);
-    $stmt->bindParam(':endProductId', $endProductId);
-    $stmt->execute();
+                  foreach ($results as $row) {
+                    extract($row);
+                  }
+                    
+                ?>
+            
+              <p class="p1"><?php echo $bname; ?></p> <br/>
+              <p class="p2"><?php echo $bdetail; ?></p> <br/>
+              <a href="contact.php" class="contact">Contact with Us!</a>
 
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
 
-    foreach ($results as $result) {
-        $productId = $result['pid'];
-        $brandName = $result['BrandName'];
-        $pname = $result['pname'];
-        $image = $result['image'];
-        $sellPrice = $result['sellPrice'];
-        $pType = $result['pType'];
 
-        $imageData = base64_encode($image);
-        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-    }
+            <?php
+        
+        try {
+            require('../connection.php');
+            // Define the range of product IDs you want to display
+            $startProductId = 1; // Starting product ID
+            $endProductId = 9; // Ending product ID
+
+            // Prepare and execute the SQL query
+            $sql = "SELECT * FROM products WHERE pid BETWEEN :startProductId AND :endProductId";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':startProductId', $startProductId);
+            $stmt->bindParam(':endProductId', $endProductId);
+            $stmt->execute();
+
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($results as $result) {
+                $bid = $result['bid'];
+                $productId = $result['pid'];
+                $brandName = $result['BrandName'];
+                $pname = $result['pname'];
+                $image = $result['image'];
+                $sellPrice = $result['sellPrice'];
+                $pType = $result['pType'];
+
+                $imageData = base64_encode($image);
+                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+            }
+                ?>
+
+                <main>
+                    <span class="one">
+
+                    <section>
+                        <div class="swiper mySwiper container">
+                            <div class="swiper-wrapper content">
+
+                                <?php foreach ($results as $result) {
+                                    $imageData = base64_encode($result['image']);
+                                    $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                    $pname = $result['pname'];
+                                    $sellPrice = $result['sellPrice'];
+                                    ?>
+
+                                    <div class="swiper-slide card">
+                                        <div class="card-content">
+                                            <div class="image">
+                                                <img src="<?php echo $imageSrc; ?>" alt="Product Image"><br>
+                                            </div>
+
+                                            <div class="name-profession">
+                                                <span class="name">
+                                                    <?php echo $pname; ?>
+                                                </span>
+                                                <span class="profession">
+                                                    <?php echo $sellPrice . " BD"; ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php } ?>
+
+                            </div>
+                        </div>
+
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </section>
+                    </span>
+
+                <?php
+            
+
+            $db = null; // Close the database connection
+        } catch (PDOException $e) {
+            die("Error Message" . $e->getMessage());
+        }
         ?>
 
-        <aside>
-            <p class="p1"><?php echo $brandName; ?></p> <br/>
-            <p class="p2"><?php echo "business details from DB"; ?></p> <br/>
-            <a href="contact.php" class="contact">Contact with Us!</a>
-        </aside>
+        <!-- Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        </figcaption>
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                slidesPerGroup: 3,
+                loop: true,
+                loopFillGroupWithBlank: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        </script>
 
-        <main>
-            <span class="one">
+        </main>
 
-            <section>
-                <div class="swiper mySwiper container">
-                    <div class="swiper-wrapper content">
+            </div>
 
-                        <?php foreach ($results as $result) {
-                            $imageData = base64_encode($result['image']);
-                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                            $pname = $result['pname'];
-                            $sellPrice = $result['sellPrice'];
-                            ?>
-
-                            <div class="swiper-slide card">
-                                <div class="card-content">
-                                    <div class="image">
-                                        <img src="<?php echo $imageSrc; ?>" alt="Product Image"><br>
-                                    </div>
-
-                                    <div class="name-profession">
-                                        <span class="name">
-                                            <?php echo $pname; ?>
-                                        </span>
-                                        <span class="profession">
-                                            <?php echo $sellPrice . " BD"; ?>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php } ?>
-
-                    </div>
-                </div>
-
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </section>
-            </span>
-
-        <?php
-    
-
-    $db = null; // Close the database connection
-} catch (PDOException $e) {
-    die("Error Message" . $e->getMessage());
-}
-?>
-
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<!-- Initialize Swiper -->
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        slidesPerGroup: 3,
-        loop: true,
-        loopFillGroupWithBlank: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
-</script>
-
-</main>
+      
         <!-- footer  -->
         <?php include("../customer/footer.php"); ?>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
