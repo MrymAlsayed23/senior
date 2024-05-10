@@ -51,7 +51,7 @@ session_start();
         
         try {
             require('../connection.php');
-            $sql="select * from profile where userID=".$_SESSION['id'];
+            $sql="select * from profile where userID=".$_SESSION['uid'];
             $r=$db->query($sql);
             $db=null;
         } 
@@ -64,8 +64,8 @@ session_start();
             $username=$value['username'];
             $fname=$value['Fname'];
             $lname=$value['Lname'];
-            $phone=$value['phone'];
-            $email=$value['email'];
+            $phone=$value['Phone'];
+            $email=$value['Email'];
         }
         ?>
         
