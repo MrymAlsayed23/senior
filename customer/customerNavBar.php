@@ -32,7 +32,7 @@
 
         <div class="container-fluid">
             <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="index.php">
+                <a class="navbar-brand" href="customerHome.php">
                     <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
                 </a>
 
@@ -44,7 +44,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                                <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -57,13 +57,13 @@
                                             <?php
                                                 try{
                                                     require('../connection.php');
-                                                    $sql = "SELECT bname FROM business";
+                                                    $sql = "SELECT bname, bid FROM business";
                                                     $stmt = $db->query($sql); 
                                                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
                                                     foreach ($results as $row) {
-                                                        extract($row);
+                                                        echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
                                                     }
-                                                    echo $bname;
                                                 }
                                                 catch (PDOException $e) {
                                                     echo "Error: " . $e->getMessage();
@@ -75,14 +75,10 @@
                             </li>
 
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="menu.php">Menu</a>
-                            </li>
+                            </li> -->
 
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="order.php">Order</a>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="orderstatus.php">Order Status</a>
@@ -93,12 +89,12 @@
                                     Login
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../register.php">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="../profile.php">Profile</a></li>
+                                    <li><a class="dropdown-item" href="register.php">Sign Up</a></li>
+                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
+                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                 </ul>
                             </li>
 
