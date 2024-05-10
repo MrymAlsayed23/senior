@@ -221,7 +221,7 @@
               <?php
               
                   require('../connection.php');
-                  $bid = $_GET['bid'];
+                  //$bid = $_GET['bid'];
                   $sql = "SELECT * FROM business LIMIT 1";
                   $stmt = $db->query($sql); 
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
