@@ -11,11 +11,6 @@ session_start();
     <title>Register Page</title>
 </head>
 <style>
-    .container{
-        padding-top: 50px;
-        padding-left: 500px;       
-        padding-right: 500px;       
-    }
 
     h1{
         text-align: left;
@@ -69,14 +64,15 @@ session_start();
                     $user = $username;
 
                     $db->beginTransaction();
-                    $stmt = $db->prepare("INSERT INTO users (Fname, Lname, username, password, phone, email) VALUES (:Fname, :Lname, :username, :password, :phone, :email)");
-
+                    $stmt = $db->prepare("INSERT INTO users (Fname, Lname, username, password, phone, type, email) VALUES (:Fname, :Lname, :username, :password, :phone, :type, :email)");
+                    $type = 'customer';
 
                     $stmt->bindParam(':Fname', $firstname);
                     $stmt->bindParam(':Lname', $lastname);
                     $stmt->bindParam(':username', $username);
                     $stmt->bindParam(':password', $hpassword);
                     $stmt->bindParam(':phone', $phone);
+                    $stmt->bindParam(':type', $type);
                     $stmt->bindParam(':email', $email);
                     $stmt->execute();
 
@@ -116,86 +112,68 @@ session_start();
 
     <body>
         <div class='container'>
+
             <h1>Register</h1>
+
             <form method="POST" name="Form" onsubmit="validateform()">
-                <table>
-                    <tr>
-                        <td>
-                            <label for='firstname'>First Name:</label>
-                            <input type='text' id='firstname' name='firstname' placeholder='Enter First Name' />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='lastname'>Last Name:</label>
-                            <input type='text' id='lastname' name='lastname' placeholder='Enter Last Name' />
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td>
-                            <label for='username'>Username:</label>
-                            <input type='text' id='username' name='username' placeholder='Enter Username' onkeyup="" />
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" class="form-control" id="firstname" placeholder='Enter First Name'>
+                </div>
 
-                    <tr>
-                        <td>
-                            <label for='password'>Password:</label>
-                            <input type='password' id='pass' name='password' onkeyup="" />
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" name="lastname" class="form-control" id="lastname" placeholder='Enter Last Name'>
+                </div>
 
-                    <tr>
-                        <td>
-                            <label for='rpassword'>Repeat Password:</label>
-                            <input type='password' id='rpassword' name='rpassword' />
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder='Enter Username'>
+                </div>
+                   
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="pass">
+                </div>
 
-                    <tr>
-                        <td>
-                            <label for='Phone'>Phone:</label>
-                            <input type='text' id='phone' name='phone' />
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="rpassword" class="form-label">Repeat Password</label>
+                    <input type="password" name="rpassword" class="form-control" id="rpassword">
+                </div>
+            
 
-                    <tr>
-                        <td>
-                            <label for='email'>Email</label>
-                            <input type='text' id='email' name='email' />
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="Phone" class="form-label">Phone</label>
+                    <input type="text" name="Phone" class="form-control" id="Phone">
+                </div>
 
-                    <tr>
-                        <td>
-                            <input type='checkbox' name='checkbox' />
-                            <label for="">Yes, I want to receive emails.</label> 
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td>
-                            <input type="checkbox" name="" id="">
-                            <label for="">I agree to all the <strong>Term</strong> and <strong>Privacy Policy</strong></label>
-                        </td>
-                    </tr>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email">
+                </div>
 
-                    <tr>
-                        <td>
-                            <button>
-                                <input type="submit" name="register" value="Create Account">
-                            </button>
-                        </td>
-                    </tr>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
+                    <label class="form-check-label" for="checkbox1">Yes, I want to receive emails.</label>
+                </div>
 
-                    <tr>
-                        <td>
-                            <p>Already have an account <a href="Login.php">Log in</a> </p>
-                        </td>
-                    </tr>
-                </table>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="checkbox2" name="checkbox2">
+                    <label class="form-check-label" for="checkbox2">I agree to all the <strong>Term</strong> and <strong>Privacy Policy</strong></label>
+                </div>
+
+
+        
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" name="register">Create Account</button>
+                </div>
+                       
             </form>
+
+            <p>Already have an account <a href="Login.php">Log in</a> </p>
+
         </div>
 
         <script>
