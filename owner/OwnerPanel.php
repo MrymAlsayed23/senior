@@ -517,9 +517,9 @@ die($e->getMessage());
 
 
 
-    <div class="col-lg-4 col-12">
-      
+<div class="col-lg-4 col-12">
  <div class="mt-sm-1 mr-1 p-4" style="background-color: #eaeaec; border-radius: 12px";>
+ 
   <table class="table caption-top table-hover">
   <caption class="top-products">Top Products</caption>
   <tbody>
@@ -532,7 +532,8 @@ die($e->getMessage());
       <span class="product-span"><?php echo "Price ".$top["sellPrice"]. " BHD";?></span></td>
       <td><p  class="borded-p"><?php echo $top["TotalSales"]. " Sales";?></p></td>
     </tr>
-    <?php }?>
+    <?php 
+    }?>
     <!-- <tr>
       <td><img src="2.jpg" alt=""></td>
       <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $200</span></td>
@@ -541,13 +542,15 @@ die($e->getMessage());
     </tbody>
     
   </table>
+
+
 </div>
 </div>
 
 
   </div>
-  <?php  
-  }
+
+<?php }
     catch (PDOException $e) {
     die($e->getMessage());
     }?>

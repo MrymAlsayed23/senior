@@ -25,10 +25,20 @@ $bid = $_GET['bid'];
 
     <body>
 
+    <?php 
+     require('../connection.php');
+     $sql00 = "SELECT * FROM business WHERE bid='$bid'";
+     $r00 = $db->query($sql00);
+     while ($d00 = $r00->fetch(PDO::FETCH_ASSOC)){
+      extract($d00);
+     
+   ?>
+
+
         <!-- nav  -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
       <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+      <a class="navbar-brand" href="#"><?php echo $d00['bname'];?></a> <?php }?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -89,8 +99,9 @@ $bid = $_GET['bid'];
     </nav>
 
         <div class="container">
-            <form method="POST" name="Form" action="product.php">
-                <input type="number" hidden name="bid" value="<?php echo $bid;?>">
+            <form method="POST" name="Form" action="product.php?bid=<?php echo $bid;?>">
+            <input type="number" name="bid" value="<?php echo $bid;?>" hidden>
+                
                 <h2>New Product</h2>
                 
                     <div class="mb-3">
@@ -141,6 +152,7 @@ $bid = $_GET['bid'];
         </div>
         
         <?php
+        require('../connection.php');
          if (isset($_POST['save'])){
             $pname = $_POST['pname'];
             $Details = $_POST['Details'];
@@ -151,7 +163,6 @@ $bid = $_GET['bid'];
 
 
             try{
-                $db->beginTransaction();
                 $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
                  VALUES (:pname,:Details,:sellPrice, :pquantity, :bid ,:pType)');
                $addpro->execute([
@@ -161,10 +172,10 @@ $bid = $_GET['bid'];
                     'pquantity'=> $pquantity,
                    'bid'=> $bid,
                   'pType' =>$ptype,
-    ]); 
-    $db->commit();
-            $db = null;
-               }
+                ]);
+                
+                
+            }
               
             catch(Exception $e){
                 die($e->getMessage());
