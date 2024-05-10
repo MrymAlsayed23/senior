@@ -1,6 +1,5 @@
 const nexBut = document.querySelector('.btn-nex');
 const subBut = document.querySelector('.btn-sub');
-const moreBut = document.querySelector('.btn-more');
 const steps = document.querySelectorAll('.step');
 const form_steps = document.querySelectorAll('.form-step');
 document.getElementById("myForm").reset();
@@ -41,14 +40,9 @@ const updateProgress = ()=>{
         subBut.disabled = true;
     }
     else if(active == steps.length){
-        subBut.disabled = false;
-        moreBut.style.display = "block";
         nexBut.disabled = true;
-        moreBut.addEventListener('click', ()=>{
-            active = steps.length;
-            subBut.disabled = false;
-            document.getElementById("myForm").reset();
-    });
+        subBut.disabled = false;
+        
     }
 
     
