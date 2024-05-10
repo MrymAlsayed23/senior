@@ -132,7 +132,8 @@ try {
   $sql5 = "SELECT p.pid, p.pname,p.sellPrice, SUM(oi.quantity) AS TotalSales
   FROM products p
   INNER JOIN order_items oi ON p.pid = oi.pid
-  WHERE bid='$bid'
+  INNER JOIN orders o ON oi.oid = o.oid
+  WHERE o.bid='$bid' AND o.ostatus = 'Completed'
   GROUP BY p.pid
   ORDER BY TotalSales DESC
   LIMIT 2";
