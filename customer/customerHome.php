@@ -243,7 +243,7 @@
             $startProductId = 1; // Starting product ID
             $endProductId = 9; // Ending product ID
 
-            $sql = "SELECT * FROM products";
+            $sql = "SELECT * FROM products WHERE bid = ?";
             $stmt = $db->prepare($sql);
             $stmt->bindParam(1, $bid);
             $stmt->execute();
