@@ -32,7 +32,7 @@ try {
       $cookievalue[] = $details;
     }
     //setcookie("cart", json_encode($cookievalue), time()+(86400*7));
-    header("Location:cart.php");
+    header("Location:cart.php?bid=".$bid);
   }
 } //end try (try tag at the beginning on the page)
 catch (PDOException $e) {
@@ -60,12 +60,7 @@ catch (PDOException $e) {
  
   <!-- Nav Bar  -->
 
-  <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="customerHome.php">
-                    <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
-                </a>
-
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -76,7 +71,7 @@ catch (PDOException $e) {
                                 <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
                             </li>
 
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Business
                                 </a>
@@ -101,17 +96,21 @@ catch (PDOException $e) {
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="menu.php?bid<?php echo $bid; ?>">Menu</a>
+                                <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
+                            </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="order.php?bid<?php echo $bid; ?>">Your Order</a>
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid; ?>">Order Status</a>
                             </li>
+
+                            
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="login.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,7 +128,7 @@ catch (PDOException $e) {
 
                         </ul>
                     </div>
-                </nav>
+
 
                 <div class="header-item item-right">
                     <?php
@@ -161,9 +160,6 @@ catch (PDOException $e) {
                             </a>
                                                    
                         </div>
-
-
-                    </div>
             </nav>
 
 

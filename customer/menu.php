@@ -1,6 +1,6 @@
 <?php
-    // session_start();
-    $bid = $_GET['bid'];  
+//session_start();
+$bid = $_GET['bid'];  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +28,6 @@
 
         <!-- Nav Bar  -->
 
-        <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="customerHome.php">
-                    <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
-                </a>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +40,7 @@
                                 <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
                             </li>
 
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Business
                                 </a>
@@ -69,17 +65,21 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="menu.php?bid<?php echo $bid; ?>">Menu</a>
+                                <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
+                            </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="orderstatus.php?bid<?php echo $bid; ?>">Order Status</a>
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid; ?>">Order Status</a>
                             </li>
+
+                            
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="login.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,7 +97,7 @@
 
                         </ul>
                     </div>
-                </nav>
+
 
                 <div class="header-item item-right">
                     <?php
@@ -129,9 +129,6 @@
                             </a>
                                                    
                         </div>
-
-
-                    </div>
             </nav>
 
 

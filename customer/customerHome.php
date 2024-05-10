@@ -1,5 +1,6 @@
 <?php
     session_start();
+    // $bid = $_GET['bid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,32 +208,35 @@
 
     </style>
     <body>
+      
             <!-- nav  -->
             <?php include("../customer/customerNavBar.php"); ?>
 
 
             <div class="container">
 
+            
+
 
               <?php
               
                   require('../connection.php');
                   $bid = $_GET['bid'];
-                  $sql = "SELECT bname, bdetail FROM business WHERE bid = $bid";
+                  $sql = "SELECT * FROM business LIMIT 1";
                   $stmt = $db->query($sql); 
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                   foreach ($results as $row) {
-                    extract($row);
-                  }
-                    
-                ?>
+                    extract($row); ?>
+                  
             
               <p class="p1"><?php echo $bname; ?></p> <br/>
               <p class="p2"><?php echo $bdetail; ?></p> <br/>
               <a href="menu.php?bid=<?php echo $bid; ?>" class="contact">Explore Our Menu</a>
 
-                
+           <?php }
+                    
+            ?>
 
 
             <?php
