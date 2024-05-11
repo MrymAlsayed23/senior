@@ -84,18 +84,8 @@
                                 <a class="nav-link" href="orderstatus.php">Order Status</a>
                             </li> -->
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="login.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Login
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="register.php">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.php">Sign Up</a>
                             </li>
 
                         </ul>
@@ -104,19 +94,19 @@
 
                 <div class="header-item item-right">
                     <?php
-                    try{
-                        require('../connection.php');
-                        $count_wishlist_items = $db->prepare("SELECT * FROM `wish_list` WHERE uid = ?");
-                        //$count_wishlist_items->execute([$user_id]);
-                        $total_wishlist_counts = $count_wishlist_items->rowCount();
+                    // try{
+                    //     require('../connection.php');
+                    //     $count_wishlist_items = $db->prepare("SELECT * FROM `wish_list` WHERE uid = ?");
+                    //     //$count_wishlist_items->execute([$user_id]);
+                    //     $total_wishlist_counts = $count_wishlist_items->rowCount();
             
-                        $count_cart_items = $db->prepare("SELECT * FROM `cart` WHERE uid = ?");
-                        //$count_cart_items->execute([$uid]);
-                        $total_cart_counts = $count_cart_items->rowCount();
-                    }  
-                    catch (PDOException $e) {
-                        echo "Error: " . $e->getMessage();
-                    }
+                    //     $count_cart_items = $db->prepare("SELECT * FROM `cart` WHERE uid = ?");
+                    //     //$count_cart_items->execute([$uid]);
+                    //     $total_cart_counts = $count_cart_items->rowCount();
+                    // }  
+                    // catch (PDOException $e) {
+                    //     echo "Error: " . $e->getMessage();
+                    // }
                     ?>
 
                             <!-- <a href="wishlist.php">
