@@ -1,13 +1,11 @@
 <?php
-session_start();
-$bid = $_GET['bid'];  
+    // session_start();
+    $bid = $_GET['bid'];  
+    if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) {
+        ?>
 
-// modified
-if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) {
-    ?>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +13,15 @@ if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) {
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <title>Cart</title>
     </head>
-
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="customerHome.php">
+                <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -129,16 +130,19 @@ if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) {
                     <a href="menu.php?bid=<?php echo $bid;?>">Back to Menu</a>
                 </h5>
             </div>
-        </div>
-        <?php
-} //end if 
-else {
-    try {
-        require ('../connection.php');
-        ?>
 
-          <!-- Nav Bar  -->
-         
+        </div>
+
+        <?php
+        } //end if 
+        
+        else {
+            
+            try {
+                require ('../connection.php');
+                ?>
+
+            <!-- Nav Bar  -->
 
             <div class="container" style="margin-bottom: 9rem;">
                 <h3 text-align="center">Your Shopping Cart</h3><br />
