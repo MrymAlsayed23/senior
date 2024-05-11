@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$bid = $_GET['bid'];  
 // modified
 if (isset($_GET['checkout'])) {
     if (!isset($_SESSION["uid"]) || !isset($_GET['bid']) || !isset($_GET['total'])) {
@@ -37,7 +37,7 @@ if (isset($_GET['checkout'])) {
             }
         }
         $db->commit();
-        header("location:payment.php?cid=".$cid);
+        header("location:payment.php?cid=$cid&bid=$bid");
     } catch (PDOException $e) {
         $db->rollback();
         die("Error occurred: " . $e->getMessage());
