@@ -2,6 +2,8 @@
 session_start();
 $bid = $_GET['bid'];  
 $cid = $_GET['cid'];  
+// echo $bid;
+// echo $cid;
 // if (isset($_GET['cid'])) {
 //     $cid = htmlspecialchars($_GET['cid']); // Sanitizing the input for safe output
 //     echo $cid;
@@ -51,7 +53,8 @@ $cid = $_GET['cid'];
                     $method = $_POST['flexRadioDefault'];
                     if ($method == 'Debit/Credit Card'){
                         ?>
-                        <form class="" action="completePayment.php?cid=$cid&bid=$bid" method="POST">
+                        <form class="" action="completePayment.php?cid=<?php echo $cid;?>&bid=<?php echo $bid;?>"
+                         method="POST">
                             <?php
                             try {
                                 require('../connection.php');
@@ -140,7 +143,9 @@ $cid = $_GET['cid'];
 
                         else if($method == 'Cash'){ 
                             ?>
-                            <form class="" action="completePayment.php?cid=$cid&bid=$bid" method="POST">
+                            <form class="" action="completePayment.php?cid=<?php echo $cid;?>&bid=<?php echo $bid;?>" method="POST">
+                               <input type="number" value="<?php echo $bid;?>" name="bid" hidden>
+                               <input type="number" value="<?php echo $cid;?>" name="cid" hidden>
                                 <?php
                                     try {
                                         $cid = $_GET['cid'];

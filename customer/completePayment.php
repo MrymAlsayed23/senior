@@ -8,9 +8,9 @@ if (isset($_SESSION['uid'])) {
     //echo $total;
     $card = $_POST['cardno']; //cardno is card number from the form in payment page
     //echo $card;
-    $cid = $_GET['cid'];
+    $cid = $_POST['cid'];
     //echo $cid;
-    $bid = $_GET['bid'];
+    $bid = $_POST['bid'];
     //echo $bid;
     try {
       require ('../connection.php');
@@ -31,7 +31,9 @@ if (isset($_SESSION['uid'])) {
   } else if (isset($_POST['placebtn'])) {
     $type = $_POST['payType'];
     $total = $_POST['amount'];
-    $cart = $_GET['cid'];
+    $cid = $_POST['cid'];
+    $bid = $_POST['bid'];
+    //$cart = $_GET['cid'];
     try {
       require ('../connection.php');
       $db->beginTransaction();
@@ -39,7 +41,7 @@ if (isset($_SESSION['uid'])) {
       $rows = $db->exec($sql);
       if ($rows == 1) {
         $oid = $db->lastInsertId();
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,$card)";
+        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         $row = $db->exec($sql);
         $db->commit();
       }
@@ -51,7 +53,7 @@ if (isset($_SESSION['uid'])) {
 
   }
   if (isset($_POST['cbtn'])) {
-    header('location:cart.php?cid=$cid&bid=$bid');
+    header('location:cart.php?cid='.$cid.'&bid='.$bid);
   }
   unset($_SESSION['shoppingcart']);
 }
