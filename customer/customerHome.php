@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // $bid = $_GET['bid'];
+    $bid = $_GET['bid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,16 +11,15 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!--------- Link Swiper's CSS ----------->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-
-        <title>Book Store</title>
+        <title>Store</title>
     </head>
     <style>
-      *{
+      /* *{
           margin: 0;
           padding: 0;
           box-sizing: border-box;
           font-family: 'Poppins', sans-serif;
-        }
+        } */
   
         .p1{
           Font-size: 50PX;
@@ -125,54 +124,6 @@
           /* color: ; */
         }
 
-        .cardw{
-          position: relative;
-          background: #fff;
-          border-radius: 20px;
-          margin: 20px 0;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .cardw::before{
-          content: "";
-          position: absolute;
-          height: 65%;
-          width: 100%;
-          background: #ffffff;
-          border-radius: 20px 20px 0 0;
-        }
-
-        .cardw .cardw-content{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 30px;
-          position: relative;
-          z-index: 100;
-        }
-
-        section .cardw .image{
-          height: 140px;
-          width: 140px;
-          padding: 3px;
-          background: #ffffff;
-        }
-
-
-        section .cardw .image img{
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-
-
-        .cardw .name-profession{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 10px;
-          /* color: ; */
-        }
 
         .name-profession .name{
             font-size: 20px;
@@ -209,14 +160,11 @@
     </style>
     <body>
       
-            <!-- nav  -->
-            <?php include("../customer/customerNavBar.php"); ?>
+      <!-- nav  -->
+      <?php include("../customer/customerNavBar.php"); ?>
 
 
             <div class="container">
-
-            
-
 
               <?php
               
@@ -232,7 +180,7 @@
             
               <p class="p1"><?php echo $bname; ?></p> <br/>
               <p class="p2"><?php echo $bdetail; ?></p> <br/>
-              <a href="menu.php?bid=<?php echo $bid; ?>" class="contact">Explore Our Menu</a>
+              <a href="menu.php?bid=<?php echo $bid;?>" class="contact">Explore Our Menu</a>
 
            <?php }
                     
@@ -348,6 +296,7 @@
       
         <!-- footer  -->
         <?php include("../customer/footer.php"); ?>
+
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     </body>
