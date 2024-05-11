@@ -158,10 +158,10 @@
                     <h6><?php echo $sellPrice." BD"; ?></h6>
                     
                     <form method="POST" action="addToCart.php?bid=<?php echo $bid;?>">
-                        <input type="number" name="pquantity" id="" min="0" max="100">
-                        <input type="hidden" name="pid" id="" value='<?php echo $pid; ?>' />
-                        <input type="hidden" name="bid" id="" value='<?php echo $bid; ?>' />
-                        <button class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
+                        <input type="number" name="pquantity" id="" min="0" max="10">
+                        <input type="hidden" name="pid" id="" value='<?php echo $pid;?>' />
+                        <input type="hidden" name="bid" id="" value='<?php echo $bid;?>' />
+                        <button type="submit" class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
                     </form>
                 </div>
             </div>

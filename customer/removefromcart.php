@@ -2,6 +2,7 @@
 session_start();
 unset($_SESSION['shoppingcart'][$_GET['productID']]);
 $productID = $_GET['productID'];
+$bid = $_GET['bid'];
 try {
   require('../connection.php');
   $sql  = "DELETE FROM cart_items WHERE cid=$productID";
@@ -14,5 +15,5 @@ try {
   die("Error occured:".$e->getMessage());
 }
 
-header('location:cart.php');
+header('location:cart.php?bid='.$bid);
 ?>

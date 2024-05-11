@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $bid = $_GET['bid'];
+    //$bid = $_GET['bid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -195,9 +195,9 @@
             $startProductId = 1; // Starting product ID
             $endProductId = 9; // Ending product ID
 
-            $sql = "SELECT * FROM products WHERE bid = ?";
+            $sql = "SELECT * FROM products LIMIT 9";
             $stmt = $db->prepare($sql);
-            $stmt->bindParam(1, $bid);
+            //$stmt->bindParam(1, $bid);
             $stmt->execute();
 
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

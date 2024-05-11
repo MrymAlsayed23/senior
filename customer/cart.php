@@ -1,7 +1,7 @@
 <?php
-    // session_start();
+    session_start();
     $bid = $_GET['bid'];  
-    if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) {
+    
         ?>
 
     <!DOCTYPE html>
@@ -120,7 +120,7 @@
                         </div>
             </nav>
         <!-- nav  -->
-        <?php //include ("../customer/customerNavBar.php"); ?>
+        <?php if (!(isset($_SESSION['shoppingcart'])) || empty($_SESSION['shoppingcart'])) { ?>
 
         <div class="container">
 
@@ -149,6 +149,7 @@
                 <br />
                 <br>
                 <div class="table-responsive" text-align="center" style="width:100%;">
+                <form method='GET' action='checkout.php'>
                     <table style="text-align:center;" width="90%">
                         <tr>
                             <th class='itempiccart' width="23%"></th>
@@ -156,18 +157,18 @@
                             <th width="18%">Quantity</th>
                             <th width="20%">Price</th>
                         </tr>
-                        <form method='GET' action='checkout.php'>
+                        
                             <?php
                             $total = 0;
-                            foreach ($_SESSION['shoppingcart'] as $productid => $productQuantity) {
+                            foreach ($_SESSION['shoppingcart'] as $pid => $productQuantity) {
                                 // Prepare the SQL query to select specific columns from the products table
-                                $sql = "SELECT pid, pname, sellPrice, pquantity, bid, image FROM products WHERE pid = :productid";
+                                $sql = "SELECT * FROM products WHERE pid = $pid";
 
                                 // Prepare the SQL statement
                                 $stmt = $db->prepare($sql);
 
                                 // Bind the product ID parameter
-                                $stmt->bindParam(':productid', $productid, PDO::PARAM_INT);
+                                //$stmt->bindParam(':pid', $pid, PDO::PARAM_INT);
 
                                 // Execute the statement
                                 $stmt->execute();
@@ -194,7 +195,7 @@
                                     echo "<input type='hidden' name='PriceItem[]' value='" . $sellPrice . "' />";
                                     echo "<input type='hidden' name='ItemID[]' value='" . $pid . "' />";
                                     echo "<input type='hidden' name='bid' value='" . $bid . "' />";
-                                    echo "<td><a style='color:#0d9523; font-weight:bold' href='removefromcart.php?productID=" . $pid . "'>Remove</a></td></tr>";
+                                    echo "<td><a style='color:#0d9523; font-weight:bold' href='removefromcart.php?productID=$pid&bid=$bid'>Remove</a></td></tr>";
                                     $total += floatval($sellPrice * $productQuantity);
                                 }
 
@@ -218,10 +219,11 @@
                     <br><br>
                     <input type="hidden" name="total" value="<?php echo $total; ?>"> <?php //echo $total; ?>
                     <input class="btn btn-light" type='submit' name='checkout' value='Checkout' />
-
                     </form>
+                    
                 </div>
             </div>
+            
 
             <?php
     } catch (PDOException $e) {

@@ -37,7 +37,7 @@ if (isset($_GET['checkout'])) {
             }
         }
         $db->commit();
-        header("location:payment.php?cid=" . $cid);
+        header("location:payment.php?cid=".$cid);
     } catch (PDOException $e) {
         $db->rollback();
         die("Error occurred: " . $e->getMessage());
