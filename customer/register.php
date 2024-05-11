@@ -80,7 +80,6 @@ session_start();
                     foreach ($row as $r)
                         $userid = $r[0];
 
-
                         $stmt2 = $db->prepare("INSERT INTO profile (userId, Fname, Lname, phone, email) values (:userId, :Fname, :Lname, :Phone, :Email)");
                         $stmt2->bindParam(':userId', $userid);
                         $stmt2->bindParam(':Fname', $firstname);
@@ -97,8 +96,9 @@ session_start();
                         $_SESSION['lname'] = $lastname;
                         $_SESSION['username'] = $user;
                         $_SESSION['phone'] = $phone;
+                        $_SESSION['type'] = 'customer';
                         $_SESSION['email'] = $email;
-                        header("location:Home.php");
+                        header("location:customerHome.php");
                     }
                     $db = null;
                 }
@@ -145,7 +145,7 @@ session_start();
 
                 <div class="mb-3">
                     <label for="Phone" class="form-label">Phone</label>
-                    <input type="text" name="Phone" class="form-control" id="Phone">
+                    <input type="text" name="phone" class="form-control" id="Phone">
                 </div>
 
 
