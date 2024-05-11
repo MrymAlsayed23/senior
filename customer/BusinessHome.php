@@ -12,7 +12,7 @@
         <!--------- Link Swiper's CSS ----------->
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
-        <title>Book Store</title>
+        <title>Store</title>
     </head>
     <style>
       *{
@@ -121,60 +121,13 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: 10px;
+          margin-top: 40px;
           /* color: ; */
         }
 
-        .cardw{
-          position: relative;
-          background: #fff;
-          border-radius: 20px;
-          margin: 20px 0;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .cardw::before{
-          content: "";
-          position: absolute;
-          height: 65%;
-          width: 100%;
-          background: #ffffff;
-          border-radius: 20px 20px 0 0;
-        }
-
-        .cardw .cardw-content{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 30px;
-          position: relative;
-          z-index: 100;
-        }
-
-        section .cardw .image{
-          height: 140px;
-          width: 140px;
-          padding: 3px;
-          background: #ffffff;
-        }
-
-
-        section .cardw .image img{
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-
-
-        .cardw .name-profession{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 10px;
-          /* color: ; */
-        }
 
         .name-profession .name{
+            text-align: center;
             font-size: 20px;
             font-weight: 600;
         }
@@ -215,13 +168,11 @@
 
             <div class="container">
 
-            
-
 
               <?php
               
                   require('../connection.php');
-                  $bid = $_GET['bid'];
+                //   $bid = $_GET['bid'];
                   $sql = "SELECT * FROM business WHERE bid=$bid";
                   $stmt = $db->query($sql); 
                   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
