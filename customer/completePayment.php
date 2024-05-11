@@ -1,23 +1,25 @@
 <?php
 session_start();
 if (isset($_SESSION['uid'])) {
-  if (isset($_GET['pbtn'])) {
-    $type = $_GET['payType'];
+  if (isset($_POST['pbtn'])) { //these information will came from payment form in payment page
+    $type = $_POST['payType'];
     //echo $type;
-    $total = $_GET['amount'];
+    $total = $_POST['amount'];
     //echo $total;
-    $card = $_GET['cardno'];
+    $card = $_POST['cardno']; //cardno is card number from the form in payment page
     //echo $card;
-    $cart = $_GET['cid'];
-    //echo $cart;
+    $cid = $_GET['cid'];
+    //echo $cid;
+    $bid = $_GET['bid'];
+    //echo $bid;
     try {
       require ('../connection.php');
       $db->beginTransaction();
-      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cart,$total,'Pending',NOW())";
+      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cid,$total,'Pending',NOW())";
       $rows = $db->exec($sql);
       if ($rows == 1) {
         $oid = $db->lastInsertId();
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cart,NULL,NOW(),$total,$card)";
+        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,$card)";
         $row = $db->exec($sql);
         $db->commit();
       }
@@ -26,18 +28,18 @@ if (isset($_SESSION['uid'])) {
       //$db->rollBack();
       die("Error occured" . $e->getMessage());
     }
-  } else if (isset($_GET['placebtn'])) {
-    $type = $_GET['payType'];
-    $total = $_GET['amount'];
+  } else if (isset($_POST['placebtn'])) {
+    $type = $_POST['payType'];
+    $total = $_POST['amount'];
     $cart = $_GET['cid'];
     try {
       require ('../connection.php');
       $db->beginTransaction();
-      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['userid'] . "',NULL,$cart,$total,'Pending',NOW())";
+      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',$bid,$cid,$total,'Pending',NOW())";
       $rows = $db->exec($sql);
       if ($rows == 1) {
         $oid = $db->lastInsertId();
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,NULL,$cart,NULL,NOW(),$total,0)";
+        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,$card)";
         $row = $db->exec($sql);
         $db->commit();
       }
@@ -48,8 +50,8 @@ if (isset($_SESSION['uid'])) {
     }
 
   }
-  if (isset($_GET['cbtn'])) {
-    header('location:cart.php');
+  if (isset($_POST['cbtn'])) {
+    header('location:cart.php?cid=$cid&bid=$bid');
   }
   unset($_SESSION['shoppingcart']);
 }
