@@ -1,6 +1,6 @@
 <?php
-//session_start();
-$bid = $_GET['bid'];  
+    session_start();
+    $bid = $_GET['bid'];  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +30,9 @@ $bid = $_GET['bid'];
 
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="customerHome.php">
+                        <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -76,7 +79,7 @@ $bid = $_GET['bid'];
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid; ?>">Order Status</a>
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Order Status</a>
                             </li>
 
                             
@@ -122,7 +125,7 @@ $bid = $_GET['bid'];
                                 </svg>
                             </a>
 
-                            <a href="cart.php">
+                            <a href="cart.php?bid=<?php echo $bid;?>">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                             </svg> 
@@ -132,12 +135,9 @@ $bid = $_GET['bid'];
             </nav>
 
 
-        
-
-
         <div class="card-container">
 
-            
+        
             <?php
             try {
                 require('../connection.php');
@@ -156,10 +156,12 @@ $bid = $_GET['bid'];
                     <h5 class="card-title"><?php echo $pname; ?></h5> <!-- Product Name -->
                     <p class="card-text"><?php echo $Details; ?>.</p><!-- Product Details -->
                     <h6><?php echo $sellPrice." BD"; ?></h6>
-                    <form method="POST">
+                    
+                    <form method="POST" action="addToCart.php?bid=<?php echo $bid;?>">
                         <input type="number" name="pquantity" id="" min="0" max="100">
                         <input type="hidden" name="pid" id="" value='<?php echo $pid; ?>' />
-                        <button class="btn btn-primary" name="add" onclick="addToCart(<?php echo $productID; ?>)">Add to Cart</button>                    
+                        <input type="hidden" name="bid" id="" value='<?php echo $bid; ?>' />
+                        <button class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
                     </form>
                 </div>
             </div>
@@ -171,6 +173,7 @@ $bid = $_GET['bid'];
             }
             ?>
     </div>
+
     <script>
         function addToCart() {
             alert("Successfully added to cart");
