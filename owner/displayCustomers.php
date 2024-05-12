@@ -33,20 +33,6 @@ $bid = $_GET['bid'];
         </div>
         <div class="modal-body">
           <div class="showMessage">
-          <form action="messageModal.php" method="post">
-          <div class="modal-body">
-            <div class="mb-3">
-              <input type="hidden" class="form-control" id="pid" name="pid">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label" style="font-weight:bold;">Type Your Message</label><br>
-              <textarea name="msg" id="" cols="30" rows="5" placeholder="Your Message ..."></textarea>
-            </div>
-            <div class="modal-footer">
-            <button type="submit" name="sendmsg" class="btn btn-primary" style="background-color:#d61b6c;border-color:#d61b6c;">Send</button>
-          </div>
-          </div>
-          </form>
 
           </div>
 
@@ -113,12 +99,12 @@ $bid = $_GET['bid'];
               </a>
           </li> -->
 
-          <li class="sidebar-item px-1">
+          <!-- <li class="sidebar-item px-1">
               <a href="" class="sidebar-link">
               <i class="fa-solid fa-comment-dots"></i>
               <span>Messages</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-item px-1">
             <a href="ownerlogout.php" class="sidebar-link">
               <i class="fa-solid fa-right-from-bracket"></i>
@@ -138,12 +124,16 @@ $bid = $_GET['bid'];
     <?php
     try {
       require ('../connection.php');
-      $sql ="SELECT * 
+      $sql ="SELECT users.*, distinct_orders.uid AS order_id
       FROM users
-      INNER JOIN orders ON users.uid = orders.uid
-      WHERE users.type = 'Customer' AND orders.bid = $bid";
+      INNER JOIN (
+          SELECT DISTINCT uid
+          FROM orders
+          WHERE bid = $bid
+      ) AS distinct_orders ON users.uid = distinct_orders.uid
+      WHERE users.type = 'Customer'";
       $customers = $db->query($sql);
-      $sql1 = "SELECT COUNT(*) AS total 
+      $sql1 = "SELECT COUNT(DISTINCT users.uid) AS total 
       FROM users
       INNER JOIN orders ON users.uid = orders.uid
       WHERE users.type = 'customer' AND orders.bid = $bid";

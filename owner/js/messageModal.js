@@ -14,6 +14,7 @@ $(document).ready(function () {
           'uid': uid,
         },
         success: function (response) {
+          $('.showMessage').html(response);
           $('#staticBackdropShow').modal('show');
         }
       });

@@ -71,12 +71,12 @@ $bid = $_GET['bid'];
               </a>
           </li> -->
 
-          <li class="sidebar-item px-1">
+          <!-- <li class="sidebar-item px-1">
               <a href="" class="sidebar-link">
               <i class="fa-solid fa-comment-dots"></i>
               <span>Messages</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-item px-1">
             <a href="ownerlogout.php" class="sidebar-link">
               <i class="fa-solid fa-right-from-bracket"></i>
@@ -120,13 +120,13 @@ try {
   $sql2 = "SELECT COUNT(*) AS total FROM orders WHERE ostatus='Completed' AND bid='$bid'";
   $ordersCom = $db->prepare($sql2);
   $ordersCom->execute();
-  $sql3 ="SELECT COUNT(*) AS total 
+  $sql3 ="SELECT COUNT(DISTINCT users.uid) AS total 
   FROM users
   INNER JOIN orders ON users.uid = orders.uid
   WHERE users.type = 'customer' AND orders.bid = $bid";
   $customers = $db->prepare($sql3);
   $customers->execute();
-  $sql4 = "SELECT SUM(total) AS total FROM orders WHERE bid='$bid'";
+  $sql4 = "SELECT SUM(total) AS total FROM orders WHERE bid='$bid' AND ostatus='Completed'";
   $revenues = $db->prepare($sql4);
   $revenues->execute();
   $sql5 = "SELECT p.pid, p.pname,p.sellPrice, SUM(oi.quantity) AS TotalSales

@@ -19,7 +19,8 @@ if (isset($_SESSION['uid'])) {
       $rows = $db->exec($sql);
       if ($rows == 1) {
         $oid = $db->lastInsertId();
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,$card)";
+        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
+        // 0 for card method
         $row = $db->exec($sql);
         $db->commit();
       }
@@ -42,6 +43,7 @@ if (isset($_SESSION['uid'])) {
       if ($rows == 1) {
         $oid = $db->lastInsertId();
         $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
+        // 1 for cash method
         $row = $db->exec($sql);
         $db->commit();
       }
