@@ -226,7 +226,7 @@ $bid = $_GET['bid'];
         </tr>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col"></th>
+          <!-- <th scope="col"></th> -->
           <th scope="col">Name</th>
           <th scope="col">Category</th>
           <th scope="col">Price</th>
@@ -237,7 +237,7 @@ $bid = $_GET['bid'];
         </tr>
         <tr>
           <th></th>
-          <th></th>
+          <!-- <th></th> -->
           <th>
             <input type="text" id="live_search" autocomplete="off" placeholder="Search Name ...">
           </th>
@@ -268,21 +268,21 @@ $bid = $_GET['bid'];
           <input type="hidden" id="pid<?php echo $pid?>" value="<?php echo $pid?>" />
             <?php echo $pid ?>
           </th>
-          <td>
+          <!-- <td> -->
             <!-- <img src="../<?php //echo $image?>" alt="<?php //echo $pname?> Image" 
             class="img-responsive img-thumbnail" width="150"> -->
             <?php // echo $image ?>
-          </td>
+          <!-- </td> -->
           <td>
             <?php echo $pname ?>
           </td>
           <td>
             <?php echo $pType ?>
           </td>
-          <td>
+          <td style="text-align: center;">
             <?php echo $sellPrice ?>
           </td>
-          <td>
+          <td style="text-align: center;">
             <?php echo $pquantity ?>
           </td>
           <td><a class="ShowProductsButton">

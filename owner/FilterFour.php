@@ -7,6 +7,7 @@ if (isset($_POST["com_btn"])) {
     $orders = $db->query($sql);
     while ($details = $orders->fetch()) {
         extract($details);
+        $poid = $details['oid'];
         ?>
         <tr>
     <div class="container mt-5">
@@ -20,6 +21,18 @@ if (isset($_POST["com_btn"])) {
           echo $det["fname"]. " " .$det["lname"];}} //echo $uid;?> 
       </td>
       <td><?php echo $details["total"]; ?></td>
+      <td><?php 
+         $query = "SELECT * FROM payment WHERE oid= $poid";
+         $stmt = $db->prepare($query);
+         $stmt->execute();
+         if ($stmt > 0 ){
+          echo "Card";
+         }
+         else {
+          echo "Cash";
+         }
+      ?>
+      </td>
       <td><?php echo $details["time"]; ?></td>
       <td><?php echo $details["ostatus"]; ?></td>
     <td><button class="ShowProductsButton"
