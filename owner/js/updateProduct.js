@@ -3,16 +3,18 @@ $(document).ready(function () {
   $('.updateProductsButton').click(function (e) {
     e.preventDefault();
     // console.log('hello');
-    var pid = $(this).closest('tr').find('.pid').text();
+    //Find hidden element by id taht starts with pid
+    var pid = $(this).closest('tr').find('[id^="pid"]').val();
     // console.log(pid);
+    var formData = new FormData();
+    formData.append('click_Update_btn', 'true');
+    formData.append('pid', pid.toString());
     $.ajax({
       method: "POST",
       url: "UpdateProducts.php",
-      data: {
-        'click_Update_btn': true,
-        'pid': pid,
-      },
-      dataType: 'JSON',
+      data: formData,
+      processData: false,
+      contentType: false,
       success: function (response) {
        console.log(response);
         $.each(response, function (key, value) {
@@ -20,11 +22,13 @@ $(document).ready(function () {
         $('#mname').val(value['pname']);
         $('#mdetails').val(value['Details']);
         $('#mprice').val(value['sellPrice']);
-        $('#mqunatity').val(value['pqunatity']);
+        $('#mqunatity').val(value['pquantity']);
         $('#mcategory').val(value['category']);
         });
        $('#update').modal('show');
-
+     },
+     error: function(XMLHttpRequest, textStatus, errorThrown) {
+      console.log(errorThrown);
      }
     });
   });

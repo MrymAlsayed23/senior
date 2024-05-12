@@ -22,7 +22,7 @@ if (isset($_POST["click_show_btn"])) {
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Item ID</th>
-                        <th scope="col">Item Image</th>
+                        <th scope="col"></th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Item Total Price</th>
@@ -32,12 +32,13 @@ if (isset($_POST["click_show_btn"])) {
 
                     <?php
                     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $imageData = base64_encode($result['image']);
+                        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
                     ?>
 
-                        <tr>
+                        <tr style="border-bottom:transparent;">
                             <th scope="row" class="text-center"><?php echo $result["pid"]; ?></th>
-                            <td><?php //echo $result["image"]; 
-                                ?></td>
+                            <td></td>
                             <td class="text-center"><?php echo $result["pname"]; ?></td>
                             <td class="text-center"><?php echo $result["quantity"]; ?></td>
                             <td class="text-center"><?php echo $result["quantity"] * $result["sellPrice"]; ?></td>
@@ -74,7 +75,7 @@ if (isset($_POST["click_show_btn"])) {
                                             <option value="Completed">Completed</option> <?php } ?>
                                     </select>
                             </td>
-                            <td colspan="3" style="border-bottom:transparent;"><button type="submit" class="btn btn-primary" name="updatestatus" form="stsForm">Update Order Status</button>
+                            <td colspan="3" style="border-bottom:transparent;"><button type="submit" class="btn btn-secondary" name="updatestatus" form="stsForm">Update Order Status</button>
 
                             </td>
                         </tr>

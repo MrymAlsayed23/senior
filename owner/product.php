@@ -80,12 +80,12 @@ $bid = $_GET['bid'];
               </a>
           </li> -->
 
-          <li class="sidebar-item px-1">
+          <!-- <li class="sidebar-item px-1">
               <a href="" class="sidebar-link">
               <i class="fa-solid fa-comment-dots"></i>
               <span>Messages</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-item px-1">
             <a href="ownerlogout.php" class="sidebar-link">
               <i class="fa-solid fa-right-from-bracket"></i>

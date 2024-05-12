@@ -9,13 +9,15 @@ if (isset($_POST["click_Update_btn"])) {
         $sql1 = "SELECT * FROM products WHERE pid = '$pid'";
         $products = $db->query($sql1);
         header("Content-Type: application/json");
-        $row = $products->fetchAll(PDO::FETCH_ASSOC); 
+        $row = $products->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $r) {
             //extract($r);
-             $r['sellPrice'] = (int)$r['sellPrice'];
-             $r['pquantity'] = (int)$r['pquantity'];
-             $arr[] =  $r;
-             echo json_encode($arr);
+             array_push($arr, (object)['pid' => $r['pid'],
+             'pname' => $r['pname'],
+             'Details' => $r['Details'],
+             'sellPrice' => (double)$r['sellPrice'],
+             'pquantity' => (int)$r['pquantity'],
+             'category' => $r['category']]);
          }
         //echo "F ds";
         // while ($row = $products->fetch(PDO::FETCH_ASSOC)) {
@@ -28,6 +30,7 @@ if (isset($_POST["click_Update_btn"])) {
 
 
         //}
+        echo json_encode($arr);
         $db = null;
     } catch (PDOException $e) {
         die($e->getMessage());

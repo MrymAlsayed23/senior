@@ -102,6 +102,9 @@
           <td><a class="updateProductsButton">
               <i class="fa-solid fa-pen-to-square"></i>
             </a> </td>
+            <td><a class="DeleteProductButton">
+            <i class="fa-solid fa-trash-can mb-1"></i>
+            </a></td>
             </tr>
         <?php } ?>
         <!-- <tr>
@@ -156,5 +159,6 @@ catch (Exception $e) {
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="js/updateProducts.js"></script>
+<script src="js/updateProduct.js"></script>
 <script src="js/ShowProductsButton.js"></script>
+<script src="deleteProduct.js"></script>

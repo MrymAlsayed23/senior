@@ -29,7 +29,7 @@ $bid = $_GET['bid'];
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id=update">Modal title</h1>
+          <h1 class="modal-title fs-5" id=update">Update Product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="UpdateProducts.php" method="post">
@@ -48,7 +48,7 @@ $bid = $_GET['bid'];
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Sell Price</label>
-              <input type="number" min="0.5" class="form-control" id="mprice" name="SellPrice" placeholder="">
+              <input type="number" min="" class="form-control" id="mprice" name="SellPrice" placeholder="">
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Quantity</label>
@@ -63,7 +63,8 @@ $bid = $_GET['bid'];
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="updateProductsBut" class="btn btn-primary">Apply Changes</button>
+            <button type="submit" name="updateProductsBut" class="btn" style="background-color: #cc7fa9;"
+            >Apply Changes</button>
           </div>
           </form>
       </div>
@@ -171,12 +172,12 @@ $bid = $_GET['bid'];
               </a>
           </li> -->
 
-          <li class="sidebar-item px-1">
+          <!-- <li class="sidebar-item px-1">
               <a href="" class="sidebar-link">
               <i class="fa-solid fa-comment-dots"></i>
               <span>Messages</span>
               </a>
-          </li>
+          </li> -->
           <li class="sidebar-item px-1">
             <a href="ownerlogout.php" class="sidebar-link">
               <i class="fa-solid fa-right-from-bracket"></i>
@@ -225,7 +226,7 @@ $bid = $_GET['bid'];
         </tr>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Image</th>
+          <th scope="col"></th>
           <th scope="col">Name</th>
           <th scope="col">Category</th>
           <th scope="col">Price</th>
@@ -262,6 +263,9 @@ $bid = $_GET['bid'];
           ?>
         <tr id="noFilter">
           <th scope="row" class="pid">
+            <!-- It's always better to save record Ids in a hidden input or in hidden object that's
+            invisible from user. because HTML and JavaScript are not immutable -->
+          <input type="hidden" id="pid<?php echo $pid?>" value="<?php echo $pid?>" />
             <?php echo $pid ?>
           </th>
           <td>
