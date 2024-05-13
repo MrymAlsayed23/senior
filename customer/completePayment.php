@@ -40,13 +40,24 @@ if (isset($_SESSION['uid'])) {
       $db->beginTransaction();
       $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',$bid,$cid,$total,'Pending',NOW())";
       $rows = $db->exec($sql);
+      $oid = $db->lastInsertId();
+      $sq12 = "SELECT * FROM cart_items WHERE cid=$cid AND uid=".$_SESSION['uid']."";
+      $r = $db->prepare($sq12);
+      $r->execute();
+      while ($row=$r->fetch(PDO::FETCH_ASSOC)) { 
+        extract($row);
+        $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
+        $rIN = $db->prepare($sqlIN);
+        $rIN->execute();
+      } 
       if ($rows == 1) {
-        $oid = $db->lastInsertId();
         $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         // 1 for cash method
         $row = $db->exec($sql);
         $db->commit();
       }
+      
+
       $db = null;
     } catch (PDOException $e) {
       //$db->rollBack();

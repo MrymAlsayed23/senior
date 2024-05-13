@@ -3,6 +3,10 @@ session_start();
 $bid = $_GET['bid'];  
 // modified
 if (isset($_GET['checkout'])) {
+    $pid = $_GET['ItemID'];
+    $sellPrice = $_GET['PriceItem'];
+    $quantity = $_GET['PriceItem'];
+
     if (!isset($_SESSION["uid"]) || !isset($_GET['bid']) || !isset($_GET['total'])) {
         header('location:login.php');
         exit;
@@ -21,20 +25,12 @@ if (isset($_GET['checkout'])) {
 
         if ($stmt1->rowCount() == 1) {
             $cid = $db->lastInsertId();
-
-            if (isset($_GET['pid'], $_GET['sellPrice'], $_GET['quantity']) && is_array($_GET['pid'])) {
-                $sql2 = "INSERT INTO cart_items (cart_id, pid, sellPrice, quantity) VALUES (:cart_id, :pid, :sellPrice, :quantity)";
+                $sql2 = "INSERT INTO cart_items VALUES ($cid,'".$_SESSION['uid']."',?,?,?)";
                 $stmt2 = $db->prepare($sql2);
-                $stmt2->bindParam(':cart_id', $cid, PDO::PARAM_INT);
-
-                $numItems = count($_GET['pid']);
-                for ($i = 0; $i < $numItems; $i++) {
-                    $stmt2->bindParam(':pid', $_GET['pid'][$i], PDO::PARAM_INT);
-                    $stmt2->bindParam(':sellPrice', $_GET['sellPrice'][$i], PDO::PARAM_STR);
-                    $stmt2->bindParam(':quantity', $_GET['quantity'][$i], PDO::PARAM_INT);
-                    $stmt2->execute();
-                }
-            }
+                $numItems = count($_GET['ItemID']);
+                for ($i=0;$i<$numItems;$i++) {
+                    $stmt2->execute(array($pid[$i],$sellPrice[$i],$quantity[$i]));
+                 }
         }
         $db->commit();
         header("location:payment.php?cid=$cid&bid=$bid");

@@ -110,7 +110,7 @@ catch (PDOException $e) {
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid; ?>">Order Status</a>
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid; ?>">Orders</a>
                             </li>
 
                             
@@ -161,64 +161,70 @@ catch (PDOException $e) {
 
   <div class="container-fluid">
 
-    <h1>Your Orders</h1>
+    <!-- <h1>Your Orders</h1> -->
 
-    <?php
-    try {
-      require ("../connection.php");
-      $data = $db->query("select * from orders")->fetchAll();
-      if ($data) {
-        foreach ($data as $row) {
-          $u = '';
-          $productNames = "";
-          echo "<table text-align='center' border='1' width='500'>";
-          echo "<tr>";
-          echo "<th>Ordered By</th>";
-          echo "<th>Time</th>";
-          echo "<th>Order Contents</th>";
-          echo "<th>Total Cost</th>";
-          echo "<th>Order Status</th>";
-          echo "<th>Reorder</th>";
-          echo "</tr>";
-          echo "<tr>";
-          $id = $row[1];
-          //fixed here
-          $users = $db->query("select username from users WHERE uid='".$_SESSION['uid']."'")->fetchAll();
-          foreach ($users as $r) {
-            $u = $r[0];
-          }
-          echo "<td>" . $u . "</td>";
-          echo "<td>" . $row[2] . "</td>";
-          $p = explode(",", $row[3]);
-          foreach ($p as $product => $productName) {
-            $products = $db->query("select pname from products WHERE pid='$productName'")->fetchAll();
-            foreach ($products as $p) {
-              if ($productNames === "") {
-                $productNames = $p[0];
-              } else {
-                $productNames .= ", " . $p[0];
-              }
-            }
-          }
-          echo "<td>" . $productNames . "</td>";
-          echo "<td>" . $row[5] . "</td>";
-          echo "<td>" . $row[4] . "</td>";
-          echo "<td align='center'>";
-          ?>
-          <form method="POST">
-            <input type='hidden' name='ordercontents' value="<?php echo $row[3]; ?>" />
-            <input type='submit' name='reorder' value='Reorder' placeholder='hi' />
-          </form>
-          <?php
-          echo "</td>";
-          echo "</tr>";
-        }
-        echo "</table>";
-      }
-    } catch (PDOException $e) {
-      echo "Failed";
+    <div class="mt-5">
+      <div class="container">
+
+      <center><h2>My Orders</h2></center>
+      <table class="table table-sm"style="margin:4rem">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Date/Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+             try {
+               require('../connection.php');
+               $sql = "SELECT * FROM orders WHERE uid=".$_SESSION['uid']."";
+               $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid=".$_SESSION['uid']."");
+               $sql1->execute();
+               $r = $sql1->fetch();
+               if ($r>0){
+               $id = $r['pid'];
+               //echo $id;
+               $sql2  = $db->prepare("SELECT * FROM products WHERE pid =$id");
+               $sql2->execute();
+               $rs = $sql2->fetch();
+             }
+               $row = $db->query($sql);
+               $c=0;
+               while ($rows = $row->fetch(PDO::FETCH_ASSOC)){
+                  ++$c;
+                 if ($c>0){
+               ?>
+        <tr>
+          <td>#<?php echo $c; ?></td>
+          <td> <ul>
+            <li><?php echo $rs['pname']; ?></li>
+          </ul> </td>
+          <td> <ul>
+            <li><?php echo $r['quantity'];  ?></li>
+          </ul> </td>
+          <td><?php echo $rows['ostatus']; ?></td>
+          <td><?php echo $rows['time']; ?></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
+          <td style="font-weight:bold"><?php echo $rows['total']."BHD"; ?></td>
+        </tr>
+      <?php }
+      else {echo "<center><h1>You have no order yet!</h1></center>";}
     }
+ }
+    catch (PDOException $e) {
+          die ("Error occured: ".$e->getMessage());
+        }
     ?>
+      </tbody>
+    </table>
+  </div>
+    </div>
   </div>
   <!-- footer  -->
   <?php include ("../customer/footer.php"); ?>
