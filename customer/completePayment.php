@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['uid'])) {
-  if (isset($_POST['pbtn'])) { //these information will came from payment form in payment page
+  if (isset($_POST['pbtn'])) { //these information will came from payment form in payment page (this part for Credit method)
     $type = $_POST['payType'];
     //echo $type;
     $total = $_POST['amount'];
@@ -16,6 +16,7 @@ if (isset($_SESSION['uid'])) {
       require ('../connection.php');
       $db->beginTransaction();
       $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cid,$total,'Pending',NOW())";
+      $stmt = "INSERT INTO orders_items";
       $rows = $db->exec($sql);
       if ($rows == 1) {
         $oid = $db->lastInsertId();
@@ -23,13 +24,14 @@ if (isset($_SESSION['uid'])) {
         // 0 for card method
         $row = $db->exec($sql);
         $db->commit();
+        header('location:order.php?cid='.$cid.'&bid='.$bid);
       }
       $db = null;
     } catch (PDOException $e) {
       //$db->rollBack();
       die("Error occured" . $e->getMessage());
     }
-  } else if (isset($_POST['placebtn'])) {
+  } else if (isset($_POST['placebtn'])) { //this part for cash method
     $type = $_POST['payType'];
     $total = $_POST['amount'];
     $cid = $_POST['cid'];
@@ -46,6 +48,7 @@ if (isset($_SESSION['uid'])) {
         // 1 for cash method
         $row = $db->exec($sql);
         $db->commit();
+        header('location:order.php?cid='.$cid.'&bid='.$bid);
       }
       $db = null;
     } catch (PDOException $e) {
