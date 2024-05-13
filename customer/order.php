@@ -1,17 +1,11 @@
 <?php
-  ob_start();
   session_start();
+  $bid = $_GET['bid']; 
+  ob_start(); 
   date_default_timezone_set("Asia/Bahrain");
- 
-  if(isset($_SESSION['uid']) || isset($_SESSION['userId'])){
-    $uid = $_SESSION['uid'];
-    $userId = $_SESSION['userId'];
-  }
-else{
-    $uid = '';
-    //header('location:login.php');
-};
-?>
+  if (isset($_SESSION['userid'])){
+    $uid = $_SESSION['userid'];
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,103 +83,152 @@ else{
 
     <body>
 
-        <!-- nav  -->
-        <?php include("../customer/customerNavBar.php"); ?>
+       <!-- Nav Bar  -->
+
+
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="customerHome.php">
+                        <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
+                            </li>
+
+                            <!-- <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Business
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <?php
+                                                try{
+                                                    require('../connection.php');
+                                                    $sql = "SELECT bname, bid FROM business";
+                                                    $stmt = $db->query($sql); 
+                                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                    foreach ($results as $row) {
+                                                        echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
+                                                    }
+                                                }
+                                                catch (PDOException $e) {
+                                                    echo "Error: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> -->
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Order Status</a>
+                            </li>
+
+                            
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="login.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Login
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+            </nav>
+
 
         <div class="container" style="text-align:center;">
 
           <div class="payment-bill">
             <h2 style="color:rgba(0, 0, 0, 0.9)" class="mb-2">Order Summary</h2>
 
-            <?php
-            try {
-              require("../connection.php");
-              $total=0;
-              $delivery=0.5;
-              if (isset($_COOKIE['cart'])) {
-                $cookiedetails=(array)json_decode($_COOKIE['cart'],true);
-                foreach ($cookiedetails as $detail => $info) {
-                  $productid=$cookiedetails[$detail]['productid'];
-                  $rsp=$db->query("select * from products where pid ='$productid'")->fetchAll();
-                  foreach ($rsp as $row) {
-                    ?>
-                    <div class="order-card">
-                      <div class="order-pic">
-                        <img src="<?php echo $row[4] ?>" alt="">
-                      </div>
-                      <div class="order-title">
-                        <h5><?php echo $row[1]; ?></h5>
-                      </div>
-                      <div class="order-price">
-                        <h5><?php echo $row[3]; ?> BD</h5>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Picture</th>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                  <th>Date/Time</th>
+                </tr>
+              </thead>
+              <?php
+              try {
+                require("../connection.php");
+                $sql = "SELECT * FROM orders WHERE uid=$uid";
+                $sql1 = $db->prepare("SELECT * FROM cart_items WHERE uid= $uid");
+                $sql1->execute();
+                $r = $sql1->fetch();
 
-                      </div>
-
-                    </div>
-                  <?php
-                $total+=$row[3]; }
+                if ($r>0){
+                  $pid = $r['pid'];
+                  //echo $pid;
+                  $sql2  = $db->prepare("SELECT * FROM products WHERE pid =$pid");
+                  $sql2->execute();
+                  $rs = $sql2->fetch();
                 }
+
+                $row = $db->query($sql);
+                $c=0;
+                while ($rows = $row->fetch(PDO::FETCH_ASSOC)){
+                   ++$c;
+                  if ($c>0){
+                    ?>
+                    
+                    <tr>
+                      <td>#<?php echo $c; ?></td>
+                      <td> 
+                        <ul>
+                          <li><?php echo $rs['pname']; ?></li>
+                        </ul> 
+                      </td>
+                      
+                      <td> 
+                        <ul>
+                          <li><?php echo $r['pquantity'];  ?></li>
+                        </ul> 
+                      </td>
+                      
+                      <td><?php echo $rows['ostatus']; ?></td>
+                      <td><?php echo $rows['time']; ?></td>
+                    </tr>
+                    
+                    <tr>
+                      <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
+                      <td style="font-weight:bold"><?php echo $rows['totalPrice']."BHD"; ?></td>
+                    </tr>
+                    <?php } //end if 
+                    else {echo "<center><h1>You have no order yet!</h1></center>";}
+                  } //end while loop
+              } //end try
+              catch (PDOException $e) {
+                echo $e->getMessage();
               }
+              ?>
 
-            } catch (PDOException $e) {
-              echo $e->getMessage();
-            }
-            try {
-              $sql="select * from profile where userId=".$_SESSION['id'];
-              $r=$db->query($sql);
-              $db=null;
-              $rs=$r->fetchAll(PDO::FETCH_ASSOC);
-              foreach ($rs as $key => $value) {
-            ?>
-            <div class="order-card" style="text-align:left;">
-              <p>Order was done by the user <i class="phpInput"> <?php echo $_SESSION['username']; ?></i>
-                on <i class="phpInput"> <?php echo date("Y-m-d h:i:sa"); ?>
-                </i> including delivery fees of <i class="phpInput">
-                  <?php echo $delivery; ?></i>
-                making the total of the order = <i class="phpInput"><?php echo $total+$delivery; ?></i> BD. <br>
-              Delivery location: <i class="phpInput"><?php echo $value['address']; ?></i><br>
-              Telephone Number: <i class="phpInput"><?php echo $value['phone']; ?></i> </p>
-            </div>
-            <h5 style="text-align:left;">Edit cart from <a href="cart.php">here</a> </h5>
-            <form class="mt-3" method="post">
-              <input type="submit" name="confirm" value="Confirm Order">
-
-            </form>
-
-          </div>
-        <?php }
-        } catch (PDOException $e) {
-          echo $e->getMessage();
-        }
-        echo "</div>";
-        extract($_POST);
-        if (isset($confirm)) {
-            try {
-              $cookiearray=(array)null;
-              setcookie("cart", json_encode($cookiearray), time()-(86400*7));
-              require("../connection.php");
-              $sqlStatement="insert into orders (total, ostatus, time) values (:total, :ostatus, :time)";
-              $stmt= $db->prepare($sqlStatement);
-              $stmt->bindParam(':total',$totalDB);
-              $stmt->bindParam(':ostatus',$ostatus);
-              $stmt->bindParam(':time',$timeDB);
-
-              $timeDB= date("Y-m-d h:i:sa");
-              $ostatus="issued";
-              $totalDB=$total+$delivery;
-              $stmt->execute();
-              $db=null;
-              $_SESSION['message']="true";
-              header("Location:orderstatus.php");
-              exit();
-            }
-          catch (PDOException $e) {
-            echo $e->getMessage();
-          }
-        }
-        ob_end_flush();
-        ?>
-        </div>
+            </table>
 
          <!-- footer  -->
          <?php include("../customer/footer.php"); ?>
@@ -194,3 +237,4 @@ else{
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     </body>
 </html>
+<?php } //end if statement in the beginnign of the page ?>
