@@ -3,10 +3,10 @@ session_start();
 $bid = $_GET['bid'];  
 // modified
 if (isset($_GET['checkout'])) {
-    if (!isset($_SESSION["uid"]) || !isset($_GET['bid']) || !isset($_GET['total'])) {
-        header('location:login.php');
-        exit;
-    }
+    // if (!isset($_SESSION["uid"]) || !isset($_GET['bid']) || !isset($_GET['total'])) {
+    //     header('location:login.php');
+    //     exit;
+    // }
 
     try {
         require ('../connection.php');
