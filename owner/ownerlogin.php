@@ -16,8 +16,9 @@ if (isset($_POST["sign"])) {
     // $sql = "SELECT * FROM users WHERE username ='$uname'";
     // $rs = $db->query($sql);
     if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-      //extract($row);
-      if ($pass == $row['password']) {
+      extract($row);
+      $hpass = md5($pass);
+      if ($hpass == $row['password']) {
         //echo $row['password'];
         if ($row['type'] == 'Owner') {
           $_SESSION['owner'] = $row['uid'];

@@ -208,7 +208,7 @@ if (isset($_POST["sub"])) {
     $Details = $_POST['Details'];
     $sellPrice = $_POST['sellPrice'];
     $ptype = $_POST['ptype'];
-    
+    $hpass = md5($ps);
     $t = 'Owner';
     try{
         $db->beginTransaction();
@@ -218,7 +218,7 @@ if (isset($_POST["sub"])) {
         'fname' => $fname,
         'lname'=> $lname,
         'username'=> $username,
-        'password'=> $ps,
+        'password'=> $hpass,
         'phone'=> $phone,
         'type' =>$t,
         'email'=> $email
