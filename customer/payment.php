@@ -233,7 +233,7 @@ $cid = $_GET['cid'];
                                     <div class="col-md-12" text-align="center">
                                         <input type="submit" class="btn btn-light" id="paying" name="pbtn" value="Pay">
                                         <input type="reset" class="btn btn-light" id="" name="" value="Clear">
-                                        <a href='cart.php?cid=$cid&bid=$bid' class="btn btn-light">Cancel</a>
+                                        <a href='cart.php?cid=<?php echo $cid;?>&bid=<?php echo $bid;?>' class="btn btn-light">Cancel</a>
                                     </div>
                                 </div>
                                 
@@ -286,7 +286,7 @@ $cid = $_GET['cid'];
                                 <div class="form-row">
                                     <div class="col-md-12" text-align="center">
                                         <input type="submit" class="btn btn-light" id="paying" name="placebtn" value="Place Order">
-                                        <a href='cart.php?cid=$cid&bid=$bid' class="btn btn-light">Cancel</a>
+                                        <a href='cart.php?cid=<?php echo $cid;?>&bid=<?php echo $bid;?>' class="btn btn-light">Cancel</a>
                                     </div>
                                 </div>
                                 

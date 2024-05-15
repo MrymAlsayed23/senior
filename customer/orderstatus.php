@@ -1,7 +1,9 @@
 <?php
-try {
+// try {
   session_start();
-  $bid = $_GET['bid'];  
+  if (isset($_SESSION["uid"])){
+    $bid = $_GET['bid'];
+     
   if (isset($_SESSION['message'])) {
     echo '<script type="text/javascript">';
     echo ' alert("Your order has been issued!")';
@@ -14,30 +16,30 @@ try {
   //   exit(0);
   // }
   // Set the "cart" cookie
-  $cookievalue = []; // Assuming you have an array of values to set as the cookie value
-  setcookie("cart", json_encode($cookievalue), time() + (86400 * 7));
+//   $cookievalue = []; // Assuming you have an array of values to set as the cookie value
+//   setcookie("cart", json_encode($cookievalue), time() + (86400 * 7));
 
-  if (isset($_POST['reorder'])) {
-    extract($_POST);
-    //$cookievalue = []; // Initialize $cookievalue as an empty array
-    if (isset($_COOKIE['cart'])) {
-      $previousdetails = (array) json_decode($_COOKIE['cart'], true);
-      foreach ($previousdetails as $details) {
-        $cookievalue[] = $details;
-      }
-    }
-    foreach ($p as $product => $productName) {
-      $proId = $productName;
-      $details['productId'] = $proId;
-      $cookievalue[] = $details;
-    }
-    //setcookie("cart", json_encode($cookievalue), time()+(86400*7));
-    header("Location:cart.php?bid=".$bid);
-  }
-} //end try (try tag at the beginning on the page)
-catch (PDOException $e) {
-  echo "Failed";
-}
+//   if (isset($_POST['reorder'])) {
+//     extract($_POST);
+//     //$cookievalue = []; // Initialize $cookievalue as an empty array
+//     if (isset($_COOKIE['cart'])) {
+//       $previousdetails = (array) json_decode($_COOKIE['cart'], true);
+//       foreach ($previousdetails as $details) {
+//         $cookievalue[] = $details;
+//       }
+//     }
+//     foreach ($p as $product => $productName) {
+//       $proId = $productName;
+//       $details['productId'] = $proId;
+//       $cookievalue[] = $details;
+//     }
+//     //setcookie("cart", json_encode($cookievalue), time()+(86400*7));
+//     header("Location:cart.php?bid=".$bid);
+//   }
+// } //end try (try tag at the beginning on the page)
+// catch (PDOException $e) {
+//   echo "Failed";
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -181,7 +183,7 @@ catch (PDOException $e) {
         <?php
              try {
                require('../connection.php');
-               $sql = "SELECT * FROM orders WHERE uid=".$_SESSION['uid']."";
+               $sql = "SELECT * FROM orders WHERE uid=".$_SESSION['uid']." AND bid=$bid";
                $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid=".$_SESSION['uid']."");
                $sql1->execute();
                $r = $sql1->fetch();
@@ -239,3 +241,4 @@ catch (PDOException $e) {
 </body>
 
 </html>
+<?php }?>
