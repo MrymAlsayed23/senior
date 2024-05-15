@@ -5,6 +5,7 @@
   date_default_timezone_set("Asia/Bahrain");
   if (isset($_SESSION['uid'])){
     $uid = $_SESSION['uid'];
+    $oid =  $_GET['oid'];
   ?>
 
 <!DOCTYPE html>
@@ -159,7 +160,12 @@
             </nav>
 
 
-        <div class="container" style="text-align:center;">
+            <div class="container-fluid">
+
+<!-- <h1>Your Orders</h1> -->
+
+<div class="mt-5">
+  <div class="container">
 
           <div class="payment-bill">
             <h2 style="color:rgba(0, 0, 0, 0.9)" class="mb-2">Order Summary</h2>
@@ -170,15 +176,15 @@
                   <th>Product Picture</th>
                   <th>Product Name</th>
                   <th>Quantity</th>
-                  <th>Status</th>
-                  <th>Date/Time</th>
+                  <!-- <th>Status</th>
+                  <th>Date/Time</th> -->
                 </tr>
               </thead>
               <?php
               try {
                 require("../connection.php");
-                $sql = "SELECT * FROM orders WHERE uid=$uid";
-                $sql1 = $db->prepare("SELECT * FROM cart_items WHERE uid= $uid");
+                $sql = "SELECT * FROM orders WHERE uid=$uid AND bid= $bid AND oid=$oid";
+                $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid= $uid AND oid=$oid");
                 $sql1->execute();
                 $r = $sql1->fetch();
 
@@ -198,7 +204,7 @@
                     ?>
                     
                     <tr>
-                      <td>#<?php echo $c; ?></td>
+                      <td><img src="" alt=""></td>
                       <td> 
                         <ul>
                           <li><?php echo $rs['pname']; ?></li>
@@ -207,18 +213,18 @@
                       
                       <td> 
                         <ul>
-                          <li><?php echo $r['pquantity'];  ?></li>
+                          <li><?php echo $r['quantity'];  ?></li>
                         </ul> 
                       </td>
                       
-                      <td><?php echo $rows['ostatus']; ?></td>
-                      <td><?php echo $rows['time']; ?></td>
+                      <!-- <td><?php echo $rows['ostatus']; ?></td>
+                      <td><?php echo $rows['time']; ?></td> -->
                     </tr>
                     
-                    <tr>
+                    <!-- <tr>
                       <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
                       <td style="font-weight:bold"><?php echo $rows['totalPrice']."BHD"; ?></td>
-                    </tr>
+                    </tr> -->
                     <?php } //end if 
                     else {echo "<center><h1>You have no order yet!</h1></center>";}
                   } //end while loop
@@ -229,6 +235,9 @@
               ?>
 
             </table>
+            </div>
+            </div>
+            </div>
 
          <!-- footer  -->
          <?php include("../customer/footer.php"); ?>

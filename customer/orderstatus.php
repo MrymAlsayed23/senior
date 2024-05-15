@@ -148,10 +148,10 @@
       <table class="table table-sm"style="margin:4rem">
       <thead>
         <tr>
-          <th></th>
-          <th>Quantity</th>
+          <th>Order ID</th>
           <th>Status</th>
-          <th>Rating</th>
+          <th>Total</th>
+          <th></th>
           <th>Order Summary</th>
           <th>Date/Time</th>
         </tr>
@@ -161,16 +161,16 @@
              try {
                require('../connection.php');
                $sql = "SELECT * FROM orders WHERE uid=".$_SESSION['uid']." AND bid=$bid";
-               $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid=".$_SESSION['uid']."");
-               $sql1->execute();
-               $r = $sql1->fetch();
-               if ($r>0){
-               $id = $r['pid'];
-               //echo $id;
-               $sql2  = $db->prepare("SELECT * FROM products WHERE pid =$id");
-               $sql2->execute();
-               $rs = $sql2->fetch();
-             }
+            //    $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid=".$_SESSION['uid']."");
+            //    $sql1->execute();
+            //    $r = $sql1->fetch();
+            //    if ($r>0){
+            //    $id = $r['pid'];
+            //    //echo $id;
+            //    $sql2  = $db->prepare("SELECT * FROM products WHERE pid =$id");
+            //    $sql2->execute();
+            //    $rs = $sql2->fetch();
+            //  }
                $row = $db->query($sql);
                $c=0;
                while ($rows = $row->fetch(PDO::FETCH_ASSOC)){
@@ -179,27 +179,27 @@
                ?>
         <tr>
           <td><?php echo $c; ?></td>
-          <td> <ul>
-            <li><?php echo $r['quantity'];  ?></li>
-          </ul> </td>
-          <td><?php echo $rows['ostatus']; ?></td>
           
+          <td><?php echo $rows['ostatus']; ?></td>
+          <td> <?php echo $rows['total'];  ?> 
+          </td>
           <td>
             <?php
-              if ($rows['ostatus'] == 'Completed'){
+             if ($rows['ostatus'] == 'Completed'){
                 ?>
                 <button type="button" name="add_review" id="add_review" class="btn btn-primary">Review</button>
               <?php } ?>
           </td>
 
 
-          <td>  <a href="order.php" class="btn btn-primary">more</a>   </td>
+          <td>  <a href="order.php?oid=<?php echo $rows['oid'];?>&bid=<?php echo $bid; 
+          ?>" class="btn btn-primary">more</a>   </td>
           <td><?php echo $rows['time']; ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
           <td style="font-weight:bold"><?php echo $rows['total']."BHD"; ?></td>
-        </tr>
+        </tr> -->
       <?php }
       else {echo "<center><h1>You have no order yet!</h1></center>";}
     }
@@ -219,9 +219,9 @@
         <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Submit Review</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+                  <!-- <span aria-hidden="true">&times;</span> -->
+              <!-- </button> -->
             </div>
             <div class="modal-body">
               <h4 class="text-center mt-2 mb-4">
@@ -231,12 +231,6 @@
                       <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
                       <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
               </h4>
-              <div class="form-group">
-                <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
-              </div>
-              <div class="form-group">
-                <textarea name="user_review" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
-              </div>
               <div class="form-group text-center mt-4">
                 <button type="button" class="btn btn-primary" id="save_review">Submit</button>
               </div>
@@ -249,13 +243,17 @@
   <!-- footer  -->
   <?php include ("../customer/footer.php"); ?>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </body>
 
 </html>
@@ -363,7 +361,7 @@
             $.ajax({
                 url:"submit_rating.php",
                 method:"POST",
-                data:{rating_data:rating_data, user_name:user_name, user_review:user_review},
+                data:{rating_data:rating_data},
                 success:function(data)
                 {
                     $('#review_modal').modal('hide');
