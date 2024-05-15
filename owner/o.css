@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 ::after
 ::before {
     box-sizing: border-box;
@@ -17,9 +16,10 @@ h1 {
     font-size: 1.5rem;
 }
 body {
-    font-family: "Varela Round", sans-serif;
-    margin: 0;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
     font-style: normal;
+    margin: 0;
 }
 
 /*------------------ navbar -------------------------*/
@@ -139,7 +139,7 @@ body {
     border-radius: 4px;
     padding: 2px 4px;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 6px;
     
 }
@@ -290,3 +290,14 @@ body {
     color: #b4628f;
     border: 1px solid #b4628f;
 }
+/* .save button{
+    background-color: #cc7fa9;
+    border-color:#cc7fa9;
+    padding:10px 60px;
+    font-size:3vh;
+    font-weight:700;
+}
+.save button:hover{
+    background-color: transparent;
+    border-color: #cc7fa9;
+} */

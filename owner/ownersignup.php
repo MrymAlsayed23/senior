@@ -57,7 +57,7 @@
                     </li>
                 </ul>
             </div>
-            <form method="post" id="myForm">
+            <form method="post" id="myForm" enctype="multipart/form-data">
                 <div class="form-one form-step active">
                     <div class="bg-svg"></div>
                     <h2>Personal Information</h2>
@@ -106,6 +106,10 @@
                         <label for="bname">Your Business Name</label>
                         <input type="text" name="bname" required >
                     </div>
+                    <div>
+                        <label for="bname">Your Business Logo</label>
+                        <input type="file" name="logo" required >
+                    </div>
                     <!-- <div>
                         <label for="">Your Business Category</label>
                         <input type="text" disabled value="bcat">
@@ -132,6 +136,11 @@
                     <div>
                     <label for="Details">Details</label>
                     <textarea name="Details" id="" cols="30" rows="5" placeholder="Details" required></textarea>
+                    </div>
+                    <div>
+                    <label for="image" class="form-label">Image</label>
+                        <input type="file" name="image" class="form-control" id="image"
+                        required>
                     </div>
                     <div>
                     <label for="sellPrice">Sell Price</label>
@@ -208,6 +217,9 @@ if (isset($_POST["sub"])) {
     $Details = $_POST['Details'];
     $sellPrice = $_POST['sellPrice'];
     $ptype = $_POST['ptype'];
+    $logoName = $_FILES['logo']['name'];
+    $logoSize = $_FILES['logo']['size'];
+    $contentlogo = file_get_contents($_FILES['image']["tmp_name"]);
     $hpass = md5($ps);
     $t = 'Owner';
     try{
@@ -224,25 +236,32 @@ if (isset($_POST["sub"])) {
         'email'=> $email
     ]);
      $uid = $db->lastInsertId();
-     $addbusiness = $db->prepare('INSERT INTO business (bname,bdetail,category,bownerid)
-        VALUES (:bname, :bdetail,:category,:bownerid)');
+     $addbusiness = $db->prepare('INSERT INTO business (bname,blogo,logoname,logosize,bdetail,category,bownerid)
+        VALUES (:bname,:blogo,:logoname,:logosize,:bdetail,:category,:bownerid)');
     $addbusiness->execute([
         'bname' => $bname,
+        'blogo' => $contentlogo,
+        'logoname' =>$logoName,
+        'logosize' => $logoSize,
         'bdetail'=> $det,
         'category' => $bcat,
         'bownerid'=> $uid,
     ]);
     $bid = $db->lastInsertId();
   
-    $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
-        VALUES (:pname,:Details,:sellPrice, :pquantity, :bid ,:pType)');
+    $addpro = $db->prepare('INSERT INTO products ((pname,Details,sellPrice, pquantity,imagename,
+    imagesize,image, bid ,pType)
+        VALUES (:pname,:Details,:sellPrice, :pquantity,:imagename,:imagesize,:image,:bid,:pType)');
     $addpro->execute([
         'pname' => $pname,
-        'Details'=> $Details,
-        'sellPrice'=> $sellPrice,
-        'pquantity'=> $pquantity,
-        'bid'=> $bid,
-        'pType' =>$ptype,
+                   'Details'=> $Details,
+                   'sellPrice'=> $sellPrice,
+                    'pquantity'=> $pquantity,
+                    'imagename' =>$fileName,
+                    'imagesize' => $fileSize,   
+                     'image' => $content,
+                   'bid'=> $bid,
+                  'pType' =>$ptype,
     ]);
 $db->commit();
 

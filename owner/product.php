@@ -7,7 +7,6 @@ if (!(isset($_SESSION['owner'])))
 $bid = $_GET['bid'];
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,10 +18,8 @@ $bid = $_GET['bid'];
         <link rel="stylesheet" href="o.css">
     </head>
     <style>
-        
+       
     </style>
-
-
     <body>
 
     <?php 
@@ -99,45 +96,53 @@ $bid = $_GET['bid'];
     </nav>
 
         <div class="container">
-            <form method="POST" name="Form" action="product.php?bid=<?php echo $bid;?>">
+            
+            <form method="POST" name="Form" action="product.php?bid=<?php echo $bid;?>" enctype="multipart/form-data">
             <input type="number" name="bid" value="<?php echo $bid;?>" hidden>
                 
                 <h2>New Product</h2>
-                
-                    <div class="mb-3">
+                <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-6 mb-3">
                         <label for="pname" class="form-label">Product Name</label>
                         <input type="text" name="pname" class="form-control" id="pname" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="col-lg-6 mb-3">
                         <label for="pquantity" class="form-label">Quantity</label>
                         <input type="number" name="pquantity" class="form-control" id="pquantity" required>
                     </div>
-
-                    <div class="mb-3">
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-6 mb-3">
                         <label for="Details" class="form-label">Details</label>
                         <textarea name="Details" id="" cols="3" rows="3" placeholder="Details" class="form-control" id="Details" required></textarea>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="col-lg-6 mb-3">
                         <label for="pType" class="form-label">Product Type</label>
                         <input type="text" name="pType" class="form-control" id="pType" required>
                     </div>
-
-                    <div class="mb-3">
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-6 mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="file" name="image" class="form-control" id="image">
+                        <input type="file" name="image" class="form-control" id="image"
+                        required>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="col-lg-6 mb-3">
                         <label for="sellPrice" class="form-label">Sell Price</label>
                         <input type="number" name="sellPrice" class="form-control" id="sellPrice" required>
                     </div>
-
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary" name="save"
-                        style="background-color: #cc7fa9;border-color:#cc7fa9;">Save</button>
                     </div>
-                
+                    <div class="row text-center">
+                    <div class="col mb-3">
+                        <button type="submit" class="btn save" name="save"
+                        style="background-color: #cc7fa9;border-color:#cc7fa9;padding:10px 60px;
+                        font-size:3vh;font-weight:700;">Add Product</button>
+                    </div>
+                    </div>
+                    </div>
                 
                     <!-- <tr>
                         <td>
@@ -160,16 +165,23 @@ $bid = $_GET['bid'];
             $ptype = $_POST['pType'];
             $pquantity = $_POST['pquantity'];
             $bid = $_POST['bid'];
-
-
+            $fileName = $_FILES['image']['name'];
+            $fileSize = $_FILES['image']['size'];
+            $content = file_get_contents($_FILES['image']["tmp_name"]);
+             //$imgContent = file_get_contents($image);
+            //echo $fileName;
             try{
-                $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity, bid ,pType)
-                 VALUES (:pname,:Details,:sellPrice, :pquantity, :bid ,:pType)');
+                $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity,imagename,
+                imagesize,image, bid ,pType)
+                 VALUES (:pname,:Details,:sellPrice, :pquantity,:imagename,:imagesize,:image,:bid,:pType)');
                $addpro->execute([
                    'pname' => $pname,
                    'Details'=> $Details,
                    'sellPrice'=> $sellPrice,
                     'pquantity'=> $pquantity,
+                    'imagename' =>$fileName,
+                    'imagesize' => $fileSize,   
+                     'image' => $content,
                    'bid'=> $bid,
                   'pType' =>$ptype,
                 ]);
