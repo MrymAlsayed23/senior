@@ -319,7 +319,7 @@
 
           var params = new URLSearchParams(window.location.search);
           var bid = params.get('bid');
-          var uid = "<?php echo $_SESSION['uid'] ?>";
+          var uid = "<?php echo $_SESSION['uid']; ?>";
           console.log(uid);
             $.ajax({
                 url:"submit_rating.php",
