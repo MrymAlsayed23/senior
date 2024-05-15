@@ -129,7 +129,7 @@ try {
   $sql4 = "SELECT SUM(total) AS total FROM orders WHERE bid='$bid' AND ostatus='Completed'";
   $revenues = $db->prepare($sql4);
   $revenues->execute();
-  $sql5 = "SELECT p.pid, p.pname,p.sellPrice, SUM(oi.quantity) AS TotalSales
+  $sql5 = "SELECT p.pid, p.pname,p.sellPrice,image, SUM(oi.quantity) AS TotalSales
   FROM products p
   INNER JOIN order_items oi ON p.pid = oi.pid
   INNER JOIN orders o ON oi.oid = o.oid
@@ -331,7 +331,9 @@ try {
       <div class="progress">
         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100" id=five_star_progress style="width:<?php
-        echo ($five_star_review/$dSUM['totalRating'])*100; ?>%;">
+        if ($dSUM['totalRating'] == 0){echo '0';}
+        else {
+        echo ($five_star_review/$dSUM['totalRating'])*100; }?>%;">
         
         
       </div>
@@ -351,7 +353,9 @@ try {
         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100" id=four_star_progress
         style="width:<?php
-        echo ($four_star_review/$dSUM['totalRating'])*100; ?>%;">
+        if ($dSUM['totalRating'] == 0){echo '0';}
+        else {
+        echo ($four_star_review/$dSUM['totalRating'])*100; }?>%;">
         
         
       </div>
@@ -370,7 +374,9 @@ try {
         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100" id=three_star_progress
         style="width:<?php
-        echo ($three_star_review/$dSUM['totalRating'])*100; ?>%;">
+        if ($dSUM['totalRating'] == 0){echo '0';}
+        else {
+        echo ($three_star_review/$dSUM['totalRating'])*100; }?>%;">
         
         
       </div>
@@ -389,7 +395,9 @@ try {
         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100" id=two_star_progress
         style="width:<?php
-        echo ($two_star_review/$dSUM['totalRating'])*100; ?>%;">
+        if ($dSUM['totalRating'] == 0){echo '0';}
+        else {
+        echo ($two_star_review/$dSUM['totalRating'])*100; }?>%;">
         
         
       </div>
@@ -408,8 +416,9 @@ try {
         <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0"
         aria-valuemin="0" aria-valuemax="100" id=one_star_progress
         style="width:<?php
-        echo ($one_star_review/$dSUM['totalRating'])*100; ?>%;">
-        
+        if ($dSUM['totalRating'] == 0){echo '0';}
+        else{
+        echo ($one_star_review/$dSUM['totalRating'])*100; }?>%;">
         
       </div>
       
@@ -468,9 +477,9 @@ try {
       try {
         $x = 0;
         require ('../connection.php');
-        $sql = "SELECT * FROM orders WHERE ostatus = 'Pending'";
+        $sql = "SELECT * FROM orders WHERE ostatus = 'Pending' AND bid=$bid";
         $orders = $db->query($sql);
-        
+        if ($orders){
         while ($details = $orders->fetch()) {
           extract($details);
         ?>
@@ -490,6 +499,7 @@ try {
       <td><?php echo $details["ostatus"]; ?></td>
     </tr>
 <?php }
+        }
  
 //$db = null;
 }
@@ -525,16 +535,20 @@ die($e->getMessage());
   <caption class="top-products">Top Products</caption>
   <tbody>
     <?php
-    while ($top = $topSales->fetch()){; 
-      extract($top); ?>
+    if ($topSales){
+    while ($top = $topSales->fetch()){
+      extract($top); 
+      $imageData = base64_encode($top['image']);
+      $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+      ?>
     <tr>
-      <td><img src="" alt=""></td>
+      <td><img src="<?php echo $imageSrc ;?>" alt=""></td>
       <td><h6 class="product-name"><?php echo $top["pname"];?></h6>
       <span class="product-span"><?php echo "Price ".$top["sellPrice"]. " BHD";?></span></td>
       <td><p  class="borded-p"><?php echo $top["TotalSales"]. " Sales";?></p></td>
     </tr>
     <?php 
-    }?>
+    }}?>
     <!-- <tr>
       <td><img src="2.jpg" alt=""></td>
       <td><h6 class="product-name">Product Name</h6><span class="product-span">Price $200</span></td>
@@ -602,10 +616,7 @@ new Chart(ctx, {
     datasets: [{
       label: 'Orders Count',
       data: <?php 
-      if ($row['order_count'] == 0){
-        echo "0";
-      }
-      else {echo json_encode($data);  }
+        echo json_encode($data);
       ?>,
       backgroundColor: [
         'rgba(255, 99, 132, 1)',
