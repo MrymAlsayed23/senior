@@ -208,7 +208,6 @@
             foreach ($results as $result) {
                 $bid = $result['bid'];
                 $productId = $result['pid'];
-                $brandName = $result['BrandName'];
                 $pname = $result['pname'];
                 $image = $result['image'];
                 $sellPrice = $result['sellPrice'];
