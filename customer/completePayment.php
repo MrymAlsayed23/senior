@@ -24,7 +24,7 @@ if (isset($_SESSION['uid'])) {
         // 0 for card method
         $row = $db->exec($sql);
         $db->commit();
-        header('location:order.php?cid='.$cid.'&bid='.$bid);
+        header('location:orderstatus.php?cid='.$cid.'&bid='.$bid);
       }
       $db = null;
     } catch (PDOException $e) {
@@ -57,7 +57,8 @@ if (isset($_SESSION['uid'])) {
         // 1 for cash method
         $row = $db->exec($sql);
         $db->commit();
-        header('location:order.php?cid='.$cid.'&bid='.$bid);
+        header('location:orderstatus.php?cid='.$cid.'&bid='.$bid);
+
       }
       
 
