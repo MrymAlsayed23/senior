@@ -317,23 +317,17 @@
 
     });
 
-    $('#save_review').click(function(){
-
-        var user_name = $('#user_name').val();
-
-        var user_review = $('#user_review').val();
-
-        if(user_name == '' || user_review == '')
-        {
-            alert("Please Fill Both Field");
-            return false;
-        }
-        else
-        {
+          var params = new URLSearchParams(window.location.search);
+          var bid = params.get('bid');
+          var uid = "<?php echo $_SESSION['uid'] ?>";
             $.ajax({
                 url:"submit_rating.php",
                 method:"POST",
-                data:{rating_data:rating_data, user_name:user_name, user_review:user_review},
+                data:{
+                  'rating_data':rating_data,
+                  'bid': $bid,
+                  'uid': $uid
+                },
                 success:function(data)
                 {
                     $('#review_modal').modal('hide');
@@ -342,38 +336,8 @@
 
                     alert(data);
                 }
-            })
-        }
-    });
-    
-        $('#save_review').click(function(){
+            });
 
-        var user_name = $('#user_name').val();
-
-        var user_review = $('#user_review').val();
-
-        if(user_name == '' || user_review == ''){
-            alert("Please Fill Both Field");
-            return false;
-        }
-        else
-        {
-            $.ajax({
-                url:"submit_rating.php",
-                method:"POST",
-                data:{rating_data:rating_data},
-                success:function(data)
-                {
-                    $('#review_modal').modal('hide');
-
-                    load_rating_data();
-
-                    alert(data);
-                }
-            })
-        }
-
-        });
 
         load_rating_data();
 
