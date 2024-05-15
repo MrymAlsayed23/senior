@@ -1,8 +1,11 @@
 <?php
 // try {
+  $bid = $_GET['bid'];
   session_start();
-  if (isset($_SESSION["uid"])){
-    $bid = $_GET['bid'];
+  if (!isset($_SESSION["uid"])){
+    header("BusinessHome.php?bid=".$bid);
+  }
+    
      
   if (isset($_SESSION['message'])) {
     echo '<script type="text/javascript">';
@@ -84,19 +87,19 @@
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <?php
-                                                try{
-                                                    require('../connection.php');
-                                                    $sql = "SELECT bname, bid FROM business";
-                                                    $stmt = $db->query($sql); 
-                                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            //     try{
+                                            //         require('../connection.php');
+                                            //         $sql = "SELECT bname, bid FROM business";
+                                            //         $stmt = $db->query($sql); 
+                                            //         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                                                    foreach ($results as $row) {
-                                                        echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
-                                                    }
-                                                }
-                                                catch (PDOException $e) {
-                                                    echo "Error: " . $e->getMessage();
-                                            }
+                                            //         foreach ($results as $row) {
+                                            //             echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
+                                            //         }
+                                            //     }
+                                            //     catch (PDOException $e) {
+                                            //         echo "Error: " . $e->getMessage();
+                                            // }
                                             ?>
                                         </a>
                                     </li>
@@ -217,4 +220,3 @@
 </body>
 
 </html>
-<?php }?>

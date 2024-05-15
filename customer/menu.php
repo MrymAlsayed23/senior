@@ -101,7 +101,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Order Status</a>
+                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Orders</a>
                             </li>
 
                             

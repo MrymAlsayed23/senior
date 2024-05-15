@@ -85,7 +85,13 @@
                             </li> -->
 
                             <li class="nav-item">
+                                <?php if (!isset($_SESSION['uid'])){?>
                                 <a class="nav-link" href="register.php">Sign Up</a>
+                                <?php }
+                                else { ?>
+                                    <a class="nav-link" href="Logout.php">Logout</a>
+                               <?php }?> 
+                                    
                             </li>
 
                         </ul>
