@@ -324,6 +324,7 @@
                 url:"submit_rating.php",
                 method:"POST",
                 data:{
+                  'submit': true,
                   'rating_data':rating_data,
                   'bid': $bid,
                   'uid': $uid
@@ -332,9 +333,9 @@
                 {
                     $('#review_modal').modal('hide');
 
-                    load_rating_data();
+                    // load_rating_data();
 
-                    alert(data);
+                    // alert(data);
                 }
             });
 
