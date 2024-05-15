@@ -327,8 +327,8 @@
                 data:{
                   'submit': true,
                   'rating_data':rating_data,
-                  'bid': $bid,
-                  'uid': $uid
+                  'bid': bid,
+                  'uid': uid
                 },
                 success:function(data)
                 {
