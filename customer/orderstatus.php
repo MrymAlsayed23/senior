@@ -179,10 +179,10 @@
               </td>
               <td>
                 <?php
-                //if ($rows['ostatus'] == 'Completed'){
+                if ($rows['ostatus'] == 'Completed'){
                     ?>
                     <button type="button" name="add_review" id="add_review" class="btn btn-primary">Review</button>
-                  <?php //} ?>
+                  <?php } ?>
               </td>
 
 
