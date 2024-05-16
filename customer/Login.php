@@ -22,7 +22,6 @@ session_start();
         p{
             text-align:right;
         }
-        
     </style>
     <body>
 
@@ -102,7 +101,7 @@ session_start();
                                 exit();
                             }
                         
-                            else echo "Invalid username or Password";
+                            else echo "<div class='alert alert-danger' role='alert'>Invalid username or Password</div>";
 
                         } catch (PDOException $ex) {
                             echo $ex->getMessage();
