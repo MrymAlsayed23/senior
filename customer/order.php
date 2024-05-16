@@ -177,8 +177,9 @@ if (isset($_SESSION['uid'])) {
                   <th>Product Picture</th>
                   <th>Product Name</th>
                   <th>Quantity</th>
-                  <!-- <th>Status</th>
-                  <th>Date/Time</th> -->
+                  <th colspan="2">Total Price</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <?php
@@ -200,14 +201,14 @@ if (isset($_SESSION['uid'])) {
                 $row = $db->query($sql);
                 $c = 0;
                 while ($rows = $row->fetch(PDO::FETCH_ASSOC)) {
-                  $imageData = base64_encode($image);
+                  $imageData = base64_encode($rs['image']);
                   $imageSrc = 'data:image/jpeg;base64,' . $imageData;
                   ++$c;
                   if ($c > 0) {
               ?>
 
                     <tr>
-                      <td><img src="<?php echo $rows['imageSrc']; ?>" alt=""></td>
+                      <td><img src="<?php echo $imageSrc; ?>" alt="" style="width:30%;"></td>
                       <td>
                         <ul>
                           <li><?php echo $rs['pname']; ?></li>
@@ -219,9 +220,14 @@ if (isset($_SESSION['uid'])) {
                           <li><?php echo $r['quantity'];  ?></li>
                         </ul>
                       </td>
+                      <td colspan="2">
+                        <ul
+                          <li><?php echo $r['quantity'] * $rs['sellPrice'];  ?></li>
+                        </ul>
+                      </td>
 
-                      <!-- <td><?php echo $rows['ostatus']; ?></td>
-                      <td><?php echo $rows['time']; ?></td> -->
+                      <!-- <td><?php //echo $rows['ostatus']; ?></td>
+                      <td><?php //echo $rows['time']; ?></td> -->
                     </tr>
 
                     <!-- <tr>

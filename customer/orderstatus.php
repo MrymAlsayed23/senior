@@ -179,10 +179,10 @@
               </td>
               <td>
                 <?php
-                if ($rows['ostatus'] == 'Completed'){
+                //if ($rows['ostatus'] == 'Completed'){
                     ?>
                     <button type="button" name="add_review" id="add_review" class="btn btn-primary">Review</button>
-                  <?php } ?>
+                  <?php //} ?>
               </td>
 
 
@@ -250,89 +250,66 @@
     </body>
 
 </html>
-<?php }?>
+
 
 <script>
-    $(document).ready(function(){
+$(document).ready(function() {
+    var rating_data = 0;
 
-        var rating_data = 0;
-
-    $('#add_review').click(function(){
-
+    $('#add_review').click(function() {
         $('#review_modal').modal('show');
-
     });
 
-    $(document).on('mouseenter', '.submit_star', function(){
-
+    $(document).on('mouseenter', '.submit_star', function() {
         var rating = $(this).data('rating');
-
         reset_background();
-
-        for(var count = 1; count <= rating; count++)
-        {
-
-            $('#submit_star_'+count).addClass('text-warning');
-
+        for (var count = 1; count <= rating; count++) {
+            $('#submit_star_' + count).addClass('text-warning');
         }
-
     });
 
-    function reset_background()
-    {
-        for(var count = 1; count <= 5; count++)
-        {
-
-            $('#submit_star_'+count).addClass('star-light');
-
-            $('#submit_star_'+count).removeClass('text-warning');
-
+    function reset_background() {
+        for (var count = 1; count <= 5; count++) {
+            $('#submit_star_' + count).addClass('star-light');
+            $('#submit_star_' + count).removeClass('text-warning');
         }
     }
 
-    $(document).on('mouseleave', '.submit_star', function(){
-
+    $(document).on('mouseleave', '.submit_star', function() {
         reset_background();
-
-        for(var count = 1; count <= rating_data; count++)
-        {
-
-            $('#submit_star_'+count).removeClass('star-light');
-
-            $('#submit_star_'+count).addClass('text-warning');
+        for (var count = 1; count <= rating_data; count++) {
+            $('#submit_star_' + count).removeClass('star-light');
+            $('#submit_star_' + count).addClass('text-warning');
         }
-
     });
 
-    $(document).on('click', '.submit_star', function(){
-
+    $(document).on('click', '.submit_star', function() {
         rating_data = $(this).data('rating');
-
     });
 
-          var params = new URLSearchParams(window.location.search);
-          var bid = params.get('bid');
-          var uid = "<?php echo $_SESSION['uid']; ?>";
-          console.log(uid);
-            $.ajax({
-                url:"submit_rating.php",
-                method:"POST",
-                data:{
-                  'submit': true,
-                  'rating_data':rating_data,
-                  'bid': bid,
-                  'uid': uid
-                },
-                success:function(data)
-                {
-                    $('#review_modal').modal('hide');
-
-                    // load_rating_data();
-
-                    // alert(data);
-                }
-            });
-
+    $(document).on('click', '#save_review', function() {
+        var params = new URLSearchParams(window.location.search);
+        var bid = params.get('bid');
+        var uid = "<?php echo $_SESSION['uid']; ?>";
+        console.log(uid);
+        console.log(bid);
+        console.log(rating_data);
+        $.ajax({
+            type: "post",
+            url: "submit_rating.php",
+            data: {
+                'submit': true,
+                'rating_data': rating_data,
+                'bid': bid,
+                'uid': uid
+            },
+            success: function(data) {
+                $('#review_modal').modal('hide');
+                // Do other actions if needed
+            }
+        });
+    });
+});
 
     //     load_rating_data();
 
@@ -435,5 +412,6 @@
     
 
     
-    });
+    
 </script>
+<?php }?>
