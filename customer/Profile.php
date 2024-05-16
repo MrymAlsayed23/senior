@@ -32,10 +32,75 @@ session_start();
     
     <body>
 
-      <!-- nav  -->
-      <?php include("../customer/customerNavBar.php"); ?>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="customerHome.php">
+                            <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Business
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <?php
+                                                    try{
+                                                        require('../connection.php');
+                                                        $sql = "SELECT bname, bid FROM business";
+                                                        $stmt = $db->query($sql); 
+                                                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                        foreach ($results as $row) {
+                                                            echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
+                                                        }
+                                                    }
+                                                    catch (PDOException $e) {
+                                                        echo "Error: " . $e->getMessage();
+                                                }
+                                                ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> 
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Order Status</a>
+                                </li>
+
+                            
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                
         <?php
         
         if (!isset($_SESSION['username'])) {
@@ -61,7 +126,6 @@ session_start();
         
         $rs=$r->fetchAll(PDO::FETCH_ASSOC);
         foreach ($rs as $key => $value) {
-            $username=$value['username'];
             $fname=$value['Fname'];
             $lname=$value['Lname'];
             $phone=$value['Phone'];
@@ -71,7 +135,7 @@ session_start();
         
         <body>
             <div class="container">
-                <h1><?php echo $_SESSION['username']; ?></h1>
+                <h1>My Profile</h1>
                 <h4>First Name: <?php echo $fname; ?></h4>
                 <h4>Last Name: <?php echo $lname; ?></h4>
                 <h4>Phone Number: <?php echo $phone; ?></h4>
