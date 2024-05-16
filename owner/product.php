@@ -14,6 +14,7 @@ $bid = $_GET['bid'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/02448b3b92.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
         <title>New Product</title>
         <link rel="stylesheet" href="o.css">
     </head>
@@ -186,7 +187,11 @@ $bid = $_GET['bid'];
                   'pType' =>$ptype,
                 ]);
                 
-                
+                if ($addpro>0){
+                    $_SESSION['status'] = 'Sucess';
+                    
+            }
+               
             }
               
             catch(Exception $e){
@@ -200,5 +205,16 @@ $bid = $_GET['bid'];
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <?php if (isset($_SESSION['status'])) { ?>
+        <script>
+            Swal.fire({
+                        text: "The Product Added Successfuly",
+                        icon: "success",
+                        showConfirmButton: false,
+                      });
+        </script>
+        <?php } unset($_SESSION['status']); ?>
     </body>
 </html>

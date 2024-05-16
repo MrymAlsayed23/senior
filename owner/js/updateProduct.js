@@ -23,8 +23,8 @@ $(document).ready(function () {
         $('#mdetails').val(value['Details']);
         $('#mprice').val(value['sellPrice']);
         $('#mqunatity').val(value['pquantity']);
-        $('#mcategory').val(value['category']);
-        });
+        $('#mcategory').val(value['pType']);
+      });
        $('#update').modal('show');
      },
      error: function(XMLHttpRequest, textStatus, errorThrown) {

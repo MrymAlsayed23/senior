@@ -129,11 +129,11 @@ try {
   $sql4 = "SELECT SUM(total) AS total FROM orders WHERE bid='$bid' AND ostatus='Completed'";
   $revenues = $db->prepare($sql4);
   $revenues->execute();
-  $sql5 = "SELECT p.pid, p.pname,p.sellPrice,image, SUM(oi.quantity) AS TotalSales
+  $sql5 = "SELECT p.pid, p.pname,p.sellPrice,p.image, SUM(oi.quantity) AS TotalSales
   FROM products p
   INNER JOIN order_items oi ON p.pid = oi.pid
   INNER JOIN orders o ON oi.oid = o.oid
-  WHERE o.bid='$bid' AND o.ostatus = 'Completed'
+  WHERE o.bid=$bid AND o.ostatus = 'Completed'
   GROUP BY p.pid
   ORDER BY TotalSales DESC
   LIMIT 2";

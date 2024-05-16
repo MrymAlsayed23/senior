@@ -2,6 +2,7 @@
 require("../connection.php");
 if (isset($_POST["click_show_btn"])) {
     $oid = $_POST["oid"];
+    $bid = $_POST["bid"];
     try {
         $sql = "SELECT order_items.pid, products.pname, products.sellPrice, products.image,
             order_items.quantity
@@ -67,6 +68,7 @@ if (isset($_POST["click_show_btn"])) {
                                 <?php } else { ?>
 
                                     <input hidden type="number" name="oid" value="<?php echo $s1["oid"]; ?>" form="stsForm">
+                                    <input hidden type="number" name="bid" value="<?php echo $bid; ?>" form="stsForm">
                                     <select class="form-select form-select-sm" aria-label="Small select example" name="status" form="stsForm">
                                         <option selected value="<?php echo $s1["ostatus"]; ?>"><?php echo $s1["ostatus"]; ?></option>
                                         <?php if ($s1["ostatus"] == "Pending") { ?>
@@ -101,12 +103,14 @@ if (isset($_POST["updatestatus"])){
 
     $sts = $_POST["status"];
     $oid = $_POST["oid"];
+    $bid = $_POST["bid"];
     $sql = "UPDATE orders SET ostatus = '$sts' WHERE oid = $oid";
     $st = $db->exec($sql);
     if ($st>0){
-        header("location: displayOrders.php");   
+        header("location: displayOrders.php?bid=".$bid);   
 
     }
     $db = null;
 }
 ?>
+

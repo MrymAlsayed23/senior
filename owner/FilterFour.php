@@ -2,7 +2,7 @@
 try {
 require ('../connection.php');
 if (isset($_POST["com_btn"])) {
-
+  $bid = $_POST["bid"];
     $sql = "SELECT * FROM orders WHERE ostatus = 'Completed'";
     $orders = $db->query($sql);
     while ($details = $orders->fetch()) {
@@ -11,7 +11,7 @@ if (isset($_POST["com_btn"])) {
         ?>
         <tr>
     <div class="container mt-5">
-      <th scope="row"><?php echo $details["oid"]; ?></th>
+      <th scope="row" class="oid"><?php echo $details["oid"]; ?></th>
       <td><?php 
           $sql2 = "SELECT uid, fname, lname FROM USERS";
           $r= $db->query($sql2);
@@ -58,3 +58,6 @@ catch (PDOException $e) {
   }
 
 ?>
+<script src="js/FilterOrdersByStatus.js"></script>
+    <script src="js/FilterOrdersByDate.js"></script>
+    <script src="js/ShowOrderItems.js"></script>

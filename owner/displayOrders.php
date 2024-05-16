@@ -63,21 +63,21 @@ $bid = $_GET['bid'];
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayProducts.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayProducts.php?bid=<?php echo $bid;?>" class="sidebar-link">
               <i class="fa-solid fa-box"></i>
               <span>Products</span>
               </a>
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayOrders.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayOrders.php?bid=<?php echo $bid;?>" class="sidebar-link">
               <i class="fa-solid fa-boxes-packing"></i>
               <span>Orders</span>
               </a>
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayCustomers.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayCustomers.php?bid=<?php echo $bid;?>" class="sidebar-link">
               <i class="fa-solid fa-users"></i>
               <span>Customers</span>
               </a>

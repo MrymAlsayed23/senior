@@ -17,7 +17,8 @@ if (isset($_POST["click_Update_btn"])) {
              'Details' => $r['Details'],
              'sellPrice' => (double)$r['sellPrice'],
              'pquantity' => (int)$r['pquantity'],
-             'category' => $r['category']]);
+             'pType' => $r['pType'],             
+            ]);
          }
         //echo "F ds";
         // while ($row = $products->fetch(PDO::FETCH_ASSOC)) {
@@ -45,9 +46,13 @@ if (isset($_POST["updateProductsBut"])) {
     $price = $_POST["SellPrice"];
     $qty = $_POST["pqunatity"];
     $category = $_POST["category"];
+    $fileName = $_FILES['image']['name'];
+    $fileSize = $_FILES['image']['size'];
+    $content = (addslashes(file_get_contents($_FILES['image']["tmp_name"])));
 
     $sql = "UPDATE products SET pname = '$name', Details= '$details' ,
-    SellPrice = '$price' , pquantity =  '$qty' ,  pType = '$category' WHERE pid = '$pid'";
+    image = '$content', imagename = '$fileName', imagesize = '$fileSize',
+    SellPrice = '$price' , pquantity = '$qty',pType = '$category' WHERE pid = '$pid'";
     $r = $db->exec($sql);
     if ($r>0){
        // $_SESSION['status'] = 'Update Success';

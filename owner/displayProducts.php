@@ -32,32 +32,44 @@ $bid = $_GET['bid'];
           <h1 class="modal-title fs-5" id=update">Update Product</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="UpdateProducts.php" method="post">
+        <form action="UpdateProducts.php" method="post"  enctype="multipart/form-data">
           <div class="modal-body">
-            <div class="mb-3">
+            <div class="row">
               <input type="hidden" class="form-control" id="mpid" name="pid">
               <input type="hidden" class="form-control" id="mbid" name="bid" value="<?php echo $bid;?>">
-            </div>
-            <div class="mb-3">
+              <div class="col mb-3">
               <label for="" class="form-label">Product Name</label>
               <input type="text" class="form-control" id="mname" name="pname" value="" placeholder="">
             </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Details</label>
-              <textarea class="form-control" id="mdetails" name="Details" rows="2"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Sell Price</label>
-              <input type="number" min="" class="form-control" id="mprice" name="SellPrice" placeholder="">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Quantity</label>
-              <input type="number" class="form-control" id="mqunatity" name="pqunatity" placeholder="">
-            </div>
-            <div class="mb-3">
+            <div class="col mb-3">
               <label for="" class="form-label">Category</label>
               <input type="text" class="form-control" id="mcategory" name="category" placeholder="">
             </div>
+            </div>
+            <div class="row">
+            <div class="col mb-3">
+              <label for="" class="form-label">Details</label>
+              <textarea class="form-control" id="mdetails" name="Details" rows="2"></textarea>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col mb-3">
+              <label for="" class="form-label">Sell Price</label>
+              <input type="number" min="" class="form-control" id="mprice" name="SellPrice" placeholder="">
+            </div>
+            <div class="col mb-3">
+              <label for="" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="mqunatity" name="pqunatity" placeholder="">
+            </div>
+            </div>
+            <div class="row">
+            <div class="col mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control" id="image">
+            </div>
+            </div>
+            
+            
 
           </div>
 
