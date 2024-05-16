@@ -22,8 +22,9 @@ if(isset($_POST["submit"]))
 		"bid"=> $bid,
 	]);
 
+	if ($statement->rowCount() > 0){
 	echo "Your Review & Rating Successfully Submitted";
-
+	}
 }
 
 //second Page
