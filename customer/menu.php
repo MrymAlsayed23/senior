@@ -1,6 +1,11 @@
 <?php
     session_start();
     $bid = $_GET['bid'];  
+
+    if (!isset($_SESSION["uid"]) || !isset($_GET['bid'])) {
+        header('location:login.php');
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,27 +27,17 @@
     .card {
         flex: 0 0 18rem;
         margin: 10px;
+        border-radius: 25px;
+        width: 18rem;
     }
-    
-    .card-container .card .fa-heart{
-        position: absolute;
-        top:-1rem;
-        height: 4.5rem;
-        width: 4.5rem;
-        line-height: 4.2rem;
-        font-size: 2rem;
-        background-color: var(--white);
-        border:var(--border);
-        border-radius: .5rem;
-        text-align: center;
-        color:var(--black);
-        cursor: pointer;
-        transition: .2s linear;
-        /* right: -9rem; */
-        background-color: var(--black);
-        right: -1rem;
-        color: red;
-
+     image{
+        width: 50px;
+    }
+    h5{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    h6{
+        color: green;
     }
 </style>
 
@@ -50,85 +45,77 @@
 
         <!-- Nav Bar  -->
 
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="customerHome.php">
+                            <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="customerHome.php">
-                        <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
+                                </li>
 
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
-                            </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Business
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <?php
+                                                    try{
+                                                        require('../connection.php');
+                                                        $sql = "SELECT bname, bid FROM business";
+                                                        $stmt = $db->query($sql); 
+                                                        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Business
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <?php
-                                                try{
-                                                    require('../connection.php');
-                                                    $sql = "SELECT bname, bid FROM business";
-                                                    $stmt = $db->query($sql); 
-                                                    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                                                    foreach ($results as $row) {
-                                                        echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
+                                                        foreach ($results as $row) {
+                                                            echo "<li><a class='dropdown-item' href ='customerHome.php?bid=".$row['bid']."'>".$row['bname']."</a></li>";
+                                                        }
                                                     }
+                                                    catch (PDOException $e) {
+                                                        echo "Error: " . $e->getMessage();
                                                 }
-                                                catch (PDOException $e) {
-                                                    echo "Error: " . $e->getMessage();
-                                            }
-                                            ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li> -->
+                                                ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> 
 
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="menu.php?bid=<?php echo $bid;?>">Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="cart.php?bid=<?php echo $bid;?>">Cart</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Orders</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="orderstatus.php?bid=<?php echo $bid;?>">Order Status</a>
+                                </li>
 
                             
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="login.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Login
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="register.php">Sign Up</a></li>
-                                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profile
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-
-            </nav>
-
+                </nav>
 
         <div class="card-container">
 
-        
             <?php
             try {
                 require('../connection.php');
@@ -141,7 +128,7 @@
                     $imageSrc = 'data:image/jpeg;base64,' . $imageData;
             
             ?>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <!-- <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> --> <!--heart icon for wishlist page-->
                 
                 <img src="<?php echo $imageSrc; ?>" class="card-img-top" alt="..."> <!-- Product Image -->
@@ -151,7 +138,7 @@
                     <h6><?php echo $sellPrice." BD"; ?></h6>
                     
                     <form method="POST" action="addToCart.php?bid=<?php echo $bid;?>">
-                        <input type="number" name="pquantity" id="" min="0" max="10">
+                        <input type="number" name="pquantity" id="" min="1" max="10">
                         <input type="hidden" name="pid" id="" value='<?php echo $pid;?>' />
                         <input type="hidden" name="bid" id="" value='<?php echo $bid;?>' />
                         <button type="submit" class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
