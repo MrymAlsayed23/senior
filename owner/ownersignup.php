@@ -64,27 +64,27 @@
                     <p>Make Sure to Enter Your Personal Information Correctly</p>
                     <div>
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" required>
+                        <input type="text" name="fname" pattern="/([A-Z][a-Z]){2,12}/" required>
                     </div>
                     <div>
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" required>
+                        <input type="text" name="lname" pattern="/([A-Z][a-Z]){2,12}/" required>
                     </div>
                     <div>
                         <label for="username">User Name</label>
-                        <input type="text" name="username" required>
+                        <input type="text" name="username" pattern="/([a-ZA-Z0-9_.-]){4,15}/" required>
                     </div>
                     <div>
                         <label for="ps">Password</label>
-                        <input type="password" name="ps" required>
+                        <input type="password" name="ps" pattern="/([A-Z][a-z0-9]){3,19}[!@#$%^&*-._?]{1}/" required>
                     </div>
                     <div>
                         <label for="phone">Phone</label>
-                        <input type="tel" name="phone" required>
+                        <input type="tel" name="phone" pattern="/((36)[0-9]{7})|((17)[0-9]{6})/" required>
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" name="email" required>
+                        <input type="email" name="email" pattern="/[a-zA-Z0-9._-]+@[a-zA-Z0-9-+_.]+.[a-zA-Z]{2,5}/" required>
                     </div>
                     </div>
                     <div class="form-two form-step">
@@ -94,8 +94,13 @@
                     <div>
                         <label for="bcat">Category</label>
                         <select name="bcat" id="" placeholder="Select .." required >
-                            <option value="Book">Book</option>
-                             <option value="Accessories">Accessories</option>
+                            <option value="Book">Books</option>
+                            <option value="Book">Hand Made</option>
+                            <option value="Book">Electronics</option>
+                            <option value="Book">Clothes</option>
+                            <option value="Book">Bags</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Accessories">Sport Equipment and Apparel</option>
                         </select>
                     </div>
                     </div>
@@ -117,6 +122,8 @@
                     <div>
                         <label for="det">More Details About Your Business</label>
                         <input type="text" name="det" required >
+                        <textarea name="det" id="" cols="30" rows="5" placeholder="Details" required></textarea>
+
                     </div>
                     </div>
                     <div class="form-four form-step">
