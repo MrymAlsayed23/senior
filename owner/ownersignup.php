@@ -160,6 +160,7 @@
                     </div>
                     <div class="btn-group">
                         <!-- <button type="button" class="btn-pre">Next</button> -->
+                        <button type="submit" class="btn-back" disabled>Back</button>
                         <button type="button" class="btn-nex">Next</button>
                         <button type="submit" class="btn-sub" name="sub" disabled>Submit</button>
                     </div>

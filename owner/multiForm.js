@@ -1,5 +1,6 @@
 const nexBut = document.querySelector('.btn-nex');
 const subBut = document.querySelector('.btn-sub');
+const back = document.querySelector('.btn-back');
 const steps = document.querySelectorAll('.step');
 const form_steps = document.querySelectorAll('.form-step');
 document.getElementById("myForm").reset();
@@ -13,10 +14,10 @@ nexBut.addEventListener('click', ()=>{
     updateProgress();
 
 });
-nexBut.addEventListener('click', ()=>{
-    
-    if (active < (steps.length-1)){
-        active ++;
+back.addEventListener('click', ()=>{
+    active--;
+    if (active < 1){
+        active = 1;
     }
     updateProgress();
 });
@@ -38,11 +39,15 @@ const updateProgress = ()=>{
     });
     if (active == 1 ){
         subBut.disabled = true;
+        back.disabled = true;
     }
     else if(active == steps.length){
         nexBut.disabled = true;
         subBut.disabled = false;
-        
+    }
+    else {
+        back.disabled = false;
+        nexBut.disabled = false;
     }
 
     
