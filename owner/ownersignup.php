@@ -272,7 +272,9 @@ if (isset($_POST["sub"])) {
                   'pType' =>$ptype,
     ]);
 $db->commit();
-
+if ($addpro> 0){  
+ $_SESSION['status'] = 'add ';
+} 
     }
     
     catch(PDOException $e){
@@ -286,5 +288,17 @@ $db->commit();
 
 
 <script src="multiForm.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <?php if (isset($_SESSION['status'])) { ?>
+        <script>
+            Swal.fire({
+                        text: "Done Successfuly",
+                        icon: "success",
+                        showConfirmButton: false,
+                      });
+        </script>
+        <?php } unset($_SESSION['status']); ?>
 </body>
 </html>
