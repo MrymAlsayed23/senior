@@ -4,7 +4,7 @@ require ('../connection.php');
 if (isset($_POST["pen_btn"])) {
   $bid = $_POST["bid"];
 
-    $sql = "SELECT * FROM orders WHERE ostatus = 'Pending'";
+    $sql = "SELECT * FROM orders WHERE ostatus = 'Pending' AND bid=$bid";
     $orders = $db->query($sql);
     while ($details = $orders->fetch()) {
         extract($details);

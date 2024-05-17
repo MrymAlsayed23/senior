@@ -3,7 +3,7 @@ try {
 require ('../connection.php');
 if (isset($_POST["com_btn"])) {
   $bid = $_POST["bid"];
-    $sql = "SELECT * FROM orders WHERE ostatus = 'Completed'";
+    $sql = "SELECT * FROM orders WHERE ostatus = 'Completed' AND bid=$bid";
     $orders = $db->query($sql);
     while ($details = $orders->fetch()) {
         extract($details);

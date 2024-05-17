@@ -4,7 +4,7 @@ require ('../connection.php');
 if (isset($_POST["all_btn"])) {
   $bid = $_POST["bid"];
 
-    $sql = "SELECT * FROM orders";
+    $sql = "SELECT * FROM orders WHERE bid=$bid";
     $orders = $db->query($sql);
     while ($details = $orders->fetch()) {
         extract($details);
