@@ -66,27 +66,27 @@
                     <p>Make Sure to Enter Your Personal Information Correctly</p>
                     <div>
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" pattern="/([A-Z][a-z]){1,11}/" required>
+                        <input type="text" name="fname" pattern="[A-Z][a-z]{1,11}" title="First Name Must be Start with Capital Letter" required>
                     </div>
                     <div>
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" pattern="/[A-Z][a-z]{1,11}/" required>
+                        <input type="text" name="lname" pattern="[A-Z][a-z]{1,11}" title="Last Name Must be Start with Capital Letter">
                     </div>
                     <div>
                         <label for="username">User Name</label>
-                        <input type="text" name="username" pattern="/[a-zA-Z0-9_.-]{4,15}/" required>
+                        <input type="text" name="username" pattern="[a-zA-Z0-9_.-]{4,15}" title="" required>
                     </div>
                     <div>
                         <label for="ps">Password</label>
-                        <input type="password" name="ps" pattern="/([A-Z])[a-z0-9]{3,19}[!@#$%^&*-._?]{1}/" required>
+                        <input type="password" name="ps" pattern="[A-Z][a-z0-9]{3,19}[!@#$%^&*-._=+?]{1}" title="Password must start with Capital Letter and at least one character after it and end with a special charecter" required>
                     </div>
                     <div>
                         <label for="phone">Phone</label>
-                        <input type="number" name="phone" pattern="/((36)[0-9]){7}|((17)[0-9]{6})/" required>
+                        <input type="phone" name="phone" pattern="(36)[0-9]{7}|(17)[0-9]{6}|(32)[0-9]{6}|(34)[0-9]{6}|(35)[0-9]{6}|(37)[0-9]{6}|(39)[0-9]{6}" title="phone number must start with 32,34,35,36,37,39 or 17" required>
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" name="email" pattern="/[a-zA-Z0-9._-]+@[a-zA-Z0-9-+_.]+\.[a-zA-Z]{2,5}/" required>
+                        <input type="email" name="email" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9-+_.]+\.[a-zA-Z]{2,5}" title="email must contain @ and end with dot followed by character" required>
                     </div>
                     </div>
                     <div class="form-two form-step">
@@ -137,7 +137,7 @@
                       </p>
                     <div>
                     <label for="pname">Product Name</label>
-                    <input type="text" name="pname" required >
+                    <input type="text" name="pname" pattern="[a-zA-Z0-9!@#$%^&*_\-.,\s]{5,250}" title="Product Name Must not be empty and not short" required >
                     </div>
                     <div>
                     <label for="pquantity">Quantity</label>
@@ -145,7 +145,7 @@
                     </div>
                     <div>
                     <label for="Details">Details</label>
-                    <textarea name="Details" cols="30" rows="5" placeholder="Details" required></textarea>
+                    <textarea name="Details" cols="30" rows="5" placeholder="Details" pattern="[a-zA-Z0-9!@#$%^&*_\-.,\s]{10,}" title="Details Must not be empty and not short" required></textarea>
                     </div>
                     <div>
                     <label for="imagePro" class="form-label">Image</label>
@@ -154,11 +154,11 @@
                     </div>
                     <div>
                     <label for="sellPrice">Sell Price</label>
-                    <input type="number" name="sellPrice" required>
+                    <input type="number" step="any" name="sellPrice" required>
                     </div>
                     <div>
                         <label for="ptype">Product Type</label>
-                        <input type="text" name="ptype" required>
+                        <input type="text" name="ptype" pattern="[A-Z][a-z]{2,100}" title="Product Type Must not be empty" required>
                     </div>
                     </div>
                     <div class="btn-group">
@@ -280,9 +280,9 @@ if (isset($_POST["sub"])) {
         'pType' =>$ptype,
     ]);
 
-    if ($addpro->rowCount() > 0){  
-        $_SESSION['status'] = "Added";
-    } 
+    if ($addpro->rowCount()>0){
+        $_SESSION['status'] = "Added" ;
+    }
      
 $db->commit();
 
