@@ -277,13 +277,16 @@ if (isset($_POST["sub"])) {
                    'bid'=> $bid,
                   'pType' =>$ptype,
     ]);
+    if ($addpro> 0){  
+        $_SESSION['status'] = 'add ';
+       } 
+     
 $db->commit();
-if ($addpro> 0){  
- $_SESSION['status'] = 'add ';
-} 
+
     }
     
     catch(PDOException $e){
+        $db->rollBack();
         die($e->getMessage());
     }
     
