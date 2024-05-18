@@ -279,6 +279,10 @@ if (isset($_POST["sub"])) {
         'bid'=> $bid,
         'pType' =>$ptype,
     ]);
+
+    if ($addpro->rowCount() > 0){  
+        $_SESSION['status'] = "Added";
+    } 
      
 $db->commit();
 
