@@ -3,8 +3,7 @@ session_start();
 if (isset($_SESSION['uid'])) {
   if (isset($_POST['pbtn'])) { //these information will came from payment form in payment page (this part for Credit method)
     $type = $_POST['payType'];
-    $pid = $_GET['ItemID'];
-    $quantity = $_GET['PriceItem'];
+    
     //echo $type;
     $total = $_POST['amount'];
     //echo $total;
@@ -22,9 +21,17 @@ if (isset($_SESSION['uid'])) {
       $rows->execute();
       $oid = $db->lastInsertId();
       if ($rows->rowCount() == 1) {
-        $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', ?, ?)";
+        $cartSql = "SELECT * FROM cart_items WHERE cid=$cid";
+        $cartRows = $db->prepare($cartSql);
+        $cartRows->execute();
+        $cartItems = $cartRows->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($cartItems as $item) {
+        $pid = $item['pid'];
+        $pquantity = $item['pquantity'];
+        $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "',?, ?)";
         $rIN = $db->prepare($sqlIN);
-        $rIN->execute(array($pid[$i],$quantity[$i]));
+        $rIN->execute([$pid, $pquantity]);
+        }
         $sql2 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
         // 0 for card method
         $row3 = $db->exec($sql2);
@@ -50,9 +57,17 @@ if (isset($_SESSION['uid'])) {
       $rows->execute();
       $oid = $db->lastInsertId();
       if ($rows->rowCount() == 1) {
-        $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "',?, ?";
+        $cartSql = "SELECT * FROM cart_items WHERE cid=$cid";
+        $cartRows = $db->prepare($cartSql);
+        $cartRows->execute();
+        $cartItems = $cartRows->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($cartItems as $item) {
+        $pid = $item['pid'];
+        $pquantity = $item['pquantity'];
+        $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "',?, ?)";
         $rIN = $db->prepare($sqlIN);
-        $rIN->execute(array($pid[$i],$quantity[$i]));
+        $rIN->execute([$pid, $pquantity]);
+        }
         $sql6 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         // 1 for cash method
         $row6 = $db->exec($sql6);

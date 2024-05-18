@@ -184,64 +184,61 @@ if (isset($_SESSION['uid'])) {
               </thead>
               <?php
               try {
-                require("../connection.php");
-                $sql = "SELECT * FROM orders WHERE uid=$uid AND bid= $bid AND oid=$oid";
-                $sql1 = $db->prepare("SELECT * FROM order_items WHERE uid= $uid AND oid=$oid");
-                $sql1->execute();
-                $r = $sql1->fetch();
-
-                if ($r > 0) {
-                  $pid = $r['pid'];
-                  //echo $pid;
-                  $sql2  = $db->prepare("SELECT * FROM products WHERE pid =$pid");
-                  $sql2->execute();
-                  $rs = $sql2->fetch();
-                }
-
-                $row = $db->query($sql);
-                $c = 0;
-                while ($rows = $row->fetch(PDO::FETCH_ASSOC)) {
-                  $imageData = base64_encode($rs['image']);
-                  $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                  ++$c;
-                  if ($c > 0) {
+                  $sql = "SELECT * FROM orders WHERE uid = $uid AND bid = $bid AND oid = $oid";
+                  $stmt_orders = $db->prepare($sql);
+                  $stmt_orders->execute();
+                  $order = $stmt_orders->fetch(PDO::FETCH_ASSOC);
+              
+                  if ($order) {
+                      $sql1 = "SELECT * FROM order_items WHERE oid = $oid";
+                      $stmt_order_items = $db->prepare($sql1);
+                      $stmt_order_items->execute();
+              
+                      // Iterate over order items
+                      while ($r = $stmt_order_items->fetch(PDO::FETCH_ASSOC)) {
+                          $pid = $r['pid'];
+                          $sql2 = "SELECT * FROM products WHERE pid = $pid";
+                          $stmt_products = $db->prepare($sql2);
+                          $stmt_products->execute();
+                          $rs = $stmt_products->fetch(PDO::FETCH_ASSOC);
+              
+                          // Display product and order item information
               ?>
-
-                    <tr>
-                      <td><img src="<?php echo $imageSrc; ?>" alt="" style="width:30%;"></td>
-                      <td>
-                        <ul>
-                          <li><?php echo $rs['pname']; ?></li>
-                        </ul>
-                      </td>
-
-                      <td>
-                        <ul>
-                          <li><?php echo $r['quantity'];  ?></li>
-                        </ul>
-                      </td>
-                      <td colspan="2">
-                        <ul
-                          <li><?php echo $r['quantity'] * $rs['sellPrice'];  ?></li>
-                        </ul>
-                      </td>
-
-                      <!-- <td><?php //echo $rows['ostatus']; ?></td>
-                      <td><?php //echo $rows['time']; ?></td> -->
-                    </tr>
-
-                    <!-- <tr>
-                      <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
-                      <td style="font-weight:bold"><?php echo $rows['totalPrice'] . "BHD"; ?></td>
-                    </tr> -->
-              <?php } //end if 
-                  else {
-                    echo "<center><h1>You have no order yet!</h1></center>";
+                          <tr>
+                              <td><img src="data:image/jpeg;base64,<?php echo base64_encode($rs['image']); ?>" alt="" style="width:30%;"></td>
+                              <td>
+                                  <ul>
+                                      <li><?php echo $rs['pname']; ?></li>
+                                  </ul>
+                              </td>
+                              <td>
+                                  <ul>
+                                      <li><?php echo $r['quantity']; ?></li>
+                                  </ul>
+                              </td>
+                              <td colspan="2">
+                                  <ul>
+                                      <li><?php echo $r['quantity'] * $rs['sellPrice']; ?></li>
+                                  </ul>
+                              </td>
+                          </tr>
+              <?php
+                      } // End of while loop
+              
+                      // Calculate and display total price
+                      $totalPrice = $order['total'];
+              ?>
+                      <tr>
+                          <td colspan="2" style="text-align: left; padding-left:4rem;font-weight:bold">Total</td>
+                          <td colspan="3" style="font-weight:bold"><?php echo $totalPrice . " BHD"; ?></td>
+                      </tr>
+              <?php
+                  } else {
+                      // No order found
+                      echo "<center><h1>You have no order yet!</h1></center>";
                   }
-                } //end while loop
-              } //end try
-              catch (PDOException $e) {
-                echo $e->getMessage();
+              } catch (PDOException $e) {
+                  echo $e->getMessage();
               }
               ?>
 

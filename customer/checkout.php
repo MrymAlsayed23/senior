@@ -5,7 +5,7 @@ $bid = $_GET['bid'];
 if (isset($_GET['checkout'])) {
     $pid = $_GET['ItemID'];
     $sellPrice = $_GET['PriceItem'];
-    $quantity = $_GET['PriceItem'];
+    $quantity = $_GET['qtyitem'];
 
     if (!isset($_SESSION["uid"]) || !isset($_GET['bid']) || !isset($_GET['total'])) {
         header('location:login.php');
