@@ -95,14 +95,15 @@
                     <!-- <p>Make Sure to Enter Your Personal Information Correctly</p> -->
                     <div>
                         <label for="bcat">Category</label>
-                        <select name="bcat" id="" placeholder="Select .." required >
+                       <select name="bcat" id="" placeholder="Select .." required >
                             <option value="Book">Books</option>
-                            <option value="Book">Hand Made</option>
-                            <option value="Book">Electronics</option>
-                            <option value="Book">Clothes</option>
-                            <option value="Book">Bags</option>
+                            <option value="Hand Made">Hand Made</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothes">Clothes</option>
+                            <option value="Bags">Bags</option>
                             <option value="Accessories">Accessories</option>
-                            <option value="Accessories">Sport Equipment and Apparel</option>
+                            <option value="Gaming Merchandise">Gaming Merchandise</option>
+                            <option value="Sport Equipment and Apparel">Sport Equipment and Apparel</option>
                         </select>
                     </div>
                     </div>
