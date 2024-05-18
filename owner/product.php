@@ -106,22 +106,22 @@ $bid = $_GET['bid'];
                 <div class="row">
                     <div class="col-lg-6 mb-3">
                         <label for="pname" class="form-label">Product Name</label>
-                        <input type="text" name="pname" class="form-control" id="pname" required>
+                        <input type="text" name="pname" class="form-control" id="pname" pattern="[a-zA-Z0-9!@#$%^&*_\-.,\s]{5,250}" title="Product Name Must not be empty and not short" required>
                     </div>
                     <div class="col-lg-6 mb-3">
                         <label for="pquantity" class="form-label">Quantity</label>
-                        <input type="number" name="pquantity" class="form-control" id="pquantity" required>
+                        <input type="number" name="pquantity" class="form-control" id="pquantity" min="1" required>
                     </div>
                     </div>
                     <div class="row">
                     <div class="col-lg-6 mb-3">
                         <label for="Details" class="form-label">Details</label>
-                        <textarea name="Details" id="" cols="3" rows="3" placeholder="Details" class="form-control" id="Details" required></textarea>
+                        <textarea name="Details" id="" cols="3" rows="3" placeholder="Details" class="form-control" id="Details" pattern="[a-zA-Z0-9!@#$%^&*_\-.,\s]{10,}" title="Details Must not be empty and not short" required></textarea>
                     </div>
 
                     <div class="col-lg-6 mb-3">
                         <label for="pType" class="form-label">Product Type</label>
-                        <input type="text" name="pType" class="form-control" id="pType" required>
+                        <input type="text" name="pType" class="form-control" id="pType" pattern="[A-Z][a-z]{2,100}" title="Product Type Must not be empty" required>
                     </div>
                     </div>
                     <div class="row">
@@ -133,7 +133,7 @@ $bid = $_GET['bid'];
 
                     <div class="col-lg-6 mb-3">
                         <label for="sellPrice" class="form-label">Sell Price</label>
-                        <input type="number" name="sellPrice" class="form-control" id="sellPrice" required>
+                        <input type="number" name="sellPrice" class="form-control" id="sellPrice" step="any" required>
                     </div>
                     </div>
                     <div class="row text-center">
