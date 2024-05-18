@@ -25,7 +25,7 @@ if (isset($_SESSION['uid'])) {
         $rIN = $db->prepare($sqlIN);
         $rIN->execute();
       } 
-      if ($rows == 1) {
+      if ($rows->rowCount() == 1) {
         $oid = $db->lastInsertId();
         $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
         // 0 for card method
@@ -57,7 +57,7 @@ if (isset($_SESSION['uid'])) {
         $rIN = $db->prepare($sqlIN);
         $rIN->execute();
       } 
-      if ($rows == 1) {
+      if ($rows->rowCount() == 1) {
         $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         // 1 for cash method
         $row = $db->exec($sql);
