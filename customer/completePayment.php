@@ -19,17 +19,13 @@ if (isset($_SESSION['uid'])) {
       $rows = $db->prepare($sql);
       $rows->execute();
       $oid = $db->lastInsertId();
-      while ($row=$rows->fetch(PDO::FETCH_ASSOC)) { 
-        extract($row);
+      if ($rows->rowCount() == 1) {
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
         $rIN = $db->prepare($sqlIN);
         $rIN->execute();
-      } 
-      if ($rows->rowCount() == 1) {
-        $oid = $db->lastInsertId();
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
+        $sql2 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
         // 0 for card method
-        $row = $db->exec($sql);
+        $row3 = $db->exec($sql2);
         $db->commit();
         header('location:orderstatus.php?cid='.$cid.'&bid='.$bid);
       }
@@ -51,16 +47,14 @@ if (isset($_SESSION['uid'])) {
       $rows = $db->prepare($sql);
       $rows->execute();
       $oid = $db->lastInsertId();
-      while ($row=$rows->fetch(PDO::FETCH_ASSOC)) { 
+      if ($rows->rowCount() == 1) {
         extract($row);
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
         $rIN = $db->prepare($sqlIN);
         $rIN->execute();
-      } 
-      if ($rows->rowCount() == 1) {
-        $sql = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
+        $sql6 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         // 1 for cash method
-        $row = $db->exec($sql);
+        $row6 = $db->exec($sql6);
         $db->commit();
         header('location:orderstatus.php?cid='.$cid.'&bid='.$bid);
 
