@@ -25,11 +25,15 @@ $bid = $_GET['bid'];
      $r00 = $db->query($sql00);
      while ($d00 = $r00->fetch(PDO::FETCH_ASSOC)){
       extract($d00);
+      $imageData = base64_encode($d00['blogo']);
+      $imageSrc = 'data:image/jpeg;base64,' . $imageData;
      
    ?>
    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><?php echo $d00['bname'];?></a> <?php }?>
+        <a class="navbar-brand" href="ownerPanel.php?bid=<?php echo $bid;?>" >
+          <?php echo $d00['bname']; ?>
+      </a> <?php }?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,28 +41,28 @@ $bid = $_GET['bid'];
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             <li class="sidebar-item px-1">
-              <a href="OwnerPanel.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="OwnerPanel.php?bid=<?php echo $bid; ?>" class="sidebar-link">
               <i class="fa-solid fa-house"></i>
               <span>Dashboard</span>
               </a>
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayProducts.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayProducts.php?bid=<?php echo $bid; ?>" class="sidebar-link">
               <i class="fa-solid fa-box"></i>
               <span>Products</span>
               </a>
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayOrders.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayOrders.php?bid=<?php echo $bid; ?>" class="sidebar-link">
               <i class="fa-solid fa-boxes-packing"></i>
               <span>Orders</span>
               </a>
           </li>
 
           <li class="sidebar-item px-1">
-              <a href="displayCustomers.php?bid=<?php echo $bid?>" class="sidebar-link">
+              <a href="displayCustomers.php?bid=<?php echo $bid; ?>" class="sidebar-link">
               <i class="fa-solid fa-users"></i>
               <span>Customers</span>
               </a>
@@ -282,15 +286,64 @@ try {
                       </div>
                     </div>
                   </div> -->
-              <?php if ($dSUM['totalRating'] > 0 ) { 
-              if ( round($dSUM['totalRating']/$dTotal['total'] == 3.75) )  { ?>
+                  <?php if ($dSUM['totalRating'] == 0 ) {?>
+
+                  <i class="fa-solid fa-star mr-1 main_star"  style="color:#adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+
+
+              <?php } if ($dSUM['totalRating'] > 0 ) { 
+                if (round($dSUM['totalRating']/$dTotal['total'], 3) > 1 
+                 && round($dSUM['totalRating']/$dTotal['total'], 3)  < 2)  { ?>
+                  
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                  <?php }
+              if (round($dSUM['totalRating']/$dTotal['total'],3 ) > 2 
+              && round($dSUM['totalRating']/$dTotal['total'], 3)  < 3)  { ?>
+                  
+                    <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                    <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                    <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                    <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                    <?php }
+             if (round($dSUM['totalRating']/$dTotal['total'], 3) > 3
+             &&  round($dSUM['totalRating']/$dTotal['total'], 3) < 4)  { ?>
                   
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
-                <?php }}?>
+                <?php }
+                if (round($dSUM['totalRating']/$dTotal['total'], 3) > 4 
+                &&  round($dSUM['totalRating']/$dTotal['total'], 3) < 5)  { ?>
+                     
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
+                   <?php }
+                 
+                if (round($dSUM['totalRating']/$dTotal['total'], 3) == 5  
+                ||  round($dSUM['totalRating']/$dTotal['total'], 3) > 5)  { ?>
+                     
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
+                   <?php }   
+                
+              }}?>
                 </div>
                 <h6>
                   <span id="total_review"><?php
@@ -426,7 +479,7 @@ try {
                 </p>
 
              <?php  
-             }}?>
+             }?>
               </div>
 
             </div>

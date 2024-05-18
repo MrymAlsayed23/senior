@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,7 +123,7 @@
                     </div> -->
                     <div>
                         <label for="det">More Details About Your Business</label>
-                        <input type="text" name="det" required >
+                        <!-- <input type="text" name="det" required > -->
                         <textarea name="det" id="" cols="30" rows="5" placeholder="Details" required></textarea>
 
                     </div>
@@ -146,7 +148,7 @@
                     </div>
                     <div>
                     <label for="image" class="form-label">Image</label>
-                        <input type="file" name="image" class="form-control" id="image"
+                        <input type="file" name="imagePro" class="form-control" id="image"
                         required>
                     </div>
                     <div>
@@ -160,7 +162,7 @@
                     </div>
                     <div class="btn-group">
                         <!-- <button type="button" class="btn-pre">Next</button> -->
-                        <button type="submit" class="btn-back" disabled>Back</button>
+                        <button type="button" class="btn-back" disabled>Back</button>
                         <button type="button" class="btn-nex">Next</button>
                         <button type="submit" class="btn-sub" name="sub" disabled>Submit</button>
                     </div>
@@ -228,6 +230,10 @@ if (isset($_POST["sub"])) {
     $logoName = $_FILES['logo']['name'];
     $logoSize = $_FILES['logo']['size'];
     $contentlogo = file_get_contents($_FILES['image']["tmp_name"]);
+
+    $fileName = $_FILES['imagePro']['name'];
+    $fileSize = $_FILES['imagePro']['size'];
+    $content = file_get_contents($_FILES['imagePro']["tmp_name"]);
     $hpass = md5($ps);
     $t = 'Owner';
     try{
@@ -259,7 +265,7 @@ if (isset($_POST["sub"])) {
   
     $addpro = $db->prepare('INSERT INTO products ((pname,Details,sellPrice, pquantity,imagename,
     imagesize,image, bid ,pType)
-        VALUES (:pname,:Details,:sellPrice, :pquantity,:imagename,:imagesize,:image,:bid,:pType)');
+        VALUES (:pname,:Details,:sellPrice,:pquantity,:imagename,:imagesize,:image,:bid,:pType)');
     $addpro->execute([
         'pname' => $pname,
                    'Details'=> $Details,
