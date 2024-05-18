@@ -16,9 +16,10 @@ if (isset($_SESSION['uid'])) {
       require ('../connection.php');
       $db->beginTransaction();
       $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cid,$total,'Pending',NOW())";
-      $rows = $db->exec($sql);
+      $rows = $db->prepare($sql);
+      $rows->execute();
       $oid = $db->lastInsertId();
-      while ($row=$r->fetch(PDO::FETCH_ASSOC)) { 
+      while ($row=$rows->fetch(PDO::FETCH_ASSOC)) { 
         extract($row);
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
         $rIN = $db->prepare($sqlIN);
@@ -47,9 +48,10 @@ if (isset($_SESSION['uid'])) {
       require ('../connection.php');
       $db->beginTransaction();
       $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',$bid,$cid,$total,'Pending',NOW())";
-      $rows = $db->exec($sql);
+      $rows = $db->prepare($sql);
+      $rows->execute();
       $oid = $db->lastInsertId();
-      while ($row=$r->fetch(PDO::FETCH_ASSOC)) { 
+      while ($row=$rows->fetch(PDO::FETCH_ASSOC)) { 
         extract($row);
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
         $rIN = $db->prepare($sqlIN);
