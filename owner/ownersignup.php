@@ -115,12 +115,12 @@
                         <input type="text" name="bname" required >
                     </div>
                     <div>
-                        <label for="bname">Your Business Logo</label>
+                        <label for="logo">Your Business Logo</label>
                         <input type="file" name="logo" required >
                     </div>
                     <!-- <div>
                         <label for="">Your Business Category</label>
-                        <input type="text" disabled value="bcat">
+                        <input type="text" disabled value="">
                     </div> -->
                     <div>
                         <label for="det">More Details About Your Business</label>
@@ -148,7 +148,7 @@
                     <textarea name="Details" id="" cols="30" rows="5" placeholder="Details" required></textarea>
                     </div>
                     <div>
-                    <label for="image" class="form-label">Image</label>
+                    <label for="imagePro" class="form-label">Image</label>
                         <input type="file" name="imagePro" class="form-control" id="image"
                         required>
                     </div>
@@ -230,7 +230,7 @@ if (isset($_POST["sub"])) {
     $ptype = $_POST['ptype'];
     $logoName = $_FILES['logo']['name'];
     $logoSize = $_FILES['logo']['size'];
-    $contentlogo = file_get_contents($_FILES['image']["tmp_name"]);
+    $contentlogo = file_get_contents($_FILES['logo']["tmp_name"]);
 
     $fileName = $_FILES['imagePro']['name'];
     $fileSize = $_FILES['imagePro']['size'];
@@ -278,9 +278,6 @@ if (isset($_POST["sub"])) {
                    'bid'=> $bid,
                   'pType' =>$ptype,
     ]);
-    if ($addpro> 0){  
-        $_SESSION['status'] = 'add ';
-       } 
      
 $db->commit();
 
@@ -301,7 +298,7 @@ $db->commit();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <?php if (isset($_SESSION['status'])) { ?>
+        <!-- <?php //if (isset($_SESSION['status'])) { ?>
         <script>
             Swal.fire({
                         text: "Done Successfuly",
@@ -309,6 +306,6 @@ $db->commit();
                         showConfirmButton: false,
                       });
         </script>
-        <?php } unset($_SESSION['status']); ?>
+        <?php //} unset($_SESSION['status']); ?> -->
 </body>
 </html>
