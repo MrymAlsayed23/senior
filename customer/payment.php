@@ -133,7 +133,6 @@ $cid = $_GET['cid'];
                                 while ($rows = $row->fetch(PDO::FETCH_ASSOC)){
                                     extract($rows);
                                 ?>
-
                                 <input type="hidden" name="amount" value="<?php echo $rows['total']; ?>">
                                 <input type="hidden" name="cid" value="<?php echo $rows['cid']; ?>">
                                 <input type="hidden" name="bid" value="<?php echo $rows['bid']; ?>">
@@ -218,7 +217,7 @@ $cid = $_GET['cid'];
                                     try {
                                         $cid = $_GET['cid'];
                                         require('../connection.php');
-                                        $sql = "SELECT * FROM cart WHERE cid = $cid";
+                                        $sql = "SELECT * FROM cart WHERE cid = $cid ";
                                         $row = $db->query($sql);
                                         while ($rows = $row->fetch(PDO::FETCH_ASSOC)){
                                             extract($rows);
