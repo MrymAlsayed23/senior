@@ -15,7 +15,7 @@ if (isset($_SESSION['uid'])) {
     try {
       require ('../connection.php');
       $db->beginTransaction();
-      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',NULL,$cid,$total,'Pending',NOW())";
+      $sql = "INSERT INTO orders VALUES(NULL,'" . $_SESSION['uid'] . "',$bid,$cid,$total,'Pending',NOW())";
       $rows = $db->prepare($sql);
       $rows->execute();
       $oid = $db->lastInsertId();
