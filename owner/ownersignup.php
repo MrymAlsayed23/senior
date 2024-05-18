@@ -66,27 +66,27 @@
                     <p>Make Sure to Enter Your Personal Information Correctly</p>
                     <div>
                         <label for="fname">First Name</label>
-                        <input type="text" name="fname" pattern="/([A-Z][a-Z]){2,12}/" required>
+                        <input type="text" name="fname" required>
                     </div>
                     <div>
                         <label for="lname">Last Name</label>
-                        <input type="text" name="lname" pattern="/([A-Z][a-Z]){2,12}/" required>
+                        <input type="text" name="lname"  required>
                     </div>
                     <div>
                         <label for="username">User Name</label>
-                        <input type="text" name="username" pattern="/([a-ZA-Z0-9_.-]){4,15}/" required>
+                        <input type="text" name="username" required>
                     </div>
                     <div>
                         <label for="ps">Password</label>
-                        <input type="password" name="ps" pattern="/([A-Z][a-z0-9]){3,19}[!@#$%^&*-._?]{1}/" required>
+                        <input type="password" name="ps" required>
                     </div>
                     <div>
                         <label for="phone">Phone</label>
-                        <input type="tel" name="phone" pattern="/((36)[0-9]{7})|((17)[0-9]{6})/" required>
+                        <input type="tel" name="phone"  required>
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" name="email" pattern="/[a-zA-Z0-9._-]+@[a-zA-Z0-9-+_.]+.[a-zA-Z]{2,5}/" required>
+                        <input type="email" name="email" required>
                     </div>
                     </div>
                     <div class="form-two form-step">
@@ -95,7 +95,7 @@
                     <!-- <p>Make Sure to Enter Your Personal Information Correctly</p> -->
                     <div>
                         <label for="bcat">Category</label>
-                       <select name="bcat" id="" placeholder="Select .." required >
+                       <select name="bcat" placeholder="Select .." required >
                             <option value="Book">Books</option>
                             <option value="Hand Made">Hand Made</option>
                             <option value="Electronics">Electronics</option>
@@ -125,7 +125,7 @@
                     <div>
                         <label for="det">More Details About Your Business</label>
                         <!-- <input type="text" name="det" required > -->
-                        <textarea name="det" id="" cols="30" rows="5" placeholder="Details" required></textarea>
+                        <textarea name="det" cols="30" rows="5" placeholder="Details" required></textarea>
 
                     </div>
                     </div>
@@ -145,7 +145,7 @@
                     </div>
                     <div>
                     <label for="Details">Details</label>
-                    <textarea name="Details" id="" cols="30" rows="5" placeholder="Details" required></textarea>
+                    <textarea name="Details" cols="30" rows="5" placeholder="Details" required></textarea>
                     </div>
                     <div>
                     <label for="imagePro" class="form-label">Image</label>
@@ -154,11 +154,11 @@
                     </div>
                     <div>
                     <label for="sellPrice">Sell Price</label>
-                    <input type="number" name="sellPrice" id="" required>
+                    <input type="number" name="sellPrice" required>
                     </div>
                     <div>
                         <label for="ptype">Product Type</label>
-                        <input type="text" name="ptype" id="" required>
+                        <input type="text" name="ptype" required>
                     </div>
                     </div>
                     <div class="btn-group">
@@ -236,11 +236,12 @@ if (isset($_POST["sub"])) {
     $fileSize = $_FILES['imagePro']['size'];
     $content = file_get_contents($_FILES['imagePro']["tmp_name"]);
     $hpass = md5($ps);
+    //echo $hpass;
     $t = 'Owner';
     try{
         $db->beginTransaction();
         $adduser = $db->prepare('INSERT INTO users (fname,lname,username, password, phone,type,email )
-        VALUES (:fname, :lname, :username, :password, :phone, :type, :email)');
+        VALUES (:fname,:lname,:username,:password,:phone,:type,:email)');
     $adduser->execute([
         'fname' => $fname,
         'lname'=> $lname,
@@ -264,19 +265,19 @@ if (isset($_POST["sub"])) {
     ]);
     $bid = $db->lastInsertId();
   
-    $addpro = $db->prepare('INSERT INTO products ((pname,Details,sellPrice, pquantity,imagename,
-    imagesize,image, bid ,pType)
+    $addpro = $db->prepare('INSERT INTO products (pname,Details,sellPrice, pquantity,imagename,
+    imagesize,image,bid,pType)
         VALUES (:pname,:Details,:sellPrice,:pquantity,:imagename,:imagesize,:image,:bid,:pType)');
     $addpro->execute([
         'pname' => $pname,
-                   'Details'=> $Details,
-                   'sellPrice'=> $sellPrice,
-                    'pquantity'=> $pquantity,
-                    'imagename' =>$fileName,
-                    'imagesize' => $fileSize,   
-                     'image' => $content,
-                   'bid'=> $bid,
-                  'pType' =>$ptype,
+        'Details'=> $Details,
+        'sellPrice'=> $sellPrice,
+        'pquantity'=> $pquantity,
+        'imagename' =>$fileName,
+        'imagesize' => $fileSize,   
+        'image' => $content,
+        'bid'=> $bid,
+        'pType' =>$ptype,
     ]);
      
 $db->commit();
@@ -298,7 +299,7 @@ $db->commit();
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <!-- <?php //if (isset($_SESSION['status'])) { ?>
+        <?php if (isset($_SESSION['status'])) { ?>
         <script>
             Swal.fire({
                         text: "Done Successfuly",
@@ -306,6 +307,6 @@ $db->commit();
                         showConfirmButton: false,
                       });
         </script>
-        <?php //} unset($_SESSION['status']); ?> -->
+        <?php } unset($_SESSION['status']); ?>
 </body>
 </html>
