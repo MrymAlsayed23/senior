@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,23 +23,31 @@
                 try {
                     require('../connection.php'); 
                     $bid = $_GET['bid'];
-                    $sql = "SELECT email FROM business WHERE bid = '$bid' LIMIT 1"; 
+                    $sql = "SELECT * FROM business WHERE bid = $bid";
                     $stmt = $db->query($sql);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $businessEmail = $result['email'];
-                } catch (PDOException $e) {
-                    die("Error occurred: " . $e->getMessage());
-                }
+                    $ownerID = $result['bownerid'];
+                    // echo $ownerID;
+                    $sql2 = "SELECT email FROM users WHERE uid = $ownerID";
+                    $stmt2 = $db->query($sql2);
+                    $result2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+               
             ?>
             
             <div class="m-5">
                 <h1>Contact Us</h1>
-                <h4>Email: <?php echo htmlspecialchars($businessEmail);  ?></h4>
+                <?php ?>
+                <h4>Email: <?php echo $result2['email'];  ?></h4>
                 <p>We would love to hear from you! Feel free to reach out to us with any questions, inquiries, or collaboration opportunities.
                 </p>
-                <a href="mailto:<?php echo htmlspecialchars($businessEmail); ?>">Send an E-mail</a>
+                <a href="mailto:<?php echo $result2['email']; ?>">Send an E-mail</a>
             </div>
+<?php 
+ } catch (PDOException $e) {
+    die("Error occurred: " . $e->getMessage());
+}
 
+?>
         </div>
 
         <!-- footer  -->

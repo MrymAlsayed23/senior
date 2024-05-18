@@ -167,14 +167,14 @@
             <div class="container">
 
               <?php
-              
+              try {
                   require('../connection.php');
                   //$bid = $_GET['bid'];
                   $sql = "SELECT * FROM business LIMIT 1";
-                  $stmt = $db->query($sql); 
-                  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                  foreach ($results as $row) {
+                  $stmt1 = $db->query($sql); 
+                  $results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+                  $bid = $results1[0]["bid"];
+                  foreach ($results1 as $row) {
                     extract($row); ?>
                   
             
@@ -188,20 +188,15 @@
 
 
             <?php
-        
-        try {
-            require('../connection.php');
             // Define the range of product IDs you want to display
             $startProductId = 1; // Starting product ID
             $endProductId = 9; // Ending product ID
-
-            $sql = "SELECT * FROM products LIMIT 9";
-            $stmt = $db->prepare($sql);
+            $sql2 = "SELECT * FROM products WHERE bid = $bid LIMIT 9";
+            $stmt = $db->prepare($sql2);
             //$stmt->bindParam(1, $bid);
             $stmt->execute();
 
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             foreach ($results as $result) {
                 $bid = $result['bid'];
                 $productId = $result['pid'];
@@ -213,7 +208,8 @@
                 $imageData = base64_encode($image);
                 $imageSrc = 'data:image/jpeg;base64,' . $imageData;
             }
-                ?>
+        
+           ?>
 
                 <main>
                     <span class="one">
@@ -261,7 +257,7 @@
             
 
             $db = null; // Close the database connection
-        } catch (PDOException $e) {
+                                 } catch (PDOException $e) {
             die("Error Message" . $e->getMessage());
         }
         ?>

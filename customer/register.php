@@ -93,14 +93,7 @@ session_start();
 
                     if ($r == 1) {
                         // inside [] the users field 
-                        $_SESSION['uid'] = $userid;
-                        $_SESSION['Fname'] = $firstname;
-                        $_SESSION['Lname'] = $lastname;
-                        $_SESSION['username'] = $user;
-                        $_SESSION['Phone'] = $phone;
-                        $_SESSION['type'] = 'customer';
-                        $_SESSION['email'] = $email;
-                        header("location:customerHome.php");
+                        $_SESSION['status'] = 'Register';
                     }
                     $db = null;
                 }
@@ -197,12 +190,22 @@ session_start();
             }
         }
     </script>
+   
 
     <!-- footer  -->
     <?php include("../customer/footer.php"); ?>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <?php if (isset($_SESSION['status'])) { ?>
+        <script>
+            Swal.fire({
+                        text: "Successfuly Registered",
+                        icon: "success",
+                        showConfirmButton: false,
+                      });
+        </script>
+        <?php } unset($_SESSION['status']); ?>
 </body>
 
 </html>

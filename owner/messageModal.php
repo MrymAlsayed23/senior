@@ -9,6 +9,7 @@ require("../connection.php");
         extract($r);
         echo "<h5 style=font-weight:bold;>Customer Email: </h5>";
         echo "<h6>".$r['email']."</h6>";
+        echo "<a href=mailto:".$result2['email'].">Send an E-mail</a>";
       }  
   }
 ?>

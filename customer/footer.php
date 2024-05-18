@@ -119,7 +119,7 @@
                 <div class="footer-col">
                     <h4>get help</h4>
                     <ul>
-                        <li><a href="contact.php">Contact Us</a></li>
+                        <li><a href="contact.php?bid=<?php echo $bid;?>">Contact Us</a></li>
                         <li><a href="faq.php">FAQ</a></li>
                         <li><a href="orderstatus.php">order status</a></li>
                     </ul>
