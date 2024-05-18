@@ -48,7 +48,6 @@ if (isset($_SESSION['uid'])) {
       $rows->execute();
       $oid = $db->lastInsertId();
       if ($rows->rowCount() == 1) {
-        extract($row);
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "', $pid, $pquantity)";
         $rIN = $db->prepare($sqlIN);
         $rIN->execute();
