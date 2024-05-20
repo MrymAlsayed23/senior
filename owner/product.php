@@ -121,7 +121,7 @@ $bid = $_GET['bid'];
 
                     <div class="col-lg-6 mb-3">
                         <label for="pType" class="form-label">Product Type</label>
-                        <input type="text" name="pType" class="form-control" id="pType" pattern="[a-zA-Z]{1,100}" title="Product Type Must not be empty" required>
+                        <input type="text" name="pType" class="form-control" id="pType" pattern="[A-Za-z ]{1,100}" title="Product Type Must not be empty" required>
                     </div>
                     </div>
                     <div class="row">
