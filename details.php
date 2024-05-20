@@ -62,7 +62,7 @@ if(isset($_GET['sid']) && ctype_digit($_GET['sid'])){
       ?>
 
         <hr>
-        <a href="businesses.php">&#8249;</a>
+        <a href="dashboard.php">&#8249;</a>
 
 
 
