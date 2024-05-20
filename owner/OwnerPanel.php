@@ -31,7 +31,7 @@ $bid = $_GET['bid'];
    ?>
    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
       <div class="container-fluid">
-        
+      <img src="<?php echo $imageSrc; ?>" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
         <a class="navbar-brand" href="ownerPanel.php?bid=<?php echo $bid;?>" >
           <?php echo $d00['bname']; ?>
       </a> <?php }?>

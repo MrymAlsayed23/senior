@@ -50,6 +50,8 @@ $bid = $_GET['bid'];
      $r00 = $db->query($sql00);
      while ($d00 = $r00->fetch(PDO::FETCH_ASSOC)){
       extract($d00);
+      $imageData = base64_encode($d00['blogo']);
+      $imageSrc = 'data:image/jpg;base64,' . $imageData;
      
    ?>
 
@@ -57,6 +59,7 @@ $bid = $_GET['bid'];
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
       <div class="container-fluid">
+      <img src="<?php echo $imageSrc; ?>" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
         <a class="navbar-brand" href="#"><?php echo $d00['bname'];?></a> <?php }?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
