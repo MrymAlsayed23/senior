@@ -24,14 +24,30 @@ $cid = $_GET['cid'];
        
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="customerHome.php">
-                            <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                        <a class="navbar-brand" href="#">
+
+                            <?php
+                                require('../connection.php');
+                                $bid = $_GET['bid']; 
+                                $sql = "SELECT blogo FROM business WHERE bid = :bid";
+                                $stmt = $db->prepare($sql);
+                                $stmt->bindValue(':bid', $bid, PDO::PARAM_INT);
+                                $stmt->execute();
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                if ($result) {
+                                    $imageData = base64_encode($result['blogo']);
+                                    $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                    echo '<img src="' . $imageSrc . '" alt="Logo" width="90" height="70">';
+                                }
+                            ?>
                         </a>
+                        
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 870px;">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
@@ -82,7 +98,7 @@ $cid = $_GET['cid'];
                                     Profile
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                        <li><a class="dropdown-item" href="profile.php?bid=<?php echo $bid;?>">Profile</a></li>
                                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
                                 </li>
@@ -179,8 +195,15 @@ $cid = $_GET['cid'];
 
                                     <div class="col-md-3 mb-3">
                                         <label for="validationCustom04">Expiration Date</label>
-                                        <input type="month" name="" value="" class="form-control" required>
-                                        <div class="invalid-feedback" >Please select a valid Expiration Date.</div>
+                                        <input type="month" name="expdate" value="" class="form-control" required>
+                                        <div class="invalid-feedback" >
+                                            <?php
+                                                $today_date = date('Y-m');
+                                                if ($expdate < $today_date){
+                                                    echo "<div class='alert alert-danger' role='alert'>Credit Card has beed Expired</div>";
+                                                }
+                                            ?>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-3 mb-3">
