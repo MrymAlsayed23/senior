@@ -158,7 +158,7 @@
                     </div>
                     <div>
                         <label for="ptype">Product Type</label>
-                        <input type="text" name="ptype" pattern="[a-zA-Z]{1,100}" title="Product Type Must not be empty" required>
+                        <input type="text" name="ptype" pattern="[A-Za-z ]{1,100}" title="Product Type " required>
                     </div>
                     </div>
                     <div class="btn-group">
