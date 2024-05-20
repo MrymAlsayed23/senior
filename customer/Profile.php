@@ -31,17 +31,33 @@ session_start();
     </style>
     
     <body>
+        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="customerHome.php">
-                            <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
-                        </a>
+                    <?php
+                        require('../connection.php');
+                        $bid = $_GET['bid']; 
+                        $sql = "SELECT blogo FROM business WHERE bid = :bid";
+                        $stmt = $db->prepare($sql);
+                        $stmt->bindValue(':bid', $bid, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                        if ($result) {
+                            $imageData = base64_encode($result['blogo']);
+                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                            echo '<img src="' . $imageSrc . '" alt="Logo" width="90" height="70">';
+                        }
+                    ?>
+                </a>
+
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 870px;">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
@@ -92,7 +108,7 @@ session_start();
                                     Profile
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                        <li><a class="dropdown-item" href="profile.php?bid=<?php echo $bid;?>">Profile</a></li>
                                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
                                 </li>
