@@ -31,6 +31,9 @@ if (isset($_SESSION['uid'])) {
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "',?, ?)";
         $rIN = $db->prepare($sqlIN);
         $rIN->execute([$pid, $pquantity]);
+        $updateProducts = "UPDATE products SET pquantity = pquantity - $pquantity WHERE pid = $pid";
+        $updateStmt = $db->prepare($updateProducts);
+        $updateStmt->execute();
         }
         $sql2 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,0)";
         // 0 for card method
@@ -67,6 +70,9 @@ if (isset($_SESSION['uid'])) {
         $sqlIN = "INSERT INTO order_items VALUES($oid, '" . $_SESSION['uid'] . "',?, ?)";
         $rIN = $db->prepare($sqlIN);
         $rIN->execute([$pid, $pquantity]);
+        $updateProducts = "UPDATE products SET pquantity = pquantity - $pquantity WHERE pid = $pid";
+        $updateStmt = $db->prepare($updateProducts);
+        $updateStmt->execute();
         }
         $sql6 = "INSERT INTO payment VALUES(NULL,'" . $_SESSION['uid'] . "',$oid,$cid,$bid,NOW(),$total,1)";
         // 1 for cash method
