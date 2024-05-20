@@ -25,12 +25,12 @@ if (isset($_POST["sign"])) {
         if ($row['type'] == 'Owner') {
           $_SESSION['owner'] = $row['uid'];
           $bid = $row['bid'];
-          header('Location: ownerPanel.php?bid=' . $bid);
+          header('Location:ownerPanel.php?bid='.$bid);
           die();
         }
         if ($row['type'] == 'Admin') {
           $_SESSION['admin'] = $row['uid'];
-          header("location: ../admin/dashbord.php");
+          header("location:../Admin/dashboard.php");
         }
       }
     }
@@ -189,7 +189,7 @@ if (isset($_POST["sign"])) {
                   </tr>
                   <tr>
                     <td colspan="2" class="btnSignup"><span style="color: #726464;
-                    font-weight:500;margin-left: 3.8rem;">Not a member? </span><a href="signup.php" class=""> Signup</a></td>
+                    font-weight:500;margin-left: 3.8rem;">Not a member? </span><a href="ownersignup.php" class=""> Signup</a></td>
                   </tr>
                 </div>
               </table>
