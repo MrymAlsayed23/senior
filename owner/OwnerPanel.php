@@ -168,7 +168,7 @@ try {
     $d1 = $revenues->fetch(PDO::FETCH_ASSOC); 
     if ($d1) {
     ?>
-    <h5 class="card-title"><?php echo $d1["total"]; } ?> BHD</h5>
+    <h5 class="card-title"><?php echo round($d1["total"],2); } ?> BHD</h5>
     <p class="card-text">Total Revenue</p>
   </div>
 </div>
