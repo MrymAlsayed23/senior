@@ -103,6 +103,8 @@ session_start();
     catch (PDOException $ex) {
         echo "Error: " . $ex->getMessage();
     }
+
+
     ?>
     <div class="container">
 
@@ -169,7 +171,7 @@ session_start();
             </div>
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary" name="register">Create Account</button>
+                <input type="submit" class="btn btn-primary" name="register" value="Create Account">
             </div>
 
         </form>
@@ -179,16 +181,19 @@ session_start();
     </div> <!--end fiv container-->
 
     <script>
-        function validateform() {
-            let counter = document.forms["Form"].elements.length;
-            for (let i = 1; i < counter; i++) {
-                var detail = document.forms["Form"].elements[i].value;
-                if (detail == '') {
-                    alert("Please make sure to fill the form.");
-                    return false;
-                }
+        function validateform()
+      {
+        let formcount=document.forms["Form"].elements.length;
+        for(let i=1;i<formcount;i++)
+        {
+          var formdetail=document.forms["Form"].elements[i].value;
+            if(formdetail=='')
+            {
+              alert("Please make sure that the form is filled out.");
+              return false;
             }
         }
+      }
     </script>
    
 
