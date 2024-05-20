@@ -4,7 +4,7 @@ if (isset($_POST["click_delete_btn"])) {
 
     $pid = $_POST["pid"]; 
     $bid = $_POST["bid"];
-    echo "<h6 class='text-center' style='font-weight:bold;'>Are You Sure that You Want to Delete the Product with ?</h6>";  
+    echo "<h6 class='text-center' style='font-weight:bold;'>Are You Sure that You Want to Delete the Product?</h6>";  
 ?>
 <form action="deleteProductsButton.php" method="post">
 <input type="text" hidden name="pid" value="<?php echo $pid;?>">
