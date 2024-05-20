@@ -15,11 +15,6 @@
                 <div class="logo">
                 </div>
                 <nav class="nav">
-                   <ul>
-                      <li><a href="#"><i style="font-size:24px" class="fa">&#xf0a2;</i></a></li>
-                      <li><a href="#"><i style="font-size:24px" class="fa">&#xf003;</i></a></li>
-                      <li><a class="adminicon" href="#"><i style="font-size:24px" class="fa">&#xf2bd;</i> | Admin Name</a></li>
-                   </ul>
                 </nav>
             </div>
         </div>
