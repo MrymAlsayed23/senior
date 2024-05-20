@@ -26,11 +26,12 @@ $bid = $_GET['bid'];
      while ($d00 = $r00->fetch(PDO::FETCH_ASSOC)){
       extract($d00);
       $imageData = base64_encode($d00['blogo']);
-      $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+      $imageSrc = 'data:image/jpg;base64,' . $imageData;
      
    ?>
    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top pb-2">
       <div class="container-fluid">
+        
         <a class="navbar-brand" href="ownerPanel.php?bid=<?php echo $bid;?>" >
           <?php echo $d00['bname']; ?>
       </a> <?php }?>
@@ -296,7 +297,7 @@ try {
 
 
               <?php } if ($dSUM['totalRating'] > 0 ) { 
-                if (round($dSUM['totalRating']/$dTotal['total'], 3) > 1 
+                if (round($dSUM['totalRating']/$dTotal['total'], 3) >= 1 
                  && round($dSUM['totalRating']/$dTotal['total'], 3)  < 2)  { ?>
                   
                   <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
@@ -305,7 +306,7 @@ try {
                   <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                   <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                   <?php }
-              if (round($dSUM['totalRating']/$dTotal['total'],3 ) > 2 
+              if (round($dSUM['totalRating']/$dTotal['total'],3 ) >= 2 
               && round($dSUM['totalRating']/$dTotal['total'], 3)  < 3)  { ?>
                   
                     <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
@@ -314,7 +315,7 @@ try {
                     <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                     <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                     <?php }
-             if (round($dSUM['totalRating']/$dTotal['total'], 3) > 3
+             if (round($dSUM['totalRating']/$dTotal['total'], 3) >= 3
              &&  round($dSUM['totalRating']/$dTotal['total'], 3) < 4)  { ?>
                   
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
@@ -323,7 +324,7 @@ try {
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                 <i class="fa-solid fa-star mr-1 main_star " style="color: #adb2bd;"></i>
                 <?php }
-                if (round($dSUM['totalRating']/$dTotal['total'], 3) > 4 
+                if (round($dSUM['totalRating']/$dTotal['total'], 3) >= 4 
                 &&  round($dSUM['totalRating']/$dTotal['total'], 3) < 5)  { ?>
                      
                    <i class="fa-solid fa-star mr-1 main_star " style="color: #FFD43B;"></i>
