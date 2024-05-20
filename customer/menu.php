@@ -25,14 +25,37 @@
     }
 
     .card {
-        flex: 0 0 18rem;
+        flex: 0 0 20rem;
         margin: 10px;
-        border-radius: 25px;
-        width: 18rem;
+        /* border-radius: 30px; */
+        /* width: 18rem; */
     }
-     image{
-        width: 50px;
+
+    .card .card-body .flex{
+        justify-content: baseline;
     }
+
+    /* .card .card-body .flex .quantity{
+        width: 5rem;
+        padding:1rem;
+        border-radius: .3rem;
+    } */
+
+    .card .card-body .flex .price{
+        margin:1rem 0;
+        font-size: 1.4rem;
+        color: red;
+    }
+
+
+    .card img{
+        height: 20rem;
+        width: 100%;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        user-select: none;
+    }
+
     h5{
         font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
@@ -47,14 +70,30 @@
 
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="customerHome.php">
-                            <img src="../Images/Logo.jpg" alt="Logo" width="230" height="70">
+                        <a class="navbar-brand" href="#">
+
+                            <?php
+                                require('../connection.php');
+                                $bid = $_GET['bid']; 
+                                $sql = "SELECT blogo,bname FROM business WHERE bid = :bid";
+                                $stmt = $db->prepare($sql);
+                                $stmt->bindValue(':bid', $bid, PDO::PARAM_INT);
+                                $stmt->execute();
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                if ($result) {
+                                    $imageData = base64_encode($result['blogo']);
+                                    $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+                                    echo '<img src="' . $imageSrc . '" alt="Logo" width="90" height="70">';
+                                }
+                            ?>
                         </a>
+
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 870px;">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="customerHome.php">Home</a>
@@ -105,7 +144,7 @@
                                     Profile
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="profile.php">Profile</a></li>
+                                        <li><a class="dropdown-item" href="profile.php?bid=<?php echo $bid;?>">Profile</a></li>
                                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                                     </ul>
                                 </li>
@@ -129,21 +168,23 @@
             
             ?>
             <div class="card">
-                <!-- <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> --> <!--heart icon for wishlist page-->
                 
-                <img src="<?php echo $imageSrc; ?>" class="card-img-top" alt="..."> <!-- Product Image -->
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $pname; ?></h5> <!-- Product Name -->
-                    <p class="card-text"><?php echo $Details; ?>.</p><!-- Product Details -->
-                    <h6><?php echo $sellPrice." BD"; ?></h6>
-                    
-                    <form method="POST" action="addToCart.php?bid=<?php echo $bid;?>">
-                        <input type="number" name="pquantity" id="" min="1" max="10">
-                        <input type="hidden" name="pid" id="" value='<?php echo $pid;?>' />
-                        <input type="hidden" name="bid" id="" value='<?php echo $bid;?>' />
-                        <button type="submit" class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
-                    </form>
-                </div>
+                    <img src="<?php echo $imageSrc; ?>" class="card-img-top" alt="..."> <!-- Product Image -->
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $pname; ?></h5> <!-- Product Name -->
+                        <p class="card-text"><?php echo $Details; ?>.</p><!-- Product Details -->
+                        
+                        <form method="POST" action="addToCart.php?bid=<?php echo $bid;?>">
+                            <div class="flex">
+                                <div class="price"><?php echo $sellPrice; ?><span> BD</span></div>
+                            </div>
+                                
+                            <input type="number" class="quantity" name="pquantity" id="" min="1" max="100">
+                            <input type="hidden" name="pid" id="" value='<?php echo $pid;?>' />
+                            <input type="hidden" name="bid" id="" value='<?php echo $bid;?>' />
+                            <button type="submit" class="btn btn-primary" name="add" onclick="addToCart()">Add to Cart</button>                    
+                        </form>
+                    </div>
             </div>
 
             <?php
