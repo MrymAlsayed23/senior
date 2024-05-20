@@ -58,12 +58,15 @@
             justify-content: center;
             background: #ffffff;
         }
+
         h1{
             text-align: center;
         }
+
         span section::before {
             content: "\A";
         }
+
         section{
             position: relative;
             height: 450px;
@@ -121,8 +124,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: 40px;
-          /* color: ; */
+          margin-top: 10px;
         }
 
 
