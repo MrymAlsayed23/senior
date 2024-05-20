@@ -109,7 +109,7 @@
         <div class="footercontainer">
             <div class="row">
                 <div class="footer-col">
-                    <h4>My Account</h4>
+                    <h4>get help</h4>
                     <ul>
                         <li><a href="aboutUs.php">About Us</a></li>
                         <li><a href="service.php">Our Services</a></li>
@@ -117,11 +117,9 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>get help</h4>
                     <ul>
                         <li><a href="contact.php?bid=<?php echo $bid;?>">Contact Us</a></li>
                         <li><a href="faq.php">FAQ</a></li>
-                        <li><a href="orderstatus.php">order status</a></li>
                     </ul>
                 </div>
             
@@ -129,7 +127,7 @@
                     <h4>follow us</h4>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
