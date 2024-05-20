@@ -17,7 +17,7 @@ session_start();
       
         .container{
             justify-content: center;
-            padding: 100px;
+            padding-top: 100px;
         }
         p{
             text-align:right;
@@ -52,11 +52,11 @@ session_start();
                 
               
                 <div class="d-grid gap-2">
-                    <input type="submit" name="log" value="Sign in">
+                    <input type="submit" class="btn btn-primary" name="log" value="Sign in">
                 </div>
                 
-
-                <h6>Don't have an account yet?<a href="register.php">Sign up</a> </h6>
+                <br>
+                <h6>Don't have an account yet? <a href="register.php">Sign up</a> </h6>
 
             </form>
         </div>
